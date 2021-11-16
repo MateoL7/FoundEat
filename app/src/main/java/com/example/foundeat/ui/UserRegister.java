@@ -1,8 +1,10 @@
-package com.example.foundeat;
+package com.example.foundeat.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.foundeat.R;
 
 public class UserRegister extends AppCompatActivity {
 

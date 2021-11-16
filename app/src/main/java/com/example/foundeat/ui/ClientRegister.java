@@ -1,14 +1,16 @@
-package com.example.foundeat;
+package com.example.foundeat.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RestaurantRegister extends AppCompatActivity {
+import com.example.foundeat.R;
+
+public class ClientRegister extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_register);
+        setContentView(R.layout.activity_client_register);
     }
 }

@@ -20,13 +20,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoundEat">
         <activity
-            android:name=".RestaurantRegister"
+            android:name=".ui.login"
             android:exported="true" />
         <activity
-            android:name=".UserRegister"
+            android:name=".ui.ClientRegister"
             android:exported="true" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.RestaurantScreen"
+            android:exported="true" />
+        <activity
+            android:name=".ui.ClientScreen"
+            android:exported="true" />
+        <activity
+            android:name=".ui.RestaurantRegister"
+            android:exported="true" />
+        <activity
+            android:name=".ui.UserRegister"
+            android:exported="true" />
+        <activity
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true" />
     </application>
 

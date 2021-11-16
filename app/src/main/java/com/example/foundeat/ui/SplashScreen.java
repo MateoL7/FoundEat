@@ -1,4 +1,4 @@
-package com.example.foundeat;
+package com.example.foundeat.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.foundeat.R;
 
 public class SplashScreen extends AppCompatActivity {
 
