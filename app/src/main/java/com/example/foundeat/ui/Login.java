@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
 
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
-        goBtn = findViewById(R.id.resRegisterBtn);
+        goBtn = findViewById(R.id.clientRegisterBtn);
         goToSignUp = findViewById(R.id.goToSignUp);
 
         goToSignUp.setOnClickListener(v -> {

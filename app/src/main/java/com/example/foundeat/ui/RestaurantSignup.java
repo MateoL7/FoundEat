@@ -30,15 +30,14 @@ public class RestaurantSignup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_register);
+        setContentView(R.layout.activity_restaurant_signup);
 
-        resNameET = findViewById(R.id.resNameET);
-        resEmailET = findViewById(R.id.resEmailET);
-        resPassET = findViewById(R.id.resPassET);
-        resConfirmPassET = findViewById(R.id.resConfirmPassET);
-        resRegisterBtn = findViewById(R.id.resRegisterBtn);
-        resLogin = findViewById(R.id.resLogin);
-
+        resNameET = findViewById(R.id.clientNameET);
+        resEmailET = findViewById(R.id.clientEmailET);
+        resPassET = findViewById(R.id.clientPassET);
+        resConfirmPassET = findViewById(R.id.clientConfirmPassET);
+        resRegisterBtn = findViewById(R.id.clientRegisterBtn);
+        resLogin = findViewById(R.id.clientLogin);
 
 
         resLogin.setOnClickListener(v->{
