@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "753723922396",
+    "project_id": "foundeat-7323e",
+    "storage_bucket": "foundeat-7323e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753723922396:android:4f6845f3b2cd3724132119",
+        "android_client_info": {
+          "package_name": "com.example.foundeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753723922396-rddjbbphjjc4jul1n8u2av5ptdft4v32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVT9oXpk2haJ-ZC4UViyqLdnNcJXQcHRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753723922396-rddjbbphjjc4jul1n8u2av5ptdft4v32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
