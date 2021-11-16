@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foundeat.R;
@@ -16,11 +17,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     private String type;
     private EditText emailET, passwordET;
     private Button goBtn;
+    private TextView goToSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,17 @@ public class login extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
         goBtn = findViewById(R.id.resRegisterBtn);
+        goToSignUp = findViewById(R.id.goToSignUp);
+
+        goToSignUp.setOnClickListener(v -> {
+            if (type.equalsIgnoreCase("client")) {
+                Intent intent = new Intent(this, ClientSignup.class);
+                startActivity(intent);
+            } else if (type.equalsIgnoreCase("restaurant")) {
+                Intent intent = new Intent(this, RestaurantSignup.class);
+                startActivity(intent);
+            }
+        });
 
         goBtn.setOnClickListener(v -> {
             String email = emailET.getText().toString();

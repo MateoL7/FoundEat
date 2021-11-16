@@ -21,12 +21,12 @@ public class ClientScreen extends AppCompatActivity {
         registerBtn = findViewById(R.id.registerBtn);
 
         loginBtn.setOnClickListener(v->{
-            Intent intent = new Intent(this, login.class);
+            Intent intent = new Intent(this, Login.class);
             intent.putExtra("type","client");
             startActivity(intent);
         });
         registerBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this,ClientRegister.class);
+            Intent intent = new Intent(this, ClientSignup.class);
             startActivity(intent);
         });
 

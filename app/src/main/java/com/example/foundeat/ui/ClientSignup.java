@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.foundeat.R;
 
-public class ClientRegister extends AppCompatActivity {
+public class ClientSignup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

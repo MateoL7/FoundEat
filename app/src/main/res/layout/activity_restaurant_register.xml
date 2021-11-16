@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#050B30"
-    tools:context=".ui.login">
+    tools:context=".ui.Login">
 
     <EditText
         android:id="@+id/resConfirmPassET"
@@ -36,13 +36,14 @@
 
     <Button
         android:id="@+id/resRegisterBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:text="Registrarse"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/resLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -88,5 +89,18 @@
         app:layout_constraintEnd_toEndOf="@+id/resEmailET"
         app:layout_constraintStart_toStartOf="@+id/resEmailET"
         app:layout_constraintTop_toBottomOf="@+id/resEmailET" />
+
+    <TextView
+        android:id="@+id/resLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:padding="5dp"
+        android:text="¿Ya tienes una cuenta? Ingresa"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

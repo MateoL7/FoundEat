@@ -29,10 +29,10 @@
             android:name=".ui.RestaurantHome"
             android:exported="true" />
         <activity
-            android:name=".ui.login"
+            android:name=".ui.Login"
             android:exported="true" />
         <activity
-            android:name=".ui.ClientRegister"
+            android:name=".ui.ClientSignup"
             android:exported="true" />
         <activity
             android:name=".ui.RestaurantScreen"
@@ -41,7 +41,7 @@
             android:name=".ui.ClientScreen"
             android:exported="true" />
         <activity
-            android:name=".ui.RestaurantRegister"
+            android:name=".ui.RestaurantSignup"
             android:exported="true" />
         <activity
             android:name=".ui.UserRegister"

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foundeat.R;
@@ -16,10 +17,11 @@ import com.google.firebase.firestore.Query;
 import java.util.Locale;
 import java.util.UUID;
 
-public class RestaurantRegister extends AppCompatActivity {
+public class RestaurantSignup extends AppCompatActivity {
 
     private EditText resNameET, resEmailET, resPassET, resConfirmPassET;
     private Button resRegisterBtn;
+    private TextView resLogin;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -35,6 +37,15 @@ public class RestaurantRegister extends AppCompatActivity {
         resPassET = findViewById(R.id.resPassET);
         resConfirmPassET = findViewById(R.id.resConfirmPassET);
         resRegisterBtn = findViewById(R.id.resRegisterBtn);
+        resLogin = findViewById(R.id.resLogin);
+
+
+
+        resLogin.setOnClickListener(v->{
+            Intent intent = new Intent(this, Login.class);
+            intent.putExtra("type", "restaurant");
+            startActivity(intent);
+        });
 
         resRegisterBtn.setOnClickListener(v -> {
             restaurant = new Restaurant();
