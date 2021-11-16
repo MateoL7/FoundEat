@@ -31,8 +31,8 @@ public class login extends AppCompatActivity {
         Log.e(">>>", type);
 
         emailET = findViewById(R.id.emailET);
-        passwordET = findViewById(R.id.passwordEt);
-        goBtn = findViewById(R.id.goBtn);
+        passwordET = findViewById(R.id.passwordET);
+        goBtn = findViewById(R.id.resRegisterBtn);
 
         goBtn.setOnClickListener(v -> {
             String email = emailET.getText().toString();
@@ -58,6 +58,9 @@ public class login extends AppCompatActivity {
                                     client = doc.toObject(Client.class);
                                     break;
                                 }
+                                Intent intent = new Intent(this, ClientHome.class);
+                                intent.putExtra("client", client);
+                                startActivity(intent);
 
                             } else if (type.equalsIgnoreCase("restaurant")) {
                                 Restaurant restaurant = null;
