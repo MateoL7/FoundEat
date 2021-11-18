@@ -78,7 +78,12 @@ public class Login extends AppCompatActivity {
                             if (type.equalsIgnoreCase("client")) {
                                 Client client = document.toObject(Client.class);
                                 saveClient(client);
-                                Intent intent = new Intent(this, ClientHome.class);
+                                Intent intent;
+                                if(client.getProfilePic()==null){
+                                    intent = new Intent(this, ClientPhoto.class);
+                                }else{
+                                    intent = new Intent(this, ClientHome.class);
+                                }
                                 intent.putExtra("client", client);
                                 startActivity(intent);
                             } else if (type.equalsIgnoreCase("restaurant")) {
