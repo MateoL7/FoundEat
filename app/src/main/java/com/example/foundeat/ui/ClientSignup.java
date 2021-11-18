@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -47,30 +50,45 @@ public class ClientSignup extends AppCompatActivity {
             startActivity(intent);
         });
 
-        clientRegisterBtn.setOnClickListener(v -> {
-            client = new Client();
-            client.setId(UUID.randomUUID().toString());
-            client.setName(clientNameET.getText().toString());
-            client.setEmail(clientEmailET.getText().toString().toLowerCase(Locale.ROOT));
-            client.setPassword(clientPassET.getText().toString());
+        clientRegisterBtn.setOnClickListener(this::signup);
+    }
+    private void signup(View view) {
+        if (clientPassET.getText().toString().equals(clientConfirmPassET.getText().toString())) {
 
-            if (client.getPassword().equals(clientConfirmPassET.getText().toString())) {
-                Query query = FirebaseFirestore.getInstance().collection("users").whereEqualTo("email", client.getEmail());
-                query.get().addOnCompleteListener(
-                        task -> {
-                            if (task.getResult().size() == 0) {
-                                //Indica que el email no ha sido registrado antes y se puede utilizar
-                                db.collection("restaurants").document(client.getId()).set(client);
-                                Intent intent = new Intent(this, ClientPhoto.class);
-                                intent.putExtra("client", client);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(this, "Este email ya está registrado", Toast.LENGTH_LONG).show();
-                            }
-                        });
-            }else{
-                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
-            }
+            //1. Registrar en db de Auth
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                    clientEmailET.getText().toString().toLowerCase(Locale.ROOT),
+                    clientPassET.getText().toString()
+            ).addOnSuccessListener(v -> {
+                //2. Resgistrar en la base de datos general
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                client = new Client();
+                client.setId(firebaseUser.getUid());
+                client.setName(clientNameET.getText().toString());
+                client.setEmail(clientEmailET.getText().toString().toLowerCase(Locale.ROOT));
+
+                db.collection("users").document(client.getId()).set(client).addOnSuccessListener(fireTask->{
+                    sendVerificationEmail();
+                    Intent intent = new Intent(this, Login.class);
+                    intent.putExtra("type", "client");
+                    startActivity(intent);
+                });
+
+
+            }).addOnFailureListener(error -> {
+                Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
+            });
+        } else {
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void sendVerificationEmail() {
+        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnSuccessListener(task->{
+            Toast.makeText(this, "Se ha enviado un correo de verificación a la dirección dada", Toast.LENGTH_LONG).show();
+        }).addOnFailureListener(error->{
+            Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
     }
 }

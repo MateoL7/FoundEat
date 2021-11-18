@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,13 +14,18 @@ import android.widget.Toast;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.gson.Gson;
 
 public class Login extends AppCompatActivity {
 
     private String type;
+    private String path="";
+
     private EditText emailET, passwordET;
     private Button goBtn;
     private TextView goToSignUp;
@@ -47,52 +53,58 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        goBtn.setOnClickListener(v -> {
-            String email = emailET.getText().toString();
-            //Falta comprobación de contraseña
+        goBtn.setOnClickListener(this::login);
 
-            String path="";
+    }
 
-            if (type.equalsIgnoreCase("client")) {
-                path = "users";
-            } else if (type.equalsIgnoreCase("restaurant")) {
-                path = "restaurants";
-            }
-            Query query = FirebaseFirestore.getInstance().collection(path).whereEqualTo("email", email);
-            query.get().addOnCompleteListener(
-                    task -> {
-                        if (task.getResult().size() == 0) {
-                            Toast.makeText(this,"Los datos ingresados no son correctos",Toast.LENGTH_LONG).show();
-                        }
-                        else {
+    private void login(View view){
+        if (type.equalsIgnoreCase("client")) {
+            path = "users";
+        } else if (type.equalsIgnoreCase("restaurant")) {
+            path = "restaurants";
+        }
+
+        String email = emailET.getText().toString();
+        String password = passwordET.getText().toString();
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password).addOnSuccessListener(
+                task->{
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if(firebaseUser.isEmailVerified()){
+                        //Acceso
+
+                        //Pedir usuario en firestore
+                        FirebaseFirestore.getInstance().collection(path).document(firebaseUser.getUid()).get().addOnSuccessListener(document->{
                             if (type.equalsIgnoreCase("client")) {
-                                Client client = null;
-                                for (DocumentSnapshot doc : task.getResult()) {
-                                    client = doc.toObject(Client.class);
-                                    break;
-                                }
+                                Client client = document.toObject(Client.class);
+                                saveClient(client);
                                 Intent intent = new Intent(this, ClientHome.class);
                                 intent.putExtra("client", client);
                                 startActivity(intent);
-
                             } else if (type.equalsIgnoreCase("restaurant")) {
-                                Restaurant restaurant = null;
-                                for (DocumentSnapshot doc : task.getResult()) {
-                                    restaurant = doc.toObject(Restaurant.class);
-                                    break;
-                                }
-                                Intent intent = new Intent(this, RestaurantHome.class);
+                                Restaurant restaurant = document.toObject(Restaurant.class);
+                                saveRestaurant(restaurant);
+                                Intent intent = new Intent(this, RestaurantMoreInfo.class);
                                 intent.putExtra("restaurant", restaurant);
                                 startActivity(intent);
                             }
-
-
-                        }
-
+                        });
+                    }else{
+                        Toast.makeText(this, "Su email no ha sido verificado", Toast.LENGTH_LONG).show();
                     }
-            );
+                }
+        ).addOnFailureListener(error->{
+            Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
 
+    }
 
+    private void saveClient(Client client){
+        String json = new Gson().toJson(client);
+        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("client",json).apply();
+    }
+    private void saveRestaurant(Restaurant restaurant){
+        String json = new Gson().toJson(restaurant);
+        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("restaurant",json).apply();
     }
 }

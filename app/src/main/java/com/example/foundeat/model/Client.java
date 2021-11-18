@@ -4,17 +4,16 @@ import java.io.Serializable;
 
 public class Client implements Serializable {
 
-    private String id, name, email,password,profilePic;
+    private String id, name, email,profilePic;
     private String[] favoriteFood;
 
     public Client() {
     }
 
-    public Client(String id, String name, String email, String password, String profilePic, String[] favoriteFood) {
+    public Client(String id, String name, String email, String profilePic, String[] favoriteFood) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.profilePic = profilePic;
         this.favoriteFood = favoriteFood;
     }
@@ -41,14 +40,6 @@ public class Client implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getProfilePic() {

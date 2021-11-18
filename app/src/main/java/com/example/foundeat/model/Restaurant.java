@@ -4,17 +4,16 @@ import java.io.Serializable;
 
 public class Restaurant implements Serializable {
 
-    private String id,name,email,password,description, address,minPrice, maxPrice;
+    private String id,name,email,description, address,minPrice, maxPrice;
     private Long openingTime, closingTime;
 
     public Restaurant() {
     }
 
-    public Restaurant(String id, String name, String email, String password, String description, String address, String minPrice, String maxPrice, Long openingTime, Long closingTime) {
+    public Restaurant(String id, String name, String email, String description, String address, String minPrice, String maxPrice, Long openingTime, Long closingTime) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.description = description;
         this.address = address;
         this.minPrice = minPrice;
@@ -45,14 +44,6 @@ public class Restaurant implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getDescription() {
