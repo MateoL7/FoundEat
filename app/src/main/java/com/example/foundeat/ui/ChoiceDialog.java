@@ -1,4 +1,4 @@
-package com.example.foundeat.ui.client;
+package com.example.foundeat.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
