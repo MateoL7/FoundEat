@@ -14,11 +14,17 @@ import android.widget.Toast;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.ClientFavoriteFood;
+import com.example.foundeat.ui.client.ClientHome;
+import com.example.foundeat.ui.client.ClientPhoto;
+import com.example.foundeat.ui.client.ClientSignup;
+import com.example.foundeat.ui.restaurant.RestaurantDescription;
+import com.example.foundeat.ui.restaurant.RestaurantHome;
+import com.example.foundeat.ui.restaurant.RestaurantMoreInfo;
+import com.example.foundeat.ui.restaurant.RestaurantSignup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.gson.Gson;
 
 public class Login extends AppCompatActivity {
@@ -79,9 +85,14 @@ public class Login extends AppCompatActivity {
                                 Client client = document.toObject(Client.class);
                                 saveClient(client);
                                 Intent intent;
+                                // Para que termine el perfil si no lo ha terminado
                                 if(client.getProfilePic()==null){
                                     intent = new Intent(this, ClientPhoto.class);
-                                }else{
+                                }
+                                else if(client.getFavoriteFood().length<3){
+                                    intent = new Intent(this, ClientFavoriteFood.class);
+                                }
+                                else{
                                     intent = new Intent(this, ClientHome.class);
                                 }
                                 intent.putExtra("client", client);
@@ -89,7 +100,15 @@ public class Login extends AppCompatActivity {
                             } else if (type.equalsIgnoreCase("restaurant")) {
                                 Restaurant restaurant = document.toObject(Restaurant.class);
                                 saveRestaurant(restaurant);
-                                Intent intent = new Intent(this, RestaurantMoreInfo.class);
+                                Intent intent;
+                                // Para que termine el perfil si no lo ha terminado
+                                if(restaurant.getDescription() == null){
+                                    intent = new Intent(this, RestaurantDescription.class);
+                                }else if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null || restaurant.getMaxPrice()== null || restaurant.getMinPrice() == null ){
+                                    intent = new Intent(this, RestaurantMoreInfo.class);
+                                }else{
+                                    intent = new Intent(this, RestaurantHome.class);
+                                }
                                 intent.putExtra("restaurant", restaurant);
                                 startActivity(intent);
                             }

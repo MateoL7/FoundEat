@@ -1,4 +1,4 @@
-package com.example.foundeat.ui;
+package com.example.foundeat.ui.client;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -21,10 +21,11 @@ import android.widget.Toast;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.util.UtilDomi;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 
-public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnChoiceListener{
+public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnChoiceListener {
 
     private TextView skipPicTV, greetingTV;
     private ImageView profilePic;
@@ -51,18 +52,15 @@ public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnCho
 
         profilePic = findViewById(R.id.profilePic);
         continueBtn = findViewById(R.id.continueBtn);
-        skipPicTV = findViewById(R.id.skipPicTV);
+        skipPicTV = findViewById(R.id.skipTV);
 
-        skipPicTV.setOnClickListener(v->{
-            Intent intent = new Intent(this,ClientHome.class);
-            intent.putExtra("client", client);
-            startActivity(intent);
-        });
-        continueBtn.setOnClickListener(v->{
-            Intent intent = new Intent(this,ClientHome.class);
-            intent.putExtra("client", client);
-            startActivity(intent);
-        });
+        skipPicTV.setOnClickListener(
+                v->{
+                    client.setProfilePic(null);
+                    nextActivity(v);
+                }
+        );
+        continueBtn.setOnClickListener(this::nextActivity);
 
         continueBtn.setEnabled(false);
         profilePic.setOnClickListener(this::openChoice);
@@ -71,6 +69,13 @@ public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnCho
         galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGalleryResult);
 
 
+    }
+
+    private void nextActivity(View view){
+        FirebaseFirestore.getInstance().collection("users").document(client.getId()).set(client);
+        Intent intent = new Intent(this,ClientHome.class);
+        intent.putExtra("client", client);
+        startActivity(intent);
     }
 
     public void openChoice(View view){

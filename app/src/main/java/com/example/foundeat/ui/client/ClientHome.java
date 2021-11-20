@@ -1,4 +1,4 @@
-package com.example.foundeat.ui;
+package com.example.foundeat.ui.client;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
+import com.example.foundeat.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ClientHome extends AppCompatActivity {

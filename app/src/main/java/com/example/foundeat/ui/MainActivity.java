@@ -9,6 +9,10 @@ import android.widget.Button;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.ClientHome;
+import com.example.foundeat.ui.client.ClientScreen;
+import com.example.foundeat.ui.restaurant.RestaurantHome;
+import com.example.foundeat.ui.restaurant.RestaurantScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
@@ -30,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         }else{
             if(client!= null){
-                Intent intent = new Intent(this,ClientHome.class);
+                Intent intent = new Intent(this, ClientHome.class);
                 intent.putExtra("client",client);
                 startActivity(intent);
             }else if(restaurant!=null){
-                Intent intent = new Intent(this,RestaurantHome.class);
+                Intent intent = new Intent(this, RestaurantHome.class);
                 intent.putExtra("restaurant",restaurant);
                 startActivity(intent);
             }
@@ -44,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
         restaurantBtn = findViewById(R.id.registerBtn);
 
         clientBtn.setOnClickListener(v->{
-            Intent intent = new Intent(this,ClientScreen.class);
+            Intent intent = new Intent(this, ClientScreen.class);
             startActivity(intent);
         });
         restaurantBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this,RestaurantScreen.class);
+            Intent intent = new Intent(this, RestaurantScreen.class);
             startActivity(intent);
         });
 

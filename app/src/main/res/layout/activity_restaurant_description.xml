@@ -5,31 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#050B30"
-    tools:context=".ui.client.ClientPhoto">
+    tools:context=".ui.restaurant.RestaurantDescription">
 
     <TextView
-        android:id="@+id/greetingTV"
-        android:layout_width="wrap_content"
+        android:id="@+id/resGreetingTV2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="¡Cuéntanos un poco más de ti!"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resGreetingTV" />
+
+    <TextView
+        android:id="@+id/resGreetingTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/profilePic"
-        android:layout_width="108dp"
-        android:layout_height="108dp"
-        android:background="@drawable/camera"
-        app:layout_constraintBottom_toTopOf="@+id/continueBtn"
+    <EditText
+        android:id="@+id/descriptionET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="Agrega una descripción de tu restaurante"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#D6D3D3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greetingTV" />
-
+        app:layout_constraintTop_toBottomOf="@+id/resGreetingTV2" />
     <Button
         android:id="@+id/continueBtn"
         android:layout_width="0dp"
@@ -48,10 +70,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:padding="5dp"
-        android:text="Omitir"
+        android:text="Realizar luego"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.foundeat.ui;
+package com.example.foundeat.ui.restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RestaurantHome extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class RestaurantHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_home);
+        setContentView(R.layout.activity_restaurant_home);
 
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
         nameET = findViewById(R.id.nameTV);

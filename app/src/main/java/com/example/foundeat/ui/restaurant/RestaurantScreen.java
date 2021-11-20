@@ -1,4 +1,4 @@
-package com.example.foundeat.ui;
+package com.example.foundeat.ui.restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.foundeat.R;
+import com.example.foundeat.ui.Login;
 
 public class RestaurantScreen extends AppCompatActivity {
 
