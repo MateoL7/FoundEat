@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,9 +24,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class RestaurantMoreInfo extends AppCompatActivity {
+public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private Spinner spinner;
+    private AutoCompleteTextView categoryChoice;
     private EditText maxET, minET, closingET, openingET, addressET;
     private TextView skipTV;
     private Button continueBtn;
@@ -48,8 +49,8 @@ public class RestaurantMoreInfo extends AppCompatActivity {
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
 
-        spinner = findViewById(R.id.spinner);
-        loadSpinner();
+        categoryChoice = findViewById(R.id.categoryChoice);
+        loadChoices();
 
         skipTV.setOnClickListener(v -> {
             nextActivitySkip(v);
@@ -71,7 +72,7 @@ public class RestaurantMoreInfo extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void loadSpinner() {
+    private void loadChoices() {
         categories = new ArrayList<>();
         FirebaseFirestore.getInstance().collection("food").orderBy("category").addSnapshotListener(((value, error) -> {
             categories.clear();
@@ -80,23 +81,11 @@ public class RestaurantMoreInfo extends AppCompatActivity {
                 categories.add(category);
             }
         }));
-        ArrayAdapter<FoodCategory> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+
         //ESTO AÚN NO FUNCIONA, NO COGE EL ITEM SELECTED
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                FoodCategory foodCategory = (FoodCategory) parent.getSelectedItem();
-                restaurant.setCategory(foodCategory.getCategory());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item,categories);
+        categoryChoice.setAdapter(adapter);
+        categoryChoice.setOnItemClickListener(this);
     }
 
     private void nextActivity(View view) {
@@ -108,5 +97,11 @@ public class RestaurantMoreInfo extends AppCompatActivity {
         Intent intent = new Intent(this, RestaurantHome.class);
         intent.putExtra("restaurant", restaurant);
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        FoodCategory foodCategory = (FoodCategory) parent.getItemAtPosition(position);
+        restaurant.setCategory(foodCategory.toString());
     }
 }
