@@ -31,9 +31,9 @@ public class RestaurantDescription extends AppCompatActivity {
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
         resGreetingTV = findViewById(R.id.resGreetingTV);
-        skipTV = findViewById(R.id.skipTV);
+        skipTV = findViewById(R.id.logoutTV);
         descriptionET = findViewById(R.id.descriptionET);
-        continueBtn = findViewById(R.id.continueBtn);
+        continueBtn = findViewById(R.id.saveBtn);
 
         resGreetingTV.setText("Hola "+restaurant.getName()+",\neditaremos tu perfil para que los clientes te encuentren");
         continueBtn.setEnabled(false);

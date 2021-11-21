@@ -13,6 +13,7 @@ import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 public class ClientHome extends AppCompatActivity {
 
@@ -30,7 +31,18 @@ public class ClientHome extends AppCompatActivity {
         nameET = findViewById(R.id.nameTV);
         nameET.setText(client.getName());
         clientLogoutBtn = findViewById(R.id.clientLogoutBtn);
+
+        loadClient();
+
+
         clientLogoutBtn.setOnClickListener(this::logout);
+    }
+
+    private void loadClient() {
+        //Sacar todo de la base de datos
+
+        //Guardar el cliente
+        saveClient(client);
     }
 
     private void logout(View view) {
@@ -39,5 +51,9 @@ public class ClientHome extends AppCompatActivity {
         finish();
         getSharedPreferences("foundEat", MODE_PRIVATE).edit().clear().apply();
         FirebaseAuth.getInstance().signOut();
+    }
+    private void saveClient(Client client){
+        String json = new Gson().toJson(client);
+        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("client",json).apply();
     }
 }

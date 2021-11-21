@@ -84,7 +84,6 @@ public class Login extends AppCompatActivity {
                         FirebaseFirestore.getInstance().collection(path).document(firebaseUser.getUid()).get().addOnSuccessListener(document->{
                             if (type.equalsIgnoreCase("client")) {
                                 Client client = document.toObject(Client.class);
-                                saveClient(client);
                                 Intent intent;
 
                                 // Para que termine el perfil si no lo ha terminado
@@ -103,7 +102,6 @@ public class Login extends AppCompatActivity {
                                 startActivity(intent);
                             } else if (type.equalsIgnoreCase("restaurant")) {
                                 Restaurant restaurant = document.toObject(Restaurant.class);
-                                saveRestaurant(restaurant);
                                 Intent intent;
 
                                 // Para que termine el perfil si no lo ha terminado
@@ -132,12 +130,12 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void saveClient(Client client){
-        String json = new Gson().toJson(client);
-        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("client",json).apply();
-    }
-    private void saveRestaurant(Restaurant restaurant){
-        String json = new Gson().toJson(restaurant);
-        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("restaurant",json).apply();
-    }
+//    private void saveClient(Client client){
+//        String json = new Gson().toJson(client);
+//        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("client",json).apply();
+//    }
+//    private void saveRestaurant(Restaurant restaurant){
+//        String json = new Gson().toJson(restaurant);
+//        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("restaurant",json).apply();
+//    }
 }

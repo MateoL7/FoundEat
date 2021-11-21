@@ -52,8 +52,8 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
         greetingTV.setText("Agrega 3 fotos principales para tu perfil");
 
         profilePic = findViewById(R.id.profilePic);
-        continueBtn = findViewById(R.id.continueBtn);
-        skipPicTV = findViewById(R.id.skipTV);
+        continueBtn = findViewById(R.id.saveBtn);
+        skipPicTV = findViewById(R.id.logoutTV);
 
         skipPicTV.setOnClickListener(v -> {
             restaurant.setPics(null);

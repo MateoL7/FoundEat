@@ -27,13 +27,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/resLogoutBtn"
+        android:id="@+id/editProfileBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
-        android:text="Cerrar sesión"
+        android:text="Editar perfil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -51,7 +51,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/resLogoutBtn"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileBtn"
         app:layout_constraintTop_toBottomOf="@+id/actualPic">
 
         <LinearLayout

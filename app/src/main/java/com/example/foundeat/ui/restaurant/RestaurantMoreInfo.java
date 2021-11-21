@@ -4,17 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.FoodCategory;
@@ -41,8 +37,8 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
 
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
-        skipTV = findViewById(R.id.skipTV);
-        continueBtn = findViewById(R.id.continueBtn);
+        skipTV = findViewById(R.id.logoutTV);
+        continueBtn = findViewById(R.id.saveBtn);
         maxET = findViewById(R.id.maxET);
         minET = findViewById(R.id.minET);
         closingET = findViewById(R.id.closingET);
@@ -50,6 +46,7 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
         addressET = findViewById(R.id.addressET);
 
         categoryChoice = findViewById(R.id.categoryChoice);
+        loadActualInfo();
         loadChoices();
 
         skipTV.setOnClickListener(v -> {
@@ -57,6 +54,27 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
         });
 
         continueBtn.setOnClickListener(this::nextActivity);
+    }
+
+    private void loadActualInfo() {
+        if (restaurant.getCategory() != null) {
+            categoryChoice.setText(restaurant.getCategory());
+        }
+        if (restaurant.getAddress() != null) {
+            addressET.setText(restaurant.getAddress());
+        }
+        if (restaurant.getOpeningTime() != null) {
+            openingET.setText(restaurant.getOpeningTime().toString());
+        }
+        if(restaurant.getClosingTime() != null){
+            closingET.setText(restaurant.getClosingTime().toString());
+        }
+        if(restaurant.getMinPrice()!= null){
+            minET.setText(restaurant.getMinPrice());
+        }
+        if(restaurant.getMaxPrice()!=null){
+            maxET.setText(restaurant.getMaxPrice());
+        }
     }
 
     private void nextActivitySkip(View v) {
@@ -81,9 +99,7 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
                 categories.add(category);
             }
         }));
-
-        //ESTO AÚN NO FUNCIONA, NO COGE EL ITEM SELECTED
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item,categories);
+        ArrayAdapter<FoodCategory> adapter = new ArrayAdapter<>(this, R.layout.list_item,categories);
         categoryChoice.setAdapter(adapter);
         categoryChoice.setOnItemClickListener(this);
     }
