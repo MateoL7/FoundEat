@@ -14,11 +14,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Precio más alto"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,11 +33,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Precio más bajo"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,11 +52,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Hora de cierre"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,11 +71,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Hora de apertura"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +95,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <EditText
         android:id="@+id/addressET"
@@ -96,11 +104,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Dirección del restaurante"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#A8A8A8"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
@@ -129,17 +139,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="124dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/textfieldborder"
+        android:textColorHint="#617395"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColorHint="#A8A8A8"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <AutoCompleteTextView
@@ -147,8 +169,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tipo de comida"
-            android:textColor="#FFFFFF"
             android:inputType="none"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

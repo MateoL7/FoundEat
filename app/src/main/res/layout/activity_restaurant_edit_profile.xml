@@ -22,9 +22,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +53,13 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Descripción del restaurante"
                 android:inputType="textPersonName"
+                android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#A8A8A8" />
+                android:textColorHint="#617395" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
@@ -64,7 +69,8 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:textColorHint="#A8A8A8">
+                android:background="@drawable/textfieldborder"
+                android:textColorHint="#617395">
 
                 <AutoCompleteTextView
                     android:id="@+id/categoryChoice"
@@ -83,11 +89,13 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Dirección del restaurante"
                 android:inputType="textPersonName"
+                android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#A8A8A8" />
+                android:textColorHint="#617395" />
 
             <EditText
                 android:id="@+id/openingET"
@@ -96,11 +104,13 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Hora de apertura"
                 android:inputType="textPersonName"
+                android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#A8A8A8" />
+                android:textColorHint="#617395" />
 
             <EditText
                 android:id="@+id/closingET"
@@ -109,11 +119,13 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Hora de cierre"
                 android:inputType="textPersonName"
+                android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#A8A8A8" />
+                android:textColorHint="#617395" />
 
             <EditText
                 android:id="@+id/minET"
@@ -122,11 +134,13 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Precio más bajo"
                 android:inputType="textPersonName"
+                android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#A8A8A8" />
+                android:textColorHint="#617395" />
 
             <EditText
                 android:id="@+id/maxET"
@@ -135,11 +149,13 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Precio más alto"
                 android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#A8A8A8" />
+                android:padding="10dp"
+                android:textColor="#617395"
+                android:textColorHint="#617395" />
 
         </LinearLayout>
     </ScrollView>

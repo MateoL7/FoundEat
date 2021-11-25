@@ -12,11 +12,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Confirmar contraseña"
         android:inputType="textPersonName|textPassword"
         android:textColor="#FFFFFF"
-        android:textColorHint="#9F9F9F"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/clientPassET"
         app:layout_constraintStart_toStartOf="@+id/clientPassET"
         app:layout_constraintTop_toBottomOf="@+id/clientPassET" />
@@ -32,7 +34,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/clientRegisterBtn"
@@ -41,6 +43,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/gradientbutton"
         android:text="Registrarse"
         app:layout_constraintBottom_toTopOf="@+id/clientLogin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,13 +54,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
+        android:padding="10dp"
         android:textColor="#FFFFFF"
-        android:textColorHint="#9F9F9F"
+        android:textColorHint="#617395"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -67,11 +72,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Correo electrónico"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#9F9F9F"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/clientNameET"
         app:layout_constraintStart_toStartOf="@+id/clientNameET"
         app:layout_constraintTop_toBottomOf="@+id/clientNameET" />
@@ -81,11 +88,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/textfieldborder"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPersonName|textPassword"
         android:textColor="#FFFFFF"
-        android:textColorHint="#9F9F9F"
+        android:textColorHint="#617395"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/clientEmailET"
         app:layout_constraintStart_toStartOf="@+id/clientEmailET"
         app:layout_constraintTop_toBottomOf="@+id/clientEmailET" />
@@ -102,5 +111,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="124dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
