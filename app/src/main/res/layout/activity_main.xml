@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,13 +37,15 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
         android:text="Cliente"
+        android:background="@drawable/gradientbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/registerBtn"
         android:layout_width="0dp"
+        android:background="@drawable/gradientbutton"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"

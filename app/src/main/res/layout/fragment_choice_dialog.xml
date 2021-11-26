@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <android.widget.Button
         android:id="@+id/galleryBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:background="@drawable/gradientbutton"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:background="#EA6767"
         android:padding="5dp"
         android:text="Galería"
         android:textColor="@color/white"
@@ -21,15 +21,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camBtn" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/camBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:background="#FFFFFF"
         android:padding="5dp"
         android:text="Cámara"
+        android:background="@drawable/gradientbutton"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

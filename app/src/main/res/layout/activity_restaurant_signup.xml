@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/clientRegisterBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
