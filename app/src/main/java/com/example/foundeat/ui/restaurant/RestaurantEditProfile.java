@@ -64,7 +64,13 @@ public class RestaurantEditProfile extends AppCompatActivity {
         loadChoices();
         saveBtn.setOnClickListener(this::saveInfo);
         logoutTV.setOnClickListener(this::logout);
+        addDirBtn.setOnClickListener(this::pickLocation);
 
+    }
+
+    private void pickLocation(View view) {
+        Intent i = new Intent(this, RestaurantPickLocation.class);
+        startActivity(i);
     }
 
     private void loadChoices() {

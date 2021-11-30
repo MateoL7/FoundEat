@@ -34,6 +34,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".ui.restaurant.RestaurantPickLocation"
+            android:exported="true"
+            android:label="@string/title_activity_restaurant_pick_location" />
+        <activity
             android:name=".ui.restaurant.RestaurantEditProfile"
             android:exported="true" />
         <activity
