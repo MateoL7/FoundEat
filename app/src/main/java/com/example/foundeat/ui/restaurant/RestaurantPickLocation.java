@@ -58,10 +58,7 @@ public class RestaurantPickLocation extends FragmentActivity implements OnMapRea
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setOnMapLongClickListener(this);
 
         goBackBtn = findViewById(R.id.goBackBtn);
         goBackBtn.setOnClickListener(
@@ -73,6 +70,7 @@ public class RestaurantPickLocation extends FragmentActivity implements OnMapRea
                     finish();
                 }
         );
+
 
     }
 
@@ -86,7 +84,7 @@ public class RestaurantPickLocation extends FragmentActivity implements OnMapRea
             marker.setPosition(latLng);
             Log.e(">>>>>","Inside the else");
         }
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
         Geocoder g = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> ads = g.getFromLocation(latLng.latitude, latLng.longitude, 1);
