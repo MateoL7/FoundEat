@@ -33,6 +33,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".ui.restaurant.RestaurantLocation"
+            android:exported="true"
+            android:label="@string/title_activity_restaurant_location">
+        </activity>
+
         <activity
             android:name=".ui.restaurant.menuList.AddMenuItemActivity"
             android:exported="false" />
