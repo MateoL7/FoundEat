@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.UUID;
@@ -57,6 +58,9 @@ public class MenuListActivity extends AppCompatActivity {
         menuListRV.setAdapter(adapter);
         menuListRV.setHasFixedSize(true);
 
+        //Print all menu items from database
+        cargarMenu();
+
         //Create callback launcher
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), this::onResult
@@ -83,5 +87,16 @@ public class MenuListActivity extends AppCompatActivity {
             adapter.addMenuItem(item);
             FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").document(item.getId()).set(item);
         }
+    }
+
+    public void cargarMenu(){
+        FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").get().addOnCompleteListener(
+                task -> {
+                    for (DocumentSnapshot doc:task.getResult()){
+                        MenuItemModel item = doc.toObject(MenuItemModel.class);
+                        adapter.addMenuItem(item);
+                    }
+                }
+        );
     }
 }
