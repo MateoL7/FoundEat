@@ -34,10 +34,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.restaurant.AddMenuItemActivity"
+            android:name=".ui.restaurant.menuList.AddMenuItemActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.restaurant.MenuListActivity"
+            android:name=".ui.restaurant.menuList.MenuListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.restaurant.RestaurantEditProfile"

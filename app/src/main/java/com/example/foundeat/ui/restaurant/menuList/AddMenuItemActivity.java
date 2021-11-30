@@ -1,4 +1,4 @@
-package com.example.foundeat.ui.restaurant;
+package com.example.foundeat.ui.restaurant.menuList;
 
 import androidx.appcompat.app.AppCompatActivity;
 

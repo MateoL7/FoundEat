@@ -14,8 +14,7 @@ import android.widget.TextView;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.ui.MainActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -104,7 +103,7 @@ public class RestaurantHome extends AppCompatActivity {
 
     private void editMenu(View view){
         Intent intent = new Intent(this, MenuListActivity.class);
-
+        intent.putExtra("restaurant", restaurant);
         startActivity(intent);
     }
 }
