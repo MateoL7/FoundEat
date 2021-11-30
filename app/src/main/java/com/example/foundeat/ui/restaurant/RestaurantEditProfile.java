@@ -55,7 +55,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
         categoryChoice = findViewById(R.id.categoryChoice);
-        logoutTV = findViewById(R.id.logoutTV);
+//        logoutTV = findViewById(R.id.logoutTV);
         saveBtn = findViewById(R.id.saveBtn);
 
         ActivityResultLauncher<Intent> launcherMap = registerForActivityResult(
@@ -68,7 +68,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         loadActualInfo();
         loadChoices();
         saveBtn.setOnClickListener(this::saveInfo);
-        logoutTV.setOnClickListener(this::logout);
+//        logoutTV.setOnClickListener(this::logout);
         addressET.setOnClickListener(
                 v->{
 

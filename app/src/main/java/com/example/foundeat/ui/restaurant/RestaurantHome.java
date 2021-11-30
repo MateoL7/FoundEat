@@ -1,5 +1,6 @@
 package com.example.foundeat.ui.restaurant;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +16,10 @@ import android.widget.TextView;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.MainActivity;
 import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -26,13 +31,14 @@ public class RestaurantHome extends AppCompatActivity {
     private TextView nameET,categoryTV,descriptionTV,addressTV,scheduleTV,priceTV,menuTV, reviewsTV;
     private ImageView actualPic;
     private Button editProfileBtn;
+    private NavigationView navigationView;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_home);
+        setContentView(R.layout.activity_nav_restaurant_home);
 
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
@@ -46,6 +52,19 @@ public class RestaurantHome extends AppCompatActivity {
         menuTV = findViewById(R.id.menuTV);
         reviewsTV = findViewById(R.id.reviewsTV);
 
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.nav_logout){
+                    logout();
+                }else if(item.getItemId() == R.id.nav_delete){
+                    delete();
+                }
+                return true;
+            }
+        });
+
         loadProfileInfo();
 
         editProfileBtn = findViewById(R.id.editProfileBtn);
@@ -58,6 +77,29 @@ public class RestaurantHome extends AppCompatActivity {
         Intent intent = new Intent(this,RestaurantReviews.class);
         intent.putExtra("restaurant",restaurant);
         startActivity(intent);
+    }
+
+    private void logout() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        getSharedPreferences("foundEat", MODE_PRIVATE).edit().clear().apply();
+        FirebaseAuth.getInstance().signOut();
+    }
+    private void delete(){
+        FirebaseAuth.getInstance().getCurrentUser().delete();
+        Query query = db.collection("restaurants").whereEqualTo("id",restaurant.getId());
+        query.get().addOnCompleteListener(task->{
+            if(task.getResult().size() > 0){
+                Restaurant res = null;
+                for(DocumentSnapshot doc : task.getResult()){
+                    res = doc.toObject(Restaurant.class);
+                    doc.getReference().delete();
+                    break;
+                }
+            }
+        });
+        logout();
     }
 
     private void loadProfileInfo() {
