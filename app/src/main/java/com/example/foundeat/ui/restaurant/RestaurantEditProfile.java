@@ -1,5 +1,8 @@
 package com.example.foundeat.ui.restaurant;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -55,6 +58,9 @@ public class RestaurantEditProfile extends AppCompatActivity {
         logoutTV = findViewById(R.id.logoutTV);
         saveBtn = findViewById(R.id.saveBtn);
 
+        ActivityResultLauncher<Intent> launcherMap = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), this::pickLocation
+        );
 
         //Sujeto a cambios
         profilePics = findViewById(R.id.profilePics);
@@ -63,13 +69,22 @@ public class RestaurantEditProfile extends AppCompatActivity {
         loadChoices();
         saveBtn.setOnClickListener(this::saveInfo);
         logoutTV.setOnClickListener(this::logout);
-        addressET.setOnClickListener(this::pickLocation);
+        addressET.setOnClickListener(
+                v->{
+
+                    Intent i = new Intent(this, RestaurantPickLocation.class);
+                    launcherMap.launch(i);
+                }
+        );
 
     }
 
-    private void pickLocation(View view) {
-        Intent i = new Intent(this, RestaurantPickLocation.class);
-        startActivity(i);
+    private void pickLocation(ActivityResult result) {
+
+        if(result.getResultCode()==RESULT_OK){
+            String dir = result.getData().getExtras().getString("location");
+            addressET.setText(dir);
+        }
     }
 
     private void loadChoices() {

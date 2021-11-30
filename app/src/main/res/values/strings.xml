@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FoundEat</string>
     <string name="title_activity_restaurant_location">RestaurantLocation</string>
+    <string name="title_activity_restaurant_pick_location">RestaurantPickLocation</string>
 </resources>
