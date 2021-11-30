@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 public class RestaurantHome extends AppCompatActivity {
     private Restaurant restaurant;
 
-    private TextView nameET,categoryTV,descriptionTV,addressTV,scheduleTV,priceTV,menuTV;
+    private TextView nameET,categoryTV,descriptionTV,addressTV,scheduleTV,priceTV,menuTV, reviewsTV;
     private ImageView actualPic;
     private Button editProfileBtn;
 
@@ -44,12 +44,19 @@ public class RestaurantHome extends AppCompatActivity {
         scheduleTV = findViewById(R.id.scheduleTV);
         priceTV = findViewById(R.id.priceTV);
         menuTV = findViewById(R.id.menuTV);
+        reviewsTV = findViewById(R.id.reviewsTV);
 
         loadProfileInfo();
 
         editProfileBtn = findViewById(R.id.editProfileBtn);
         editProfileBtn.setOnClickListener(this::editProfile);
         menuTV.setOnClickListener(this::editMenu);
+        reviewsTV.setOnClickListener(this::showReviews);
+    }
+
+    private void showReviews(View view) {
+//        db.collection("restaurants").document(restaurant.getId()).collection("reviews");
+
     }
 
     private void loadProfileInfo() {
