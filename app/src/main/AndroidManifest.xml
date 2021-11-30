@@ -20,6 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoundEat">
         <activity
+            android:name=".ui.restaurant.AddMenuItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.restaurant.MenuListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.restaurant.RestaurantEditProfile"
             android:exported="true" />
         <activity

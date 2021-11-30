@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 public class RestaurantHome extends AppCompatActivity {
     private Restaurant restaurant;
 
-    private TextView nameET,categoryTV,descriptionTV,addressTV,scheduleTV,priceTV;
+    private TextView nameET,categoryTV,descriptionTV,addressTV,scheduleTV,priceTV,menuTV;
     private ImageView actualPic;
     private Button editProfileBtn;
 
@@ -44,11 +44,13 @@ public class RestaurantHome extends AppCompatActivity {
         addressTV = findViewById(R.id.addressTV);
         scheduleTV = findViewById(R.id.scheduleTV);
         priceTV = findViewById(R.id.priceTV);
+        menuTV = findViewById(R.id.menuTV);
 
         loadProfileInfo();
 
         editProfileBtn = findViewById(R.id.editProfileBtn);
         editProfileBtn.setOnClickListener(this::editProfile);
+        menuTV.setOnClickListener(this::editMenu);
     }
 
     private void loadProfileInfo() {
@@ -98,5 +100,11 @@ public class RestaurantHome extends AppCompatActivity {
     private void saveRestaurant(Restaurant restaurant){
         String json = new Gson().toJson(restaurant);
         getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("restaurant",json).apply();
+    }
+
+    private void editMenu(View view){
+        Intent intent = new Intent(this, MenuListActivity.class);
+
+        startActivity(intent);
     }
 }
