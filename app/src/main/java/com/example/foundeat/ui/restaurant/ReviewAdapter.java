@@ -35,15 +35,17 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
         Review review = reviews.get(position);
         holder.getContentTV().setText(review.getContent());
         holder.getCustomerNameTV().setText(review.getCustomerName());
-
         if(review.getCustomerPic()!=null){
             Glide.with(holder.getCustomerPic().getContext()).load(review.getCustomerPic()).centerCrop().into(holder.getCustomerPic());
         }
-
     }
 
     @Override
     public int getItemCount() {
         return reviews.size();
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
     }
 }

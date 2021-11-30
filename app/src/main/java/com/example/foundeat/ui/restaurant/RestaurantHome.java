@@ -55,8 +55,9 @@ public class RestaurantHome extends AppCompatActivity {
     }
 
     private void showReviews(View view) {
-//        db.collection("restaurants").document(restaurant.getId()).collection("reviews");
-
+        Intent intent = new Intent(this,RestaurantReviews.class);
+        intent.putExtra("restaurant",restaurant);
+        startActivity(intent);
     }
 
     private void loadProfileInfo() {
