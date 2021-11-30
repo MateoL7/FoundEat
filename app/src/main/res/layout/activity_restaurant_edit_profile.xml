@@ -95,7 +95,10 @@
                 android:inputType="none"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#617395" />
+                android:textColorHint="#617395"
+                android:focusable="false"
+                android:clickable="true"
+                />
 
             <EditText
                 android:id="@+id/openingET"
@@ -159,20 +162,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/logoutTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:padding="5dp"
-        android:text="Cerrar sesión"
-        android:visibility="invisible"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <android.widget.Button
         android:id="@+id/saveBtn"

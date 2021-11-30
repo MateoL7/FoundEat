@@ -35,7 +35,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
     private ArrayList<FoodCategory> categories;
     private ImageView profilePics;
     private EditText descriptionET, maxET, minET, closingET, openingET, addressET;
-    private TextView logoutTV;
     private Button saveBtn;
 
     private Restaurant restaurant;
@@ -46,7 +45,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_edit_profile);
 
-        restaurant =(Restaurant) getIntent().getExtras().get("restaurant");
+        restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
         descriptionET = findViewById(R.id.descriptionET);
         maxET = findViewById(R.id.maxET);
@@ -55,7 +54,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
         categoryChoice = findViewById(R.id.categoryChoice);
-//        logoutTV = findViewById(R.id.logoutTV);
         saveBtn = findViewById(R.id.saveBtn);
 
         ActivityResultLauncher<Intent> launcherMap = registerForActivityResult(
@@ -68,9 +66,8 @@ public class RestaurantEditProfile extends AppCompatActivity {
         loadActualInfo();
         loadChoices();
         saveBtn.setOnClickListener(this::saveInfo);
-//        logoutTV.setOnClickListener(this::logout);
         addressET.setOnClickListener(
-                v->{
+                v -> {
 
                     Intent i = new Intent(this, RestaurantPickLocation.class);
                     launcherMap.launch(i);
@@ -81,7 +78,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
 
     private void pickLocation(ActivityResult result) {
 
-        if(result.getResultCode()==RESULT_OK){
+        if (result.getResultCode() == RESULT_OK) {
             String dir = result.getData().getExtras().getString("location");
             addressET.setText(dir);
         }
@@ -96,7 +93,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
                 categories.add(category);
             }
         }));
-        ArrayAdapter<FoodCategory> adapter = new ArrayAdapter<>(this, R.layout.list_item,categories);
+        ArrayAdapter<FoodCategory> adapter = new ArrayAdapter<>(this, R.layout.list_item, categories);
         categoryChoice.setAdapter(adapter);
         categoryChoice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -107,14 +104,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
         });
     }
 
-    private void logout(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-        getSharedPreferences("foundEat", MODE_PRIVATE).edit().clear().apply();
-        FirebaseAuth.getInstance().signOut();
-    }
-
     private void saveInfo(View view) {
         restaurant.setDescription(descriptionET.getText().toString());
         restaurant.setAddress(addressET.getText().toString());
@@ -123,7 +112,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         restaurant.setMaxPrice(maxET.getText().toString());
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
         Intent intent = new Intent(this, RestaurantHome.class);
-        intent.putExtra("restaurant",restaurant);
+        intent.putExtra("restaurant", restaurant);
         startActivity(intent);
         finish();
     }
@@ -147,13 +136,13 @@ public class RestaurantEditProfile extends AppCompatActivity {
         if (restaurant.getOpeningTime() != null) {
             openingET.setText(restaurant.getOpeningTime().toString());
         }
-        if(restaurant.getClosingTime() != null){
+        if (restaurant.getClosingTime() != null) {
             closingET.setText(restaurant.getClosingTime().toString());
         }
-        if(restaurant.getMinPrice()!= null){
+        if (restaurant.getMinPrice() != null) {
             minET.setText(restaurant.getMinPrice());
         }
-        if(restaurant.getMaxPrice()!=null){
+        if (restaurant.getMaxPrice() != null) {
             maxET.setText(restaurant.getMaxPrice());
         }
     }
