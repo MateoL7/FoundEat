@@ -5,19 +5,21 @@ import java.util.Date;
 public class Review {
 
     private String id;
+    private String customerID;
+    private String customerPic;
     private String customerName;
     private String content;
-    private String customerPic;
     private Date date;
 
     public Review() {
     }
 
-    public Review(String id, String customerName, String content, String customerPic, Date date) {
+    public Review(String id, String customerID, String customerPic, String customerName, String content, Date date) {
         this.id = id;
+        this.customerID = customerID;
+        this.customerPic = customerPic;
         this.customerName = customerName;
         this.content = content;
-        this.customerPic = customerPic;
         this.date = date;
     }
 
@@ -27,6 +29,14 @@ public class Review {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 
     public String getCustomerName() {
