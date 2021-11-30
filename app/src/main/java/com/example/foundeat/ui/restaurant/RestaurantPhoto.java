@@ -29,6 +29,8 @@ import java.util.ArrayList;
 
 public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.OnChoiceListener {
 
+    // CAMBIAR ESTA CLASE PARA LA LOGICA DE LAS FOTOS CON FIREBASE
+
     private TextView skipPicTV, greetingTV;
     private ImageView profilePic;
     private Button continueBtn;
