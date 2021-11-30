@@ -1,5 +1,8 @@
 package com.example.foundeat.ui.restaurant;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -45,6 +48,10 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
 
+        ActivityResultLauncher<Intent> launcherMap = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), this::pickLocation
+        );
+
         categoryChoice = findViewById(R.id.categoryChoice);
         loadActualInfo();
         loadChoices();
@@ -53,7 +60,23 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
             nextActivitySkip(v);
         });
 
+        addressET.setOnClickListener(
+                v->{
+
+                    Intent i = new Intent(this, RestaurantPickLocation.class);
+                    launcherMap.launch(i);
+                }
+        );
+
         continueBtn.setOnClickListener(this::nextActivity);
+    }
+
+    private void pickLocation(ActivityResult result) {
+
+        if(result.getResultCode()==RESULT_OK){
+            String dir = result.getData().getExtras().getString("location");
+            addressET.setText(dir);
+        }
     }
 
     private void loadActualInfo() {
