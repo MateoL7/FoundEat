@@ -78,14 +78,13 @@ public class RestaurantPickLocation extends FragmentActivity implements OnMapRea
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        Marker p = mMap.addMarker(new MarkerOptions().position(latLng).title("Marcador").snippet("Pruebaaaa"));
-        //points.add(p);
-
         if(marker==null){
             marker = mMap.addMarker(new MarkerOptions().position(latLng));
+            Log.e(">>>>>","Inside the if marker is null");
         }
         else{
             marker.setPosition(latLng);
+            Log.e(">>>>>","Inside the else");
         }
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
         Geocoder g = new Geocoder(this, Locale.getDefault());
