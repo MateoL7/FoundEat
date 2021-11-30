@@ -30,7 +30,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
 
     private AutoCompleteTextView categoryChoice;
     private ArrayList<FoodCategory> categories;
-    private ImageView profilePics;
+    private ImageView profilePics,addDirBtn;
     private EditText descriptionET, maxET, minET, closingET, openingET, addressET;
     private TextView logoutTV;
     private Button saveBtn;
@@ -54,6 +54,8 @@ public class RestaurantEditProfile extends AppCompatActivity {
         categoryChoice = findViewById(R.id.categoryChoice);
         logoutTV = findViewById(R.id.logoutTV);
         saveBtn = findViewById(R.id.saveBtn);
+        addDirBtn = findViewById(R.id.addDirBtn);
+
 
         //Sujeto a cambios
         profilePics = findViewById(R.id.profilePics);
