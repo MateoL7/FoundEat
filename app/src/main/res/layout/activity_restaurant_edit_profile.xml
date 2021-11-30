@@ -97,6 +97,12 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#617395" />
 
+            <ImageView
+                android:id="@+id/addDirBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                tools:srcCompat="@drawable/clear_24px" />
+
             <EditText
                 android:id="@+id/openingET"
                 android:layout_width="match_parent"
