@@ -13,13 +13,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
 import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -84,19 +90,37 @@ public class RestaurantHome extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
     }
     private void delete(){
-        FirebaseAuth.getInstance().getCurrentUser().delete();
-        Query query = db.collection("restaurants").whereEqualTo("id",restaurant.getId());
-        query.get().addOnCompleteListener(task->{
-            if(task.getResult().size() > 0){
-                Restaurant res = null;
-                for(DocumentSnapshot doc : task.getResult()){
-                    res = doc.toObject(Restaurant.class);
-                    doc.getReference().delete();
-                    break;
-                }
-            }
-        });
-        logout();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        String password = "123456";
+        user.updatePassword(password);
+        // Get auth credentials from the user for re-authentication. The example below shows
+        // email and password credentials but there are multiple possible providers,
+        // such as GoogleAuthProvider or FacebookAuthProvider.
+        AuthCredential credential = EmailAuthProvider.getCredential(email,password);
+
+        // Prompt the user to re-provide their sign-in credentials
+        if (user != null) {
+            user.reauthenticate(credential)
+                    .addOnCompleteListener(task -> user.delete()
+                            .addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()) {
+                                    Toast.makeText(RestaurantHome.this, "Lamentamos que te vayas.\nTu restaurante ha sido eliminado de la base de datos.", Toast.LENGTH_LONG).show();
+                                    Query query = db.collection("restaurants").whereEqualTo("id",restaurant.getId());
+                                    query.get().addOnCompleteListener(task2->{
+                                        if(task2.getResult().size() > 0){
+                                            Restaurant res = null;
+                                            for(DocumentSnapshot doc : task2.getResult()){
+                                                res = doc.toObject(Restaurant.class);
+                                                doc.getReference().delete();
+                                                break;
+                                            }
+                                        }
+                                    });
+                                    logout();
+                                }
+                            }));
+        }
     }
 
     private void loadProfileInfo() {

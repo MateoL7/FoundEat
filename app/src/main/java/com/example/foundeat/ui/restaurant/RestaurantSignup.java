@@ -54,7 +54,10 @@ public class RestaurantSignup extends AppCompatActivity {
     }
 
     private void signup(View view) {
-        if (resPassET.getText().toString().equals(resConfirmPassET.getText().toString())) {
+        if(resNameET.getText().toString().isEmpty() || resEmailET.getText().toString().isEmpty() || resPassET.getText().toString().isEmpty() || resConfirmPassET.getText().toString().isEmpty()){
+            Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
+        }
+        else if (resPassET.getText().toString().equals(resConfirmPassET.getText().toString())) {
 
             //1. Registrar en db de Auth
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(
