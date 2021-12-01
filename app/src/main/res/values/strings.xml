@@ -10,6 +10,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_logout">Logout</string>
-    <string name="menu_delete">Delete account</string>
+    <string name="menu_logout">Cerrar sesión</string>
+    <string name="menu_delete">Eliminar cuenta</string>
 </resources>

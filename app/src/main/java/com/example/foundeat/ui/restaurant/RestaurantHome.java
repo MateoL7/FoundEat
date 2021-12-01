@@ -53,16 +53,13 @@ public class RestaurantHome extends AppCompatActivity {
         reviewsTV = findViewById(R.id.reviewsTV);
 
         navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.nav_logout){
-                    logout();
-                }else if(item.getItemId() == R.id.nav_delete){
-                    delete();
-                }
-                return true;
+        navigationView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.nav_logout){
+                logout();
+            }else if(item.getItemId() == R.id.nav_delete){
+                delete();
             }
+            return true;
         });
 
         loadProfileInfo();
