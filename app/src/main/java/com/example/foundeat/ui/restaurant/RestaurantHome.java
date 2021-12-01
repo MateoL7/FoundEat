@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
+import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
 import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -69,6 +70,8 @@ public class RestaurantHome extends AppCompatActivity {
         });
 
         loadProfileInfo();
+
+        mayorMenor(restaurant.getId());
 
         editProfileBtn = findViewById(R.id.editProfileBtn);
         editProfileBtn.setOnClickListener(this::editProfile);
@@ -176,5 +179,33 @@ public class RestaurantHome extends AppCompatActivity {
         Intent intent = new Intent(this, MenuListActivity.class);
         intent.putExtra("restaurant", restaurant);
         startActivity(intent);
+    }
+
+    public  void mayorMenor(String name){
+
+        Query query = db.collection("restaurants").document(name).collection("menu");
+        query.get().addOnCompleteListener(
+                task -> {
+                    int mayor=0;
+                    int menor=Integer.MAX_VALUE;
+                    MenuItemModel s = null;
+
+                    for(DocumentSnapshot ds :task.getResult() ) {
+
+                        s=ds.toObject(MenuItemModel.class);
+
+                        int temp = Integer.parseInt(s.getPrice());
+                        if(temp>mayor && temp>menor){
+                            mayor = temp;
+                        }
+                        else if(temp<menor ){
+                            menor = temp;
+                        }
+
+                    }
+                    priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
+
+                }
+        );
     }
 }
