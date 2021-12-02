@@ -34,15 +34,17 @@
         <entry key="app/src/main/res/layout/activity_nav_restaurant_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_restaurant_edit_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_restaurant_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_restaurant_more_info.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/activity_restaurant_more_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_restaurant_photo.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_restaurant_pick_location.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_restaurant_reviews.xml" value="0.20516304347826086" />
-        <entry key="app/src/main/res/layout/activity_restaurant_screen.xml" value="0.20516304347826086" />
-        <entry key="app/src/main/res/layout/activity_restaurant_signup.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/activity_restaurant_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_restaurant_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/fragment_choice_dialog.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/nav_header_drawer.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/reviewrow.xml" value="0.18115942028985507" />
       </map>
     </option>
   </component>
