@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class RestaurantHome extends AppCompatActivity {
     private ImageView actualPic;
     private Button editProfileBtn;
     private NavigationView navigationView;
+    private ImageButton settingsBtn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -61,6 +63,7 @@ public class RestaurantHome extends AppCompatActivity {
         priceTV = findViewById(R.id.priceTV);
         menuTV = findViewById(R.id.menuTV);
         reviewsTV = findViewById(R.id.reviewsTV);
+        settingsBtn = findViewById(R.id.settingsBtn);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -80,6 +83,7 @@ public class RestaurantHome extends AppCompatActivity {
         editProfileBtn.setOnClickListener(this::editProfile);
         menuTV.setOnClickListener(this::editMenu);
         reviewsTV.setOnClickListener(this::showReviews);
+        settingsBtn.setOnClickListener(this::openSettings);
     }
 
     private void loadRestaurantPhoto(){
@@ -96,6 +100,10 @@ public class RestaurantHome extends AppCompatActivity {
         Intent intent = new Intent(this,RestaurantReviews.class);
         intent.putExtra("restaurant",restaurant);
         startActivity(intent);
+    }
+
+    private void openSettings (View view) {
+
     }
 
     private void logout() {

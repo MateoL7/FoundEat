@@ -7,6 +7,17 @@
     android:background="@color/background"
     tools:context=".ui.client.ClientHome">
 
+    <ImageButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/icon_settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_settings" />
+
     <ImageView
         android:id="@+id/actualPic"
         android:layout_width="match_parent"
@@ -33,7 +44,7 @@
         android:id="@+id/nameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/dmsansbold"
         android:text="TextView"
         android:textAlignment="center"
@@ -65,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/dmsansregular"
         android:padding="5dp"
         android:text="Sin categoría"
@@ -75,22 +86,25 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/editProfileBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actualPic">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/editProfileBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/actualPic"
-            app:layout_constraintVertical_bias="1.0">
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/descriptionTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="11dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin descripción"
@@ -131,11 +145,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="11dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Comentarios y reseñas"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView10"
                 app:layout_constraintTop_toBottomOf="@+id/menuTV" />
 
@@ -196,15 +212,17 @@
 
             <TextView
                 android:id="@+id/priceTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin precios"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView8"
                 app:layout_constraintTop_toBottomOf="@+id/scheduleTV" />
 
@@ -226,16 +244,18 @@
 
             <TextView
                 android:id="@+id/scheduleTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin horario"
                 android:textColor="@color/white"
                 android:textColorLink="@color/white"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
                 app:layout_constraintTop_toBottomOf="@+id/addressTV" />
 
@@ -267,7 +287,7 @@
 
             <TextView
                 android:id="@+id/addressTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="24dp"
@@ -276,6 +296,7 @@
                 android:text="Sin dirección"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
 
@@ -329,5 +350,7 @@
                 app:layout_constraintTop_toTopOf="@+id/reviewsTV"
                 app:srcCompat="@drawable/icon_coment" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
