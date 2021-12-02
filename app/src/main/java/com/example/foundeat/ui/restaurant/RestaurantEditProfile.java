@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
@@ -26,6 +27,7 @@ import com.example.foundeat.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -118,12 +120,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
     }
 
     private void loadActualInfo() {
-        if (restaurant.getPics() != null && restaurant.getPics().size() > 0) {
-            Log.e(">>>>>>", "HOLAAAAA >>> " + restaurant.getPics().get(0));
-            Bitmap bitmap = BitmapFactory.decodeFile(restaurant.getPics().get(0));
-            Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 4, bitmap.getHeight() / 4, true);
-            profilePics.setImageBitmap(thumbnail);
-        }
+        loadPhoto();
         if (restaurant.getDescription() != null) {
             descriptionET.setText(restaurant.getDescription());
         }
@@ -144,6 +141,16 @@ public class RestaurantEditProfile extends AppCompatActivity {
         }
         if (restaurant.getMaxPrice() != null) {
             maxET.setText(restaurant.getMaxPrice());
+        }
+    }
+
+    private void loadPhoto(){
+        if(restaurant.getPics().size()>0){
+            FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(profilePics).load(url).into(profilePics);
+                    }
+            );
         }
     }
 }

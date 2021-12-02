@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.FoodCategory;
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -68,7 +71,34 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
                 }
         );
 
+        closingET.setOnClickListener(this::pickTime);
+        openingET.setOnClickListener(this::pickTime);
+
         continueBtn.setOnClickListener(this::nextActivity);
+    }
+
+
+    private void pickTime(View v){
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(RestaurantMoreInfo.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                switch(v.getId()){
+                    case R.id.openingET:
+                        openingET.setText( selectedHour + ":" + selectedMinute);
+                        break;
+                    case R.id.closingET:
+                        closingET.setText( selectedHour + ":" + selectedMinute);
+                        break;
+                }
+            }
+        }, hour, minute, true);
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
     }
 
     private void pickLocation(ActivityResult result) {
