@@ -229,7 +229,12 @@ public class RestaurantHome extends AppCompatActivity {
                         }
 
                     }
-                    priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
+
+                    if(mayor == 0 && menor == Integer.MAX_VALUE ){
+                        priceTV.setText("No hay items en el menú");
+                    }else{
+                        priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
+                    }
 
                 }
         );
