@@ -92,10 +92,14 @@ public class AddMenuItemActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Por favor introduzca una descripcion",Toast.LENGTH_SHORT).show();
             finished = false;
         }
-
-        String fileName = UUID.randomUUID().toString();
-        FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(fileName).putFile(uri);
-        intent.putExtra("MenuItemsPhoto", fileName);
+        if(uri != null){
+            String fileName = UUID.randomUUID().toString();
+            FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(fileName).putFile(uri);
+            intent.putExtra("MenuItemsPhoto", fileName);
+        }else{
+            Toast.makeText(getApplicationContext(),"Por favor seleccione una foto",Toast.LENGTH_SHORT).show();
+            finished = false;
+        }
         if (finished){
             setResult(RESULT_OK, intent);
                 finish();

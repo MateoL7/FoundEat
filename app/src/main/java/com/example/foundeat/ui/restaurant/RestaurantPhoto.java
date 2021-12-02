@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,9 +24,11 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.ChoiceDialog;
 import com.example.foundeat.util.UtilDomi;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.OnChoiceListener {
 
@@ -36,6 +39,7 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
     private Button continueBtn;
 
     private File file;
+    private Uri uri;
 
     private Restaurant restaurant;
 
@@ -58,8 +62,7 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
         skipPicTV = findViewById(R.id.logoutTV);
 
         skipPicTV.setOnClickListener(v -> {
-            restaurant.setPics(null);
-            nextActivity(v);
+            continueNoPhoto(v);
         });
         continueBtn.setOnClickListener(this::nextActivity);
 
@@ -70,6 +73,13 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
 
     }
 
+    private void continueNoPhoto(View v){
+        //FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
+        Intent intent = new Intent(this, RestaurantMoreInfo.class);
+        intent.putExtra("restaurant", restaurant);
+        startActivity(intent);
+    }
+
     public void openChoice(View view) {
         ChoiceDialog dialog = ChoiceDialog.newInstance();
         dialog.setListener(this);
@@ -77,10 +87,18 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
     }
 
     private void nextActivity(View view) {
-        FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
-        Intent intent = new Intent(this, RestaurantMoreInfo.class);
-        intent.putExtra("restaurant", restaurant);
-        startActivity(intent);
+
+        if(uri != null) {
+            String fileName = UUID.randomUUID().toString();
+            FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(fileName).putFile(uri);
+            restaurant.getPics().add(fileName);
+            FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
+            Intent intent = new Intent(this, RestaurantMoreInfo.class);
+            intent.putExtra("restaurant", restaurant);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(),"Por favor seleccione una foto",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void openCamera() {
@@ -99,10 +117,7 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
             Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 4, bitmap.getHeight() / 4, true);
 
             profilePic.setImageBitmap(thumbnail);
-            Uri uri = FileProvider.getUriForFile(this, this.getPackageName(), file);
-            ArrayList<String> pics = new ArrayList<>();
-            pics.add(file.getPath());
-            restaurant.setPics(pics);
+            uri = FileProvider.getUriForFile(this, this.getPackageName(), file);
             continueBtn.setEnabled(true);
             profilePic.setBackground(null);
 
@@ -119,11 +134,11 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
 
     public void onGalleryResult(ActivityResult result) {
         if (result.getResultCode() == this.RESULT_OK) {
-            Uri uri = result.getData().getData();
+            uri = result.getData().getData();
             profilePic.setImageURI(uri);
-            ArrayList<String> pics = new ArrayList<>();
-            pics.add(UtilDomi.getPath(this, uri));
-            restaurant.setPics(pics);
+//            ArrayList<String> pics = new ArrayList<>();
+//            pics.add(UtilDomi.getPath(this, uri));
+//            restaurant.setPics(pics);
             continueBtn.setEnabled(true);
             profilePic.setBackground(null);
         }

@@ -113,7 +113,7 @@ public class Login extends AppCompatActivity {
                                 if(restaurant.getDescription() == null){
                                     intent = new Intent(this, RestaurantDescription.class);
                                 }
-                                else if(restaurant.getPics() == null || restaurant.getPics().size() < 3){
+                                else if(restaurant.getPics() == null || restaurant.getPics().size() < 1){
                                     intent = new Intent(this, RestaurantPhoto.class);
                                 }else if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null || restaurant.getMaxPrice()== null || restaurant.getMinPrice() == null ){
                                     intent = new Intent(this, RestaurantMoreInfo.class);

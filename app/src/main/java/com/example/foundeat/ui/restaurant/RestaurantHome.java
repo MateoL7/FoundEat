@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
@@ -30,6 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.gson.Gson;
 
 public class RestaurantHome extends AppCompatActivity {
@@ -51,6 +53,7 @@ public class RestaurantHome extends AppCompatActivity {
 
         nameET = findViewById(R.id.nameTV);
         actualPic = findViewById(R.id.actualPic);
+        loadRestaurantPhoto();
         categoryTV = findViewById(R.id.categoryTV);
         descriptionTV = findViewById(R.id.descriptionTV);
         addressTV = findViewById(R.id.addressTV);
@@ -77,6 +80,16 @@ public class RestaurantHome extends AppCompatActivity {
         editProfileBtn.setOnClickListener(this::editProfile);
         menuTV.setOnClickListener(this::editMenu);
         reviewsTV.setOnClickListener(this::showReviews);
+    }
+
+    private void loadRestaurantPhoto(){
+        if(restaurant.getPics().size()>0){
+            FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(actualPic).load(url).into(actualPic);
+                    }
+            );
+        }
     }
 
     private void showReviews(View view) {
@@ -137,10 +150,15 @@ public class RestaurantHome extends AppCompatActivity {
                 nameET.setText("Perfil\n" + restaurant.getName());
 
                 if (restaurant.getPics() != null && restaurant.getPics().size() > 0) {
-                    Log.e(">>>>>>", "HOLAAAAA >>> " + restaurant.getPics().get(0));
-                    Bitmap bitmap = BitmapFactory.decodeFile(restaurant.getPics().get(0));
-                    Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 4, bitmap.getHeight() / 4, true);
-                    actualPic.setImageBitmap(thumbnail);
+//                    Log.e(">>>>>>", "HOLAAAAA >>> " + restaurant.getPics().get(0));
+//                    Bitmap bitmap = BitmapFactory.decodeFile(restaurant.getPics().get(0));
+//                    Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 4, bitmap.getHeight() / 4, true);
+//                    actualPic.setImageBitmap(thumbnail);
+                    FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
+                            url->   {
+                                Glide.with(actualPic).load(url).into(actualPic);
+                            }
+                    );
                 }
                 if (restaurant.getCategory() != null) {
                     categoryTV.setText(restaurant.getCategory());
