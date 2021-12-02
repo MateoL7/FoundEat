@@ -29,6 +29,8 @@
         <entry key="app/src/main/res/layout/activity_add_menu_item.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_client_favorite_food.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_menu_list.xml" value="0.15670289855072464" />
         <entry key="app/src/main/res/layout/activity_nav_restaurant_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_restaurant_edit_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_restaurant_home.xml" value="0.25" />
