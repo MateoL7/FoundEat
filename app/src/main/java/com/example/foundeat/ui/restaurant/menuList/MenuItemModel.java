@@ -3,7 +3,7 @@ package com.example.foundeat.ui.restaurant.menuList;
 public class MenuItemModel {
 
     private String id;
-    private String image,name,price,description;
+    private String image=null,name,price,description;
 
     public String getId() {
         return id;
