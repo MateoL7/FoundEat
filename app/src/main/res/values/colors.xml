@@ -10,4 +10,7 @@
     <color name="red">#D14242</color>
     <color name="blue">#4F6EDE</color>
     <color name="background">#050B30</color>
+    <color name="principal">#1D2538</color>
+    <color name="hint">#617395</color>
+    <color name="violeta">#864EFF</color>
 </resources>
