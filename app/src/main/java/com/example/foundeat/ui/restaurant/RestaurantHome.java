@@ -158,10 +158,6 @@ public class RestaurantHome extends AppCompatActivity {
                 nameET.setText("Perfil\n" + restaurant.getName());
 
                 if (restaurant.getPics() != null && restaurant.getPics().size() > 0) {
-//                    Log.e(">>>>>>", "HOLAAAAA >>> " + restaurant.getPics().get(0));
-//                    Bitmap bitmap = BitmapFactory.decodeFile(restaurant.getPics().get(0));
-//                    Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 4, bitmap.getHeight() / 4, true);
-//                    actualPic.setImageBitmap(thumbnail);
                     FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
                             url->   {
                                 Glide.with(actualPic).load(url).into(actualPic);
@@ -183,6 +179,10 @@ public class RestaurantHome extends AppCompatActivity {
                 if(restaurant.getMinPrice()!= null && restaurant.getMaxPrice()!=null){
                     String price = "Min $" + restaurant.getMinPrice() + " - Max $" + restaurant.getMaxPrice();
                     priceTV.setText(price);
+                }
+                if(restaurant.getOpeningTime() != null && restaurant.getClosingTime() != null){
+                    String sch = restaurant.getOpeningTime() + " - " + restaurant.getClosingTime();
+                    scheduleTV.setText(sch);
                 }
             }
         });
@@ -229,7 +229,12 @@ public class RestaurantHome extends AppCompatActivity {
                         }
 
                     }
-                    priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
+
+                    if(mayor == 0 && menor == Integer.MAX_VALUE ){
+                        priceTV.setText("No hay items en el menú");
+                    }else{
+                        priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
+                    }
 
                 }
         );

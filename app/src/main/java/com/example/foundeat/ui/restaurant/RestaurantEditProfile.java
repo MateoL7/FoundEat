@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,7 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
+import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
@@ -26,15 +29,17 @@ import com.example.foundeat.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class RestaurantEditProfile extends AppCompatActivity {
 
     private AutoCompleteTextView categoryChoice;
     private ArrayList<FoodCategory> categories;
     private ImageView profilePics;
-    private EditText descriptionET, maxET, minET, closingET, openingET, addressET;
+    private EditText descriptionET, closingET, openingET, addressET;
     private Button saveBtn;
 
     private Restaurant restaurant;
@@ -48,8 +53,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
         descriptionET = findViewById(R.id.descriptionET);
-        maxET = findViewById(R.id.maxET);
-        minET = findViewById(R.id.minET);
         closingET = findViewById(R.id.closingET);
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
@@ -65,6 +68,10 @@ public class RestaurantEditProfile extends AppCompatActivity {
 
         loadActualInfo();
         loadChoices();
+
+        closingET.setOnClickListener(this::pickTime);
+        openingET.setOnClickListener(this::pickTime);
+
         saveBtn.setOnClickListener(this::saveInfo);
         addressET.setOnClickListener(
                 v -> {
@@ -74,6 +81,29 @@ public class RestaurantEditProfile extends AppCompatActivity {
                 }
         );
 
+    }
+
+    private void pickTime(View v){
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(RestaurantEditProfile.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                switch(v.getId()){
+                    case R.id.openingET:
+                        openingET.setText( selectedHour + ":" + selectedMinute);
+                        break;
+                    case R.id.closingET:
+                        closingET.setText( selectedHour + ":" + selectedMinute);
+                        break;
+                }
+            }
+        }, hour, minute, true);
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
     }
 
     private void pickLocation(ActivityResult result) {
@@ -107,9 +137,8 @@ public class RestaurantEditProfile extends AppCompatActivity {
     private void saveInfo(View view) {
         restaurant.setDescription(descriptionET.getText().toString());
         restaurant.setAddress(addressET.getText().toString());
-        // FALTA CONVERTIR LA HORA DE APERTURA Y CIERRE
-        restaurant.setMinPrice(minET.getText().toString());
-        restaurant.setMaxPrice(maxET.getText().toString());
+        restaurant.setOpeningTime(openingET.getText().toString());
+        restaurant.setClosingTime(closingET.getText().toString());
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
         Intent intent = new Intent(this, RestaurantHome.class);
         intent.putExtra("restaurant", restaurant);
@@ -118,12 +147,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
     }
 
     private void loadActualInfo() {
-        if (restaurant.getPics() != null && restaurant.getPics().size() > 0) {
-            Log.e(">>>>>>", "HOLAAAAA >>> " + restaurant.getPics().get(0));
-            Bitmap bitmap = BitmapFactory.decodeFile(restaurant.getPics().get(0));
-            Bitmap thumbnail = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 4, bitmap.getHeight() / 4, true);
-            profilePics.setImageBitmap(thumbnail);
-        }
+        loadPhoto();
         if (restaurant.getDescription() != null) {
             descriptionET.setText(restaurant.getDescription());
         }
@@ -139,11 +163,15 @@ public class RestaurantEditProfile extends AppCompatActivity {
         if (restaurant.getClosingTime() != null) {
             closingET.setText(restaurant.getClosingTime().toString());
         }
-        if (restaurant.getMinPrice() != null) {
-            minET.setText(restaurant.getMinPrice());
-        }
-        if (restaurant.getMaxPrice() != null) {
-            maxET.setText(restaurant.getMaxPrice());
+    }
+
+    private void loadPhoto(){
+        if(restaurant.getPics().size()>0){
+            FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(profilePics).load(url).into(profilePics);
+                    }
+            );
         }
     }
 }

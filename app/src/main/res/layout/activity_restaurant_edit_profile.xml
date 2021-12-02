@@ -112,7 +112,8 @@
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:hint="Hora de apertura"
-                android:inputType="textPersonName"
+                android:focusable="false"
+                android:inputType="time"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#617395" />
@@ -126,40 +127,11 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="Hora de cierre"
-                android:inputType="textPersonName"
+                android:inputType="time"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#617395" />
-
-            <EditText
-                android:id="@+id/minET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/textfieldborder"
-                android:ems="10"
-                android:hint="Precio más bajo"
-                android:inputType="textPersonName"
-                android:padding="10dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#617395" />
-
-            <EditText
-                android:id="@+id/maxET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/textfieldborder"
-                android:ems="10"
-                android:hint="Precio más alto"
-                android:inputType="textPersonName"
-                android:padding="10dp"
-                android:textColor="#617395"
                 android:textColorHint="#617395" />
 
         </LinearLayout>
