@@ -29,7 +29,7 @@ import java.util.Calendar;
 public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private AutoCompleteTextView categoryChoice;
-    private EditText maxET, minET, closingET, openingET, addressET;
+    private EditText closingET, openingET, addressET;
     private TextView skipTV;
     private Button continueBtn;
 
@@ -45,8 +45,6 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
 
         skipTV = findViewById(R.id.logoutTV);
         continueBtn = findViewById(R.id.saveBtn);
-        maxET = findViewById(R.id.maxET);
-        minET = findViewById(R.id.minET);
         closingET = findViewById(R.id.closingET);
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
@@ -122,12 +120,6 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
         if(restaurant.getClosingTime() != null){
             closingET.setText(restaurant.getClosingTime().toString());
         }
-        if(restaurant.getMinPrice()!= null){
-            minET.setText(restaurant.getMinPrice());
-        }
-        if(restaurant.getMaxPrice()!=null){
-            maxET.setText(restaurant.getMaxPrice());
-        }
     }
 
     private void nextActivitySkip(View v) {
@@ -161,8 +153,6 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
         restaurant.setAddress(addressET.getText().toString());
         restaurant.setOpeningTime(openingET.getText().toString());
         restaurant.setClosingTime(closingET.getText().toString());
-        restaurant.setMinPrice(minET.getText().toString());
-        restaurant.setMaxPrice(maxET.getText().toString());
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
         Intent intent = new Intent(this, RestaurantHome.class);
         intent.putExtra("restaurant", restaurant);

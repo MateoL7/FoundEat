@@ -39,7 +39,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
     private AutoCompleteTextView categoryChoice;
     private ArrayList<FoodCategory> categories;
     private ImageView profilePics;
-    private EditText descriptionET, maxET, minET, closingET, openingET, addressET;
+    private EditText descriptionET, closingET, openingET, addressET;
     private Button saveBtn;
 
     private Restaurant restaurant;
@@ -53,8 +53,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
         descriptionET = findViewById(R.id.descriptionET);
-        maxET = findViewById(R.id.maxET);
-        minET = findViewById(R.id.minET);
         closingET = findViewById(R.id.closingET);
         openingET = findViewById(R.id.openingET);
         addressET = findViewById(R.id.addressET);
@@ -139,8 +137,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
     private void saveInfo(View view) {
         restaurant.setDescription(descriptionET.getText().toString());
         restaurant.setAddress(addressET.getText().toString());
-        restaurant.setMinPrice(minET.getText().toString());
-        restaurant.setMaxPrice(maxET.getText().toString());
         restaurant.setOpeningTime(openingET.getText().toString());
         restaurant.setClosingTime(closingET.getText().toString());
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
@@ -166,12 +162,6 @@ public class RestaurantEditProfile extends AppCompatActivity {
         }
         if (restaurant.getClosingTime() != null) {
             closingET.setText(restaurant.getClosingTime().toString());
-        }
-        if (restaurant.getMinPrice() != null) {
-            minET.setText(restaurant.getMinPrice());
-        }
-        if (restaurant.getMaxPrice() != null) {
-            maxET.setText(restaurant.getMaxPrice());
         }
     }
 
