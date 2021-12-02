@@ -159,7 +159,8 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
 
     private void nextActivity(View view) {
         restaurant.setAddress(addressET.getText().toString());
-        // FALTA CONVERTIR LA HORA DE APERTURA Y CIERRE
+        restaurant.setOpeningTime(openingET.getText().toString());
+        restaurant.setClosingTime(closingET.getText().toString());
         restaurant.setMinPrice(minET.getText().toString());
         restaurant.setMaxPrice(maxET.getText().toString());
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
