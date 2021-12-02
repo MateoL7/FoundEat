@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.foundeat.R;
 import com.example.foundeat.ui.Login;
+import com.example.foundeat.ui.MainActivity;
 
 public class RestaurantScreen extends AppCompatActivity {
 
     private Button loginBtn, registerBtn;
+    private ImageButton backBtnRes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,7 @@ public class RestaurantScreen extends AppCompatActivity {
 
         loginBtn = findViewById(R.id.loginBtn);
         registerBtn = findViewById(R.id.registerBtn);
+        backBtnRes = findViewById(R.id.backBtnRes);
 
         loginBtn.setOnClickListener(v->{
             Intent intent = new Intent(this, Login.class);
@@ -31,5 +36,12 @@ public class RestaurantScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
+        backBtnRes.setOnClickListener(this::backRes);
+
+    }
+
+    public void backRes (View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

@@ -42,6 +42,7 @@
         android:fontFamily="@font/dmsansbold"
         android:text="Iniciar Sesión"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/registerBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +59,21 @@
         android:fontFamily="@font/dmsansbold"
         android:text="Registrarse"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backBtnRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/arrow_back_ios_24px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back_ios_24px" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

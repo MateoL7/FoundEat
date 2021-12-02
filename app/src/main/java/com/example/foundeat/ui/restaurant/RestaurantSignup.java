@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.Login;
+import com.example.foundeat.ui.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,6 +28,7 @@ public class RestaurantSignup extends AppCompatActivity {
     private EditText resNameET, resEmailET, resPassET, resConfirmPassET;
     private Button resRegisterBtn;
     private TextView resLogin;
+    private ImageButton backBtn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -42,6 +45,7 @@ public class RestaurantSignup extends AppCompatActivity {
         resConfirmPassET = findViewById(R.id.clientConfirmPassET);
         resRegisterBtn = findViewById(R.id.clientRegisterBtn);
         resLogin = findViewById(R.id.clientLogin);
+        backBtn = findViewById(R.id.backBtn);
 
 
         resLogin.setOnClickListener(v -> {
@@ -51,6 +55,7 @@ public class RestaurantSignup extends AppCompatActivity {
         });
 
         resRegisterBtn.setOnClickListener(this::signup);
+        backBtn.setOnClickListener(this::goBack);
     }
 
     private void signup(View view) {
@@ -94,5 +99,11 @@ public class RestaurantSignup extends AppCompatActivity {
         }).addOnFailureListener(error->{
             Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
+    }
+
+    public void goBack (View view) {
+        Intent intent = new Intent(this, RestaurantScreen.class);
+        startActivity(intent);
+
     }
 }

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D2538"
+    android:background="@color/background"
     tools:context=".ui.client.ClientHome">
 
     <ImageView
         android:id="@+id/actualPic"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/dmsansbold"
         android:text="TextView"
-        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/violeta"
+        android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,12 +33,16 @@
     <android.widget.Button
         android:id="@+id/editProfileBtn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/gradientbutton"
+        android:fontFamily="@font/dmsansbold"
         android:text="Editar perfil"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -44,16 +51,23 @@
         android:id="@+id/categoryTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/dmsansregular"
         android:padding="5dp"
         android:text="Sin categoría"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/actualPic"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginStart="30dp"
         app:layout_constraintBottom_toTopOf="@+id/editProfileBtn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actualPic">
 
         <LinearLayout
@@ -61,67 +75,130 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/descriptionTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:padding="5dp"
-                android:text="Sin descripción" />
-
-            <TextView
-                android:id="@+id/addressTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:padding="5dp"
-                android:text="Sin dirección" />
-
-            <TextView
-                android:id="@+id/scheduleTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:padding="5dp"
-                android:text="Sin horario" />
-
-            <TextView
-                android:id="@+id/priceTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:padding="5dp"
-                android:text="Sin precios" />
-
-            <TextView
-                android:id="@+id/menuTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:padding="5dp"
-                android:text="Carta" />
-
-            <TextView
-                android:id="@+id/reviewsTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:padding="5dp"
-                android:text="Comentarios y reseñas" />
-
         </LinearLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="408dp"
+        android:layout_height="338dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actualPic">
+
+        <TextView
+            android:id="@+id/descriptionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:padding="5dp"
+            android:text="Sin descripción"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="15dp" />
+
+        <TextView
+            android:id="@+id/reviewsTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:padding="5dp"
+            android:text="Comentarios y reseñas"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="297dp" />
+
+        <TextView
+            android:id="@+id/menuTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:padding="5dp"
+            android:text="Carta"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="241dp" />
+
+        <TextView
+            android:id="@+id/priceTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:padding="5dp"
+            android:text="Sin precios"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="184dp" />
+
+        <TextView
+            android:id="@+id/scheduleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:padding="5dp"
+            android:text="Sin horario"
+            android:textColor="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="128dp" />
+
+        <TextView
+            android:id="@+id/addressTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsansregular"
+            android:padding="5dp"
+            android:text="Sin dirección"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="72dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icon_clock"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="132dp" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            app:srcCompat="@drawable/icon_menu"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="245dp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icon_ubi"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="76dp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icon_price"
+            tools:layout_editor_absoluteX="22dp"
+            tools:layout_editor_absoluteY="186dp" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icon_coment"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="302dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

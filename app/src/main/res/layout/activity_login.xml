@@ -11,7 +11,7 @@
         android:id="@+id/goToSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/dmsansbold"
         android:padding="5dp"
         android:text="¿No tienes una cuenta? Regístrate"
@@ -62,7 +62,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="110dp"
         android:background="@drawable/gradientbutton"
         android:fontFamily="@font/dmsansbold"
         android:text="Iniciar"
@@ -105,7 +105,7 @@
         app:srcCompat="@drawable/logofoundeat" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/backBtnL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

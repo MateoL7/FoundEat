@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.example.foundeat.ui.restaurant.RestaurantDescription;
 import com.example.foundeat.ui.restaurant.RestaurantHome;
 import com.example.foundeat.ui.restaurant.RestaurantMoreInfo;
 import com.example.foundeat.ui.restaurant.RestaurantPhoto;
+import com.example.foundeat.ui.restaurant.RestaurantScreen;
 import com.example.foundeat.ui.restaurant.RestaurantSignup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +38,7 @@ public class Login extends AppCompatActivity {
     private EditText emailET, passwordET;
     private Button goBtn;
     private TextView goToSignUp;
+    private ImageButton backBtnL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class Login extends AppCompatActivity {
         passwordET = findViewById(R.id.passwordET);
         goBtn = findViewById(R.id.clientRegisterBtn);
         goToSignUp = findViewById(R.id.goToSignUp);
+        backBtnL = findViewById(R.id.backBtnL);
 
         goToSignUp.setOnClickListener(v -> {
             if (type.equalsIgnoreCase("client")) {
@@ -61,6 +65,7 @@ public class Login extends AppCompatActivity {
         });
 
         goBtn.setOnClickListener(this::login);
+        backBtnL.setOnClickListener(this::goBackL);
 
     }
 
@@ -128,6 +133,11 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
 
+    }
+
+    public void goBackL (View view) {
+        Intent intent = new Intent(this, RestaurantScreen.class);
+        startActivity(intent);
     }
 
 //    private void saveClient(Client client){
