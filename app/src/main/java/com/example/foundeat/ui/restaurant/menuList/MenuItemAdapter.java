@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,11 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
         //Bind model and view
 
         //TODO implement image display
+        FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(item.getImage()).getDownloadUrl().addOnSuccessListener(
+                url->   {
+                    Glide.with(skeleton.getMenuItemRowIV()).load(url).into(skeleton.getMenuItemRowIV());
+                }
+        );
 //        skeleton.menuItemRowIV();
         skeleton.getMenuItemRowNameTV().setText(item.getName());
         skeleton.getMenuItemRowPriceTV().setText(item.getPrice());
@@ -55,4 +62,8 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
         menuItems.add(item);
         notifyItemInserted(menuItems.size()-1);
     }
+
+//    public void vaciarLista(){
+//        menuItems = new ArrayList<>();
+//    }
 }
