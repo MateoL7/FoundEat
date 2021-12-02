@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/dmsansbold"
         android:gravity="center"
@@ -28,7 +28,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,11 +42,11 @@
 
             <ImageView
                 android:id="@+id/profilePics"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/camera" />
+                android:layout_marginTop="0dp"
+                app:srcCompat="@drawable/icon_camara" />
 
             <EditText
                 android:id="@+id/descriptionET"
@@ -57,6 +57,7 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
+                android:fontFamily="@font/dmsansregular"
                 android:hint="Descripción del restaurante"
                 android:inputType="textPersonName"
                 android:padding="10dp"
@@ -78,6 +79,7 @@
                     android:id="@+id/categoryChoice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsansregular"
                     android:hint="Tipo de comida"
                     android:inputType="none"
                     android:textColor="#FFFFFF"
@@ -92,15 +94,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
+                android:clickable="true"
                 android:ems="10"
+                android:focusable="false"
+                android:fontFamily="@font/dmsansregular"
                 android:hint="Dirección del restaurante"
                 android:inputType="none"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#617395"
-                android:focusable="false"
-                android:clickable="true"
-                />
+                android:textColorHint="#617395" />
 
             <EditText
                 android:id="@+id/openingET"
@@ -111,8 +113,9 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
-                android:hint="Hora de apertura"
                 android:focusable="false"
+                android:fontFamily="@font/dmsansregular"
+                android:hint="Hora de apertura"
                 android:inputType="time"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
@@ -128,6 +131,7 @@
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:focusable="false"
+                android:fontFamily="@font/dmsansregular"
                 android:hint="Hora de cierre"
                 android:inputType="time"
                 android:padding="10dp"
@@ -145,7 +149,11 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/gradientbutton"
+        android:fontFamily="@font/dmsansbold"
         android:text="Guardar cambios"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

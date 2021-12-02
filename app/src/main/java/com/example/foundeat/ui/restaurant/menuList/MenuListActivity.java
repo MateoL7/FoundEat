@@ -25,6 +25,7 @@ import java.util.UUID;
 public class MenuListActivity extends AppCompatActivity {
 
     private Button addMenuItemBtn;
+    private ImageButton goBackMTH;
 
     private String newItemName,newItemPrice,newItemDescription, menuItemImage;
     private RecyclerView menuListRV;
@@ -45,6 +46,7 @@ public class MenuListActivity extends AppCompatActivity {
         //Reference items from ID
         addMenuItemBtn = findViewById(R.id.addMenuItemBtn);
         menuListRV = findViewById(R.id.menuListRV);
+        goBackMTH = findViewById(R.id.goBackMTH);
 
         //Get model object from intent
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
@@ -59,6 +61,7 @@ public class MenuListActivity extends AppCompatActivity {
         adapter = new MenuItemAdapter();
         menuListRV.setAdapter(adapter);
         menuListRV.setHasFixedSize(true);
+        goBackMTH.setOnClickListener(this::goBackTo);
 
         //Print all menu items from database
         cargarMenu();
@@ -73,6 +76,10 @@ public class MenuListActivity extends AppCompatActivity {
     private void addMenuItem(View v){
         Intent intent = new Intent(this, AddMenuItemActivity.class);
         launcher.launch(intent);
+    }
+
+    private void goBackTo(View view) {
+        finish();
     }
 
     //Method to call after AddMenuActivity has finished.
