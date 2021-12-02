@@ -49,7 +49,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
         );
 //        skeleton.menuItemRowIV();
         skeleton.getMenuItemRowNameTV().setText(item.getName());
-        skeleton.getMenuItemRowPriceTV().setText(item.getPrice());
+        skeleton.getMenuItemRowPriceTV().setText("$"+item.getPrice());
         skeleton.getMenuItemRowDescTV().setText(item.getDescription());
     }
 

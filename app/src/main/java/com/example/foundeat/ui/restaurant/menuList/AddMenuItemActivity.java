@@ -11,6 +11,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,8 +24,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.UUID;
 
 public class AddMenuItemActivity extends AppCompatActivity {
-    private ImageView photoMenuItemIV;
-    private ImageButton addPhotoBtn, saveMenuItemBtn;
+    //private ImageView photoMenuItemIV;
+    private ImageButton addPhotoBtn, backAPBtn;
+    private Button saveMenuItemBtn;
     private EditText menuItemProductNameET, priceMenuItemET, productDescriptionET;
     private Uri uri;
 
@@ -34,24 +36,26 @@ public class AddMenuItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu_item);
-        photoMenuItemIV = findViewById(R.id.photoMenuItemIV);
+        //photoMenuItemIV = findViewById(R.id.photoMenuItemIV);
         addPhotoBtn = findViewById(R.id.addPhotoBtn);
         saveMenuItemBtn = findViewById(R.id.saveMenuItemBtn);
         menuItemProductNameET = findViewById(R.id.menuItemProductNameET);
         priceMenuItemET = findViewById(R.id.priceMenuItemET);
         productDescriptionET = findViewById(R.id.productDescriptionET);
+        backAPBtn = findViewById(R.id.backAPBtn);
 
         launcher  =registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGaleryResult);
 
         saveMenuItemBtn.setOnClickListener(this::saveItem);
         addPhotoBtn.setOnClickListener(this::addPhoto);
+        backAPBtn.setOnClickListener(this::goToMenu);
     }
 
     public void onGaleryResult(ActivityResult result){
 
         if (result.getResultCode()== RESULT_OK){
             uri = result.getData().getData();
-            photoMenuItemIV.setImageURI(uri);
+            addPhotoBtn.setImageURI(uri);
         }
 
     }
@@ -60,6 +64,11 @@ public class AddMenuItemActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         launcher.launch(intent);
+    }
+
+    public void goToMenu (View view) {
+        Intent intent = new Intent(this, MenuListActivity.class);
+        startActivity(intent);
     }
 
 
