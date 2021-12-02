@@ -61,29 +61,11 @@
         app:layout_constraintBottom_toBottomOf="@+id/actualPic"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/editProfileBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actualPic">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
-    </ScrollView>
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="408dp"
+        android:layout_width="0dp"
         android:layout_height="338dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/editProfileBtn"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actualPic">
 
@@ -91,114 +73,135 @@
             android:id="@+id/descriptionTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/dmsansregular"
             android:padding="5dp"
             android:text="Sin descripción"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="15dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/reviewsTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/dmsansregular"
             android:padding="5dp"
             android:text="Comentarios y reseñas"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="297dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView10"
+            app:layout_constraintTop_toBottomOf="@+id/menuTV" />
 
         <TextView
             android:id="@+id/menuTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/dmsansregular"
             android:padding="5dp"
             android:text="Carta"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="241dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
+            app:layout_constraintTop_toBottomOf="@+id/priceTV" />
 
         <TextView
             android:id="@+id/priceTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/dmsansregular"
             android:padding="5dp"
             android:text="Sin precios"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="184dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleTV" />
 
         <TextView
             android:id="@+id/scheduleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/dmsansregular"
             android:padding="5dp"
             android:text="Sin horario"
             android:textColor="@color/white"
             android:textColorLink="@color/white"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="128dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/addressTV" />
 
         <TextView
             android:id="@+id/addressTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/dmsansregular"
             android:padding="5dp"
             android:text="Sin dirección"
             android:textColor="@color/white"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="72dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon_clock"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="132dp" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/scheduleTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scheduleTV"
+            app:srcCompat="@drawable/icon_clock" />
 
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="30dp"
             android:layout_height="22dp"
-            app:srcCompat="@drawable/icon_menu"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="245dp" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menuTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menuTV"
+            app:srcCompat="@drawable/icon_menu" />
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon_ubi"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="76dp" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/addressTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/addressTV"
+            app:srcCompat="@drawable/icon_ubi" />
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon_price"
-            tools:layout_editor_absoluteX="22dp"
-            tools:layout_editor_absoluteY="186dp" />
+            android:layout_marginStart="22dp"
+            app:layout_constraintBottom_toBottomOf="@+id/priceTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/priceTV"
+            app:srcCompat="@drawable/icon_price" />
 
         <ImageView
             android:id="@+id/imageView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon_coment"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="302dp" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reviewsTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reviewsTV"
+            app:srcCompat="@drawable/icon_coment" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
