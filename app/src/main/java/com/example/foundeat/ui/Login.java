@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         type = getIntent().getExtras().get("type").toString();
-        Log.e(">>>", type);
 
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
@@ -110,12 +109,11 @@ public class Login extends AppCompatActivity {
                                 Intent intent;
 
                                 // Para que termine el perfil si no lo ha terminado
-                                if(restaurant.getDescription() == null){
+                                if(restaurant.getDescription() == null || restaurant.getDescription().isEmpty()){
                                     intent = new Intent(this, RestaurantDescription.class);
                                 }
                                 else if(restaurant.getPics() == null || restaurant.getPics().size() < 1){
                                     intent = new Intent(this, RestaurantPhoto.class);
-                                    Log.e(">>>>", "Entra a la foto");
                                 }else if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null){
                                     intent = new Intent(this, RestaurantMoreInfo.class);
                                 }else{
@@ -139,13 +137,4 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(this, RestaurantScreen.class);
         startActivity(intent);
     }
-
-//    private void saveClient(Client client){
-//        String json = new Gson().toJson(client);
-//        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("client",json).apply();
-//    }
-//    private void saveRestaurant(Restaurant restaurant){
-//        String json = new Gson().toJson(restaurant);
-//        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("restaurant",json).apply();
-//    }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ public class RestaurantDescription extends AppCompatActivity {
         descriptionET = findViewById(R.id.descriptionET);
         continueBtn = findViewById(R.id.saveBtn);
 
-        resGreetingTV.setText("Hola "+restaurant.getName()+",\n editemos tu perfil para que los clientes te encuentren");
+        resGreetingTV.setText("Hola " + restaurant.getName() + ",\n editemos tu perfil para que los clientes te encuentren");
         continueBtn.setEnabled(false);
 
         descriptionET.addTextChangedListener(new TextWatcher() {
@@ -56,7 +57,7 @@ public class RestaurantDescription extends AppCompatActivity {
             }
         });
 
-        skipTV.setOnClickListener(v->{
+        skipTV.setOnClickListener(v -> {
             restaurant.setDescription(null);
             nextActivity(v);
         });
@@ -67,7 +68,14 @@ public class RestaurantDescription extends AppCompatActivity {
 
     private void nextActivity(View view) {
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
-        Intent intent = new Intent(this, RestaurantPhoto.class);
+        Intent intent;
+        if(restaurant.getPics() == null || restaurant.getPics().size() < 1){
+            intent = new Intent(this, RestaurantPhoto.class);
+        }else if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null){
+            intent = new Intent(this, RestaurantMoreInfo.class);
+        }else{
+            intent = new Intent(this, RestaurantHome.class);
+        }
         intent.putExtra("restaurant", restaurant);
         startActivity(intent);
     }

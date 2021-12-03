@@ -74,8 +74,12 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
     }
 
     private void continueNoPhoto(View v){
-        //FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
-        Intent intent = new Intent(this, RestaurantMoreInfo.class);
+        Intent intent;
+        if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null){
+            intent = new Intent(this, RestaurantMoreInfo.class);
+        }else{
+            intent = new Intent(this, RestaurantHome.class);
+        }
         intent.putExtra("restaurant", restaurant);
         startActivity(intent);
     }
@@ -93,7 +97,12 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
             FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(fileName).putFile(uri);
             restaurant.getPics().add(fileName);
             FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
-            Intent intent = new Intent(this, RestaurantMoreInfo.class);
+            Intent intent;
+            if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null){
+                intent = new Intent(this, RestaurantMoreInfo.class);
+            }else{
+                intent = new Intent(this, RestaurantHome.class);
+            }
             intent.putExtra("restaurant", restaurant);
             startActivity(intent);
         }else{
@@ -136,9 +145,6 @@ public class RestaurantPhoto extends AppCompatActivity implements ChoiceDialog.O
         if (result.getResultCode() == this.RESULT_OK) {
             uri = result.getData().getData();
             profilePic.setImageURI(uri);
-//            ArrayList<String> pics = new ArrayList<>();
-//            pics.add(UtilDomi.getPath(this, uri));
-//            restaurant.setPics(pics);
             continueBtn.setEnabled(true);
             profilePic.setBackground(null);
         }
