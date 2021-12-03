@@ -67,7 +67,7 @@ public class RestaurantDescription extends AppCompatActivity {
 
     private void nextActivity(View view) {
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
-        Intent intent = new Intent(this, RestaurantMoreInfo.class);
+        Intent intent = new Intent(this, RestaurantPhoto.class);
         intent.putExtra("restaurant", restaurant);
         startActivity(intent);
     }

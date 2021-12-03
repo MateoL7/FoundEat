@@ -90,8 +90,7 @@ public class RestaurantLocation extends FragmentActivity implements OnMapReadyCa
         goBackBtn = findViewById(R.id.goBackBtn);
         goBackBtn.setOnClickListener(
                 v->{
-                    Intent intent = new Intent(this, RestaurantHome.class);
-                    startActivity(intent);
+                    finish();
                 }
         );
 
