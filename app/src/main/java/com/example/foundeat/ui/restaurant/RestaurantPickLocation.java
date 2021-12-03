@@ -65,8 +65,6 @@ public class RestaurantPickLocation extends FragmentActivity implements OnMapRea
                 v->{
                     //go back with the intent
                     Intent intent = new Intent();
-                    intent.putExtra("location",dir);
-                    setResult(RESULT_OK, intent);
                     finish();
                 }
         );

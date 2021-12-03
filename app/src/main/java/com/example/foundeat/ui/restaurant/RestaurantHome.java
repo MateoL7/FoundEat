@@ -1,6 +1,9 @@
 package com.example.foundeat.ui.restaurant;
 
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -172,6 +175,13 @@ public class RestaurantHome extends AppCompatActivity {
                 }
                 if (restaurant.getAddress() != null) {
                     addressTV.setText(restaurant.getAddress());
+                    addressTV.setOnClickListener(
+                            v -> {
+                                Intent i = new Intent(this, RestaurantLocation.class);
+                                i.putExtra("location",restaurant.getAddress());
+                                startActivity(i);
+                            }
+                    );
                 }
                 if (restaurant.getOpeningTime() != null && restaurant.getClosingTime() != null) {
 
