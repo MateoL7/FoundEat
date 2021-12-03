@@ -1,14 +1,12 @@
 package com.example.foundeat.ui.restaurant;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,8 +20,6 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
 import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
 import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -44,6 +40,8 @@ public class RestaurantHome extends AppCompatActivity {
     private NavigationView navigationView;
     private ImageButton settingsBtn;
 
+    private DrawerLayout drawerLayout;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -54,6 +52,7 @@ public class RestaurantHome extends AppCompatActivity {
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
         nameET = findViewById(R.id.nameTV);
+        drawerLayout = findViewById(R.id.drawer_layout);
         actualPic = findViewById(R.id.actualPic);
         loadRestaurantPhoto();
         categoryTV = findViewById(R.id.categoryTV);
@@ -66,6 +65,7 @@ public class RestaurantHome extends AppCompatActivity {
         settingsBtn = findViewById(R.id.settingsBtn);
 
         navigationView = findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId() == R.id.nav_logout){
                 logout();
@@ -103,7 +103,7 @@ public class RestaurantHome extends AppCompatActivity {
     }
 
     private void openSettings (View view) {
-
+        drawerLayout.openDrawer(GravityCompat.START);
     }
 
     private void logout() {
@@ -233,6 +233,8 @@ public class RestaurantHome extends AppCompatActivity {
                     if(mayor == 0 && menor == Integer.MAX_VALUE ){
                         priceTV.setText("No hay items en el menú");
                     }else{
+                        restaurant.setMaxPrice(""+mayor);
+                        restaurant.setMinPrice(""+menor);
                         priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
                     }
 
