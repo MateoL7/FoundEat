@@ -1,6 +1,9 @@
 package com.example.foundeat.ui.client;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.ui.MainActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
@@ -19,8 +23,10 @@ public class ClientHome extends AppCompatActivity {
 
     private Client client;
 
-    private TextView nameET;
-    private Button clientLogoutBtn;
+    private BottomNavigationView navigator;
+    private ClientHomeFragment clientHomeFragment;
+    private ClientMapFragment clientMapFragment;
+    private ClientProfileFragment clientProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +34,35 @@ public class ClientHome extends AppCompatActivity {
         setContentView(R.layout.activity_client_home);
 
         client = (Client) getIntent().getExtras().get("client");
-        nameET = findViewById(R.id.nameTV);
-        nameET.setText(client.getName());
-        clientLogoutBtn = findViewById(R.id.clientLogoutBtn);
+
+        navigator = findViewById(R.id.navigator);
+        clientHomeFragment = ClientHomeFragment.newInstance();
+        clientMapFragment = ClientMapFragment.newInstance();
+        clientProfileFragment = ClientProfileFragment.newInstance();
+
+        showFragment(clientHomeFragment);
+
+        navigator.setOnItemSelectedListener(menuItem->{
+            if(menuItem.getItemId()==R.id.homeItem){
+                showFragment(clientHomeFragment);
+            }else if(menuItem.getItemId()==R.id.profileItem){
+                showFragment(clientProfileFragment);
+            }else if(menuItem.getItemId()==R.id.mapItem){
+                showFragment(clientMapFragment);
+            }
+            return true;
+        });
 
         loadClient();
 
 
-        clientLogoutBtn.setOnClickListener(this::logout);
+    }
+
+    public void showFragment(Fragment f){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentContainer,f);
+        transaction.commit();
     }
 
     private void loadClient() {
