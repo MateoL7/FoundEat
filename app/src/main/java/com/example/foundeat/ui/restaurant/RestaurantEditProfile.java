@@ -7,10 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,15 +15,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.ui.MainActivity;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -52,10 +46,10 @@ public class RestaurantEditProfile extends AppCompatActivity {
 
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
 
-        descriptionET = findViewById(R.id.descriptionET);
-        closingET = findViewById(R.id.closingET);
-        openingET = findViewById(R.id.openingET);
-        addressET = findViewById(R.id.addressET);
+        descriptionET = findViewById(R.id.newNameET);
+        closingET = findViewById(R.id.confirmNewPassword);
+        openingET = findViewById(R.id.newPasswordET);
+        addressET = findViewById(R.id.newEmailET);
         categoryChoice = findViewById(R.id.categoryChoice);
         saveBtn = findViewById(R.id.saveBtn);
 
@@ -64,7 +58,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         );
 
         //Sujeto a cambios
-        profilePics = findViewById(R.id.profilePics);
+        profilePics = findViewById(R.id.newPP);
 
         loadActualInfo();
         loadChoices();
@@ -93,10 +87,10 @@ public class RestaurantEditProfile extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 switch(v.getId()){
-                    case R.id.openingET:
+                    case R.id.newPasswordET:
                         openingET.setText( selectedHour + ":" + selectedMinute);
                         break;
-                    case R.id.closingET:
+                    case R.id.confirmNewPassword:
                         closingET.setText( selectedHour + ":" + selectedMinute);
                         break;
                 }

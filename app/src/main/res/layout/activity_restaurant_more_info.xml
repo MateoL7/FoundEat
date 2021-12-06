@@ -8,7 +8,7 @@
     tools:context=".ui.restaurant.RestaurantMoreInfo">
 
     <EditText
-        android:id="@+id/closingET"
+        android:id="@+id/confirmNewPassword"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -26,10 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/openingET" />
+        app:layout_constraintTop_toBottomOf="@+id/newPasswordET" />
 
     <EditText
-        android:id="@+id/openingET"
+        android:id="@+id/newPasswordET"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressET" />
+        app:layout_constraintTop_toBottomOf="@+id/newEmailET" />
 
     <TextView
         android:id="@+id/textView4"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <EditText
-        android:id="@+id/addressET"
+        android:id="@+id/newEmailET"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"

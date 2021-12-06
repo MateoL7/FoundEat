@@ -45,9 +45,9 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
 
         skipTV = findViewById(R.id.logoutTV);
         continueBtn = findViewById(R.id.saveBtn);
-        closingET = findViewById(R.id.closingET);
-        openingET = findViewById(R.id.openingET);
-        addressET = findViewById(R.id.addressET);
+        closingET = findViewById(R.id.confirmNewPassword);
+        openingET = findViewById(R.id.newPasswordET);
+        addressET = findViewById(R.id.newEmailET);
 
         ActivityResultLauncher<Intent> launcherMap = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), this::pickLocation
@@ -86,10 +86,10 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 switch(v.getId()){
-                    case R.id.openingET:
+                    case R.id.newPasswordET:
                         openingET.setText( selectedHour + ":" + selectedMinute);
                         break;
-                    case R.id.closingET:
+                    case R.id.confirmNewPassword:
                         closingET.setText( selectedHour + ":" + selectedMinute);
                         break;
                 }

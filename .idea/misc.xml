@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/drawable/gradientbutton.xml" value="0.3880208333333333" />
+        <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/activity_client_edit_profile.xml" value="0.2359375" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/activity_client_favorite_food.xml" value="0.371875" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/activity_client_home.xml" value="0.371875" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/activity_client_login.xml" value="0.16203703703703703" />
@@ -25,7 +26,7 @@
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/fragment_choice_dialog.xml" value="0.371875" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/fragment_client_home.xml" value="0.2015625" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/fragment_client_map.xml" value="0.2015625" />
-        <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/fragment_client_profile.xml" value="0.2015625" />
+        <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/fragment_client_profile.xml" value="0.5" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/fragment_date_dialog.xml" value="0.371875" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/layout/list_item.xml" value="0.2359375" />
         <entry key="..\:/Documents/SeptimoSemestre/Aplicaciones/FoundEat/app/src/main/res/menu/activity_main_drawer.xml" value="0.2015625" />

@@ -1,9 +1,6 @@
 package com.example.foundeat.ui.restaurant;
 
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -56,13 +53,13 @@ public class RestaurantHome extends AppCompatActivity {
 
         nameET = findViewById(R.id.nameTV);
         drawerLayout = findViewById(R.id.drawer_layout);
-        actualPic = findViewById(R.id.actualPic);
+        actualPic = findViewById(R.id.pp);
         loadRestaurantPhoto();
-        categoryTV = findViewById(R.id.categoryTV);
+        categoryTV = findViewById(R.id.userTV);
         descriptionTV = findViewById(R.id.descriptionTV);
-        addressTV = findViewById(R.id.addressTV);
-        scheduleTV = findViewById(R.id.scheduleTV);
-        priceTV = findViewById(R.id.priceTV);
+        addressTV = findViewById(R.id.favoritesTV);
+        scheduleTV = findViewById(R.id.myReviewsTV);
+        priceTV = findViewById(R.id.editProfileTV);
         menuTV = findViewById(R.id.menuTV);
         reviewsTV = findViewById(R.id.reviewsTV);
         settingsBtn = findViewById(R.id.settingsBtn);

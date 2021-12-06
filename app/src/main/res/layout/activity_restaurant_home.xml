@@ -8,7 +8,7 @@
     tools:context=".ui.client.ClientHome">
 
     <ImageView
-        android:id="@+id/actualPic"
+        android:id="@+id/pp"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
         android:layout_height="300dp"
@@ -22,7 +22,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="200dp"
         android:background="@drawable/gradiant_image"
-        app:layout_constraintBottom_toBottomOf="@+id/actualPic"
+        app:layout_constraintBottom_toBottomOf="@+id/pp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/categoryTV"
+        android:id="@+id/userTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -71,7 +71,7 @@
         android:text="Sin categoría"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/actualPic"
+        app:layout_constraintBottom_toBottomOf="@+id/pp"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -92,7 +92,7 @@
         app:layout_constraintBottom_toTopOf="@id/editProfileBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actualPic">
+        app:layout_constraintTop_toBottomOf="@+id/pp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -121,7 +121,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="11dp"
                 android:background="@color/hint"
-                app:layout_constraintBottom_toTopOf="@+id/addressTV"
+                app:layout_constraintBottom_toTopOf="@+id/favoritesTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTV">
@@ -134,9 +134,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/icon_arrow_small"
-                app:layout_constraintBottom_toBottomOf="@+id/addressTV"
+                app:layout_constraintBottom_toBottomOf="@+id/favoritesTV"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/addressTV"
+                app:layout_constraintTop_toTopOf="@+id/favoritesTV"
                 app:srcCompat="@drawable/icon_arrow_small" />
 
             <TextView
@@ -163,10 +163,10 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="11dp"
                 android:background="@color/hint"
-                app:layout_constraintBottom_toTopOf="@+id/scheduleTV"
+                app:layout_constraintBottom_toTopOf="@+id/myReviewsTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addressTV">
+                app:layout_constraintTop_toBottomOf="@+id/favoritesTV">
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -182,7 +182,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
-                app:layout_constraintTop_toBottomOf="@+id/priceTV" />
+                app:layout_constraintTop_toBottomOf="@+id/editProfileTV" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
@@ -203,15 +203,15 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="11dp"
                 android:background="@color/hint"
-                app:layout_constraintBottom_toTopOf="@+id/priceTV"
+                app:layout_constraintBottom_toTopOf="@+id/editProfileTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scheduleTV">
+                app:layout_constraintTop_toBottomOf="@+id/myReviewsTV">
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/priceTV"
+                android:id="@+id/editProfileTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -224,7 +224,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView8"
-                app:layout_constraintTop_toBottomOf="@+id/scheduleTV" />
+                app:layout_constraintTop_toBottomOf="@+id/myReviewsTV" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
@@ -238,12 +238,12 @@
                 app:layout_constraintBottom_toTopOf="@+id/menuTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/priceTV">
+                app:layout_constraintTop_toBottomOf="@+id/editProfileTV">
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/scheduleTV"
+                android:id="@+id/myReviewsTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -257,7 +257,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/addressTV" />
+                app:layout_constraintTop_toBottomOf="@+id/favoritesTV" />
 
             <ImageButton
                 android:id="@+id/imageButton4"
@@ -286,7 +286,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/addressTV"
+                android:id="@+id/favoritesTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
@@ -305,9 +305,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/scheduleTV"
+                app:layout_constraintBottom_toBottomOf="@+id/myReviewsTV"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/scheduleTV"
+                app:layout_constraintTop_toTopOf="@+id/myReviewsTV"
                 app:srcCompat="@drawable/icon_clock" />
 
             <ImageView
@@ -325,9 +325,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/addressTV"
+                app:layout_constraintBottom_toBottomOf="@+id/favoritesTV"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/addressTV"
+                app:layout_constraintTop_toTopOf="@+id/favoritesTV"
                 app:srcCompat="@drawable/icon_ubi" />
 
             <ImageView
@@ -335,9 +335,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/priceTV"
+                app:layout_constraintBottom_toBottomOf="@+id/editProfileTV"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/priceTV"
+                app:layout_constraintTop_toTopOf="@+id/editProfileTV"
                 app:srcCompat="@drawable/icon_price" />
 
             <ImageView

@@ -58,33 +58,11 @@
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
                 android:fontFamily="@font/dmsansregular"
-                android:hint="Descripción del restaurante"
+                android:hint="Nuevo nombre de usuario"
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#617395" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/textfieldborder"
-                android:textColorHint="#617395">
-
-                <AutoCompleteTextView
-                    android:id="@+id/categoryChoice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dmsansregular"
-                    android:hint="Tipo de comida"
-                    android:inputType="none"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <EditText
                 android:id="@+id/newEmailET"
@@ -94,12 +72,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
-                android:clickable="true"
                 android:ems="10"
-                android:focusable="false"
                 android:fontFamily="@font/dmsansregular"
-                android:hint="Dirección del restaurante"
-                android:inputType="none"
+                android:hint="Nuevo correo electrónico"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#617395" />
@@ -113,10 +88,9 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
-                android:focusable="false"
                 android:fontFamily="@font/dmsansregular"
-                android:hint="Hora de apertura"
-                android:inputType="time"
+                android:hint="Nueva contraseña"
+                android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#617395" />
@@ -130,10 +104,9 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/textfieldborder"
                 android:ems="10"
-                android:focusable="false"
                 android:fontFamily="@font/dmsansregular"
-                android:hint="Hora de cierre"
-                android:inputType="time"
+                android:hint="Confirmar nueva contraseña"
+                android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#617395" />

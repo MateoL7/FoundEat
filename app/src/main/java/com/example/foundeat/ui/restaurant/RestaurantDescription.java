@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +32,7 @@ public class RestaurantDescription extends AppCompatActivity {
 
         resGreetingTV = findViewById(R.id.resGreetingTV);
         skipTV = findViewById(R.id.logoutTV);
-        descriptionET = findViewById(R.id.descriptionET);
+        descriptionET = findViewById(R.id.newNameET);
         continueBtn = findViewById(R.id.saveBtn);
 
         resGreetingTV.setText("Hola " + restaurant.getName() + ",\n editemos tu perfil para que los clientes te encuentren");
