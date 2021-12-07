@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.foundeat.R;
@@ -33,7 +32,7 @@ public class RestaurantReviews extends AppCompatActivity {
 
         adapter = new ReviewAdapter();
 
-        reviewRecycler = findViewById(R.id.reviewRecycler);
+        reviewRecycler = findViewById(R.id.favoritesRecycler);
         backTV = findViewById(R.id.backTV);
 
         backTV.setOnClickListener(v->{

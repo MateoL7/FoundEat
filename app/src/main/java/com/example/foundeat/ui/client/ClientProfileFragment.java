@@ -12,9 +12,21 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
+import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.MainActivity;
+import com.example.foundeat.ui.restaurant.RestaurantHome;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,15 +67,20 @@ public class ClientProfileFragment extends Fragment {
         settingsBtn = view.findViewById(R.id.settingsBtn);
         pp = view.findViewById(R.id.pp);
         userTV = view.findViewById(R.id.userTV);
+        settingsBtn = view.findViewById(R.id.settingsBtn);
 
         userTV.setText(client.getName()+"\n"+client.getEmail());
 
         editProfileTV.setOnClickListener(this::editProfile);
+        favoritesTV.setOnClickListener(this::showFavorites);
+
 
         return view;
     }
-    public void showFavorites(){
-
+    public void showFavorites(View view){
+        Intent intent = new Intent(getActivity(),ClientFavorites.class);
+        intent.putExtra("client",client);
+        startActivity(intent);
     }
     public void showReviews(){
 
