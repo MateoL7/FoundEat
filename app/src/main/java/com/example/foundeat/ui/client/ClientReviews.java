@@ -9,48 +9,50 @@ import android.widget.TextView;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
-import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.model.Review;
+import com.example.foundeat.ui.restaurant.ReviewAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ClientFavorites extends AppCompatActivity {
+public class ClientReviews extends AppCompatActivity {
 
-    private Client client;
-    private RecyclerView favoritesRecycler;
+    private RecyclerView reviewRecycler;
     private TextView backTV;
-    private FavoritesAdapter adapter;
+
+    private ReviewAdapter adapter;
+    private Client client;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_favorites);
+        setContentView(R.layout.activity_client_reviews);
 
         client = (Client) getIntent().getExtras().get("client");
-        favoritesRecycler = findViewById(R.id.favoritesRecycler);
+
+        adapter = new ReviewAdapter();
+
+        reviewRecycler = findViewById(R.id.favoritesRecycler);
         backTV = findViewById(R.id.backTV);
-        adapter = new FavoritesAdapter();
 
         backTV.setOnClickListener(v -> {
             finish();
         });
 
-        favoritesRecycler.setHasFixedSize(true);
-        favoritesRecycler.setLayoutManager(new LinearLayoutManager(this));
-        favoritesRecycler.setAdapter(adapter);
+        reviewRecycler.setHasFixedSize(true);
+        reviewRecycler.setLayoutManager(new LinearLayoutManager(this));
+        reviewRecycler.setAdapter(adapter);
 
-        loadFavorites();
+        loadReviews();
     }
 
-    private void loadFavorites() {
-        db.collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
+    private void loadReviews() {
+        db.collection("users").document(client.getId()).collection("reviews").addSnapshotListener(
                 (value, error) -> {
-                    adapter.getRestaurants().clear();
+                    adapter.getReviews().clear();
                     for (DocumentSnapshot doc : value.getDocuments()) {
-                        Restaurant restaurant = doc.toObject(Restaurant.class);
-                        adapter.getRestaurants().add(restaurant);
+                        Review review = doc.toObject(Review.class);
+                        adapter.getReviews().add(review);
                     }
                     adapter.notifyDataSetChanged();
                 }

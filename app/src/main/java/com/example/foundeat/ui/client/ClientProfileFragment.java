@@ -73,6 +73,7 @@ public class ClientProfileFragment extends Fragment {
 
         editProfileTV.setOnClickListener(this::editProfile);
         favoritesTV.setOnClickListener(this::showFavorites);
+        myReviewsTV.setOnClickListener(this::showReviews);
 
 
         return view;
@@ -82,8 +83,10 @@ public class ClientProfileFragment extends Fragment {
         intent.putExtra("client",client);
         startActivity(intent);
     }
-    public void showReviews(){
-
+    public void showReviews(View view){
+        Intent intent = new Intent(getActivity(),ClientReviews.class);
+        intent.putExtra("client",client);
+        startActivity(intent);
     }
     public void editProfile(View view){
         Intent intent = new Intent(home,ClientEditProfile.class);

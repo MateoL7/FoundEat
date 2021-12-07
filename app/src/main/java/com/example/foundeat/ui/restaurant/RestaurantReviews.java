@@ -35,7 +35,7 @@ public class RestaurantReviews extends AppCompatActivity {
         reviewRecycler = findViewById(R.id.favoritesRecycler);
         backTV = findViewById(R.id.backTV);
 
-        backTV.setOnClickListener(v->{
+        backTV.setOnClickListener(v -> {
             finish();
         });
 
@@ -56,6 +56,7 @@ public class RestaurantReviews extends AppCompatActivity {
                         adapter.getReviews().add(review);
                     }
                     adapter.notifyDataSetChanged();
-                });
+                }
+        );
     }
 }
