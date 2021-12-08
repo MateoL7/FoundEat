@@ -23,8 +23,10 @@ import com.example.foundeat.model.Client;
 import com.example.foundeat.ui.ChoiceDialog;
 import com.example.foundeat.util.UtilDomi;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.File;
+import java.util.UUID;
 
 public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnChoiceListener {
 
@@ -100,7 +102,9 @@ public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnCho
 
             profilePic.setImageBitmap(thumbnail);
             Uri uri = FileProvider.getUriForFile(this,this.getPackageName(),file);
-            client.setProfilePic(file.getPath());
+            String fileName = UUID.randomUUID().toString();
+            FirebaseStorage.getInstance().getReference().child("clientPhotos").child(fileName).putFile(uri);
+            client.setProfilePic(fileName);
             continueBtn.setEnabled(true);
             profilePic.setBackground(null);
 
@@ -117,7 +121,9 @@ public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnCho
         if(result.getResultCode()==this.RESULT_OK){
             Uri uri = result.getData().getData();
             profilePic.setImageURI(uri);
-            client.setProfilePic(UtilDomi.getPath(this,uri));
+            String fileName = UUID.randomUUID().toString();
+            FirebaseStorage.getInstance().getReference().child("clientPhotos").child(fileName).putFile(uri);
+            client.setProfilePic(fileName);
             continueBtn.setEnabled(true);
             profilePic.setBackground(null);
         }

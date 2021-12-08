@@ -3,6 +3,9 @@ package com.example.foundeat.ui.client;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
@@ -27,6 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +46,8 @@ public class ClientProfileFragment extends Fragment {
 
     private ClientHome home;
     private Client client;
+
+
 
     public ClientProfileFragment() {
 
@@ -60,6 +67,7 @@ public class ClientProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_client_profile, container, false);
         home = (ClientHome) getActivity();
         client = home.getClient();
+        loadPhoto();
 
         favoritesTV = view.findViewById(R.id.favoritesTV);
         myReviewsTV = view.findViewById(R.id.myReviewsTV);
@@ -78,6 +86,17 @@ public class ClientProfileFragment extends Fragment {
 
         return view;
     }
+
+    private void loadPhoto() {
+        if(client.getProfilePic()!=null){
+            FirebaseStorage.getInstance().getReference().child("clientPhotos").child(client.getProfilePic()).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(pp).load(url).into(pp);
+                    }
+            );
+        }
+    }
+
     public void showFavorites(View view){
         Intent intent = new Intent(getActivity(),ClientFavorites.class);
         intent.putExtra("client",client);
@@ -92,6 +111,7 @@ public class ClientProfileFragment extends Fragment {
         Intent intent = new Intent(home,ClientEditProfile.class);
         intent.putExtra("client",client);
         startActivity(intent);
+
     }
 
 }
