@@ -51,6 +51,7 @@
         <entry key="..\:/Users/aleja/Desktop/ICESI/SEMESTRE_7/APLICACIONES_MOVILES/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_restaurant_photo.xml" value="0.1" />
         <entry key="..\:/Users/aleja/Desktop/ICESI/SEMESTRE_7/APLICACIONES_MOVILES/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_restaurant_pick_location.xml" value="0.1" />
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_add_menu_item.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_client_home.xml" value="0.2015625" />
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_client_signup.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_login.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -61,6 +62,11 @@
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_restaurant_photo.xml" value="0.5" />
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_restaurant_screen.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/activity_restaurant_signup.xml" value="0.25" />
+        <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/fragment_choice_dialog.xml" value="0.2015625" />
+        <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/fragment_client_home.xml" value="0.33" />
+        <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/fragment_client_map.xml" value="0.2015625" />
+        <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/fragment_client_profile.xml" value="0.2015625" />
+        <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/menu_item_row.xml" value="0.5" />
         <entry key="app/src/main/res/font/dmsans.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/activity_add_menu_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_client_favorite_food.xml" value="0.20516304347826086" />
