@@ -8,6 +8,19 @@
     tools:context=".ui.restaurant.RestaurantMoreInfo">
 
     <TextView
+        android:id="@+id/backTV"
+        android:layout_width="16dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/arrow_back_ios_24px"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

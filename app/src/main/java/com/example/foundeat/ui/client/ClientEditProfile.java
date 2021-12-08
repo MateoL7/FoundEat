@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -36,6 +37,7 @@ public class ClientEditProfile extends AppCompatActivity implements ChoiceDialog
     private Client client;
 
     private EditText newNameET, newEmailET, newPasswordET, confirmNewPassword;
+    private TextView backTV;
     private Button saveBtn;
     private ImageView newPP;
     private FirebaseUser actualUser;
@@ -53,6 +55,7 @@ public class ClientEditProfile extends AppCompatActivity implements ChoiceDialog
         client = (Client) getIntent().getExtras().get("client");
         actualUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        backTV = findViewById(R.id.backTV);
         newNameET = findViewById(R.id.newNameET);
         newEmailET = findViewById(R.id.newEmailET);
         newPasswordET = findViewById(R.id.newPasswordET);
@@ -61,6 +64,10 @@ public class ClientEditProfile extends AppCompatActivity implements ChoiceDialog
         newPP = findViewById(R.id.newPP);
 
         saveBtn.setOnClickListener(this::saveChanges);
+
+        backTV.setOnClickListener(v->{
+            finish();
+        });
 
         newNameET.setText(client.getName());
         newEmailET.setText(client.getEmail());

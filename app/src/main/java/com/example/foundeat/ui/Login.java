@@ -89,19 +89,16 @@ public class Login extends AppCompatActivity {
                             if (type.equalsIgnoreCase("client")) {
                                 Client client = document.toObject(Client.class);
                                 Intent intent;
-
-                                // Para que termine el perfil si no lo ha terminado
-//                                if(client.getProfilePic()==null){
-//                                    intent = new Intent(this, ClientPhoto.class);
-//                                }
+//                                 Para que termine el perfil si no lo ha terminado
+                                if(client.getProfilePic()==null){
+                                    intent = new Intent(this, ClientPhoto.class);
+                                }
 //                                else if(client.getFavoriteFood().length<3){
 //                                    intent = new Intent(this, ClientFavoriteFood.class);
 //                                }
-//                                else{
-//                                    intent = new Intent(this, ClientHome.class);
-//                                }
-
-                                intent = new Intent(this, ClientHome.class);
+                                else{
+                                    intent = new Intent(this, ClientHome.class);
+                                }
                                 intent.putExtra("client", client);
                                 startActivity(intent);
                             } else if (type.equalsIgnoreCase("restaurant")) {
