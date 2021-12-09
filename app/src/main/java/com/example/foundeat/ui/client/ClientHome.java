@@ -1,9 +1,12 @@
 package com.example.foundeat.ui.client;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
+import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,6 +36,11 @@ public class ClientHome extends AppCompatActivity {
     private ClientMapFragment clientMapFragment;
     private ClientProfileFragment clientProfileFragment;
 
+
+    private RecyclerView restaurantListRV;
+    private LinearLayoutManager restaurantListRVManager;
+    private RestaurantListAdapter restaurantListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +51,10 @@ public class ClientHome extends AppCompatActivity {
 
         navigator = findViewById(R.id.navigator);
         clientHomeFragment = ClientHomeFragment.newInstance();
+
         clientMapFragment = ClientMapFragment.newInstance();
         clientProfileFragment = ClientProfileFragment.newInstance();
+
 
         showFragment(clientHomeFragment);
 
