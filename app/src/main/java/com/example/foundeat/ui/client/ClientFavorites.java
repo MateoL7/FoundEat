@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.foundeat.R;
@@ -49,11 +50,18 @@ public class ClientFavorites extends AppCompatActivity {
                 (value, error) -> {
                     adapter.getRestaurants().clear();
                     for (DocumentSnapshot doc : value.getDocuments()) {
-                        Restaurant restaurant = doc.toObject(Restaurant.class);
-                        adapter.getRestaurants().add(restaurant);
+                        String resId = (String) doc.get("resId");
+                        bringRestaurant(resId);
                     }
-                    adapter.notifyDataSetChanged();
                 }
         );
+    }
+
+    private void bringRestaurant(String resId) {
+        db.collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
+            Restaurant restaurant = document.toObject(Restaurant.class);
+            adapter.getRestaurants().add(restaurant);
+            adapter.notifyDataSetChanged();
+        });
     }
 }

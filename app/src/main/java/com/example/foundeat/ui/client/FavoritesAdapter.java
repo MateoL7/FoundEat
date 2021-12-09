@@ -1,5 +1,6 @@
 package com.example.foundeat.ui.client;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,11 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
         holder.getCategory().setText(restaurant.getCategory());
         holder.getName().setText(restaurant.getName());
         if(restaurant.getPics().size()>0 && restaurant.getPics()!=null){
-            Glide.with(holder.getPic().getContext()).load(restaurant.getPics().get(0)).centerCrop().into(holder.getPic());
+            FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(holder.getPic()).load(url).into(holder.getPic());
+                    }
+            );
         }
     }
 
