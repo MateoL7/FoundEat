@@ -47,7 +47,7 @@ public class ClientReviews extends AppCompatActivity {
     }
 
     private void loadReviews() {
-        db.collection("users").document(client.getId()).collection("reviews").addSnapshotListener(
+        db.collection("reviews").whereEqualTo("customerID",client.getId()).addSnapshotListener(
                 (value, error) -> {
                     adapter.getReviews().clear();
                     for (DocumentSnapshot doc : value.getDocuments()) {

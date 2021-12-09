@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:layoutDirection="rtl"
     tools:openDrawer="start">
 
     <include
@@ -24,6 +23,5 @@
         android:visibility="visible"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        android:layoutDirection="ltr"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

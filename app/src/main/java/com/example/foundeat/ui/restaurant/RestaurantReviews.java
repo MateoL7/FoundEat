@@ -48,7 +48,7 @@ public class RestaurantReviews extends AppCompatActivity {
     }
 
     private void loadReviews() {
-        db.collection("restaurants").document(restaurant.getId()).collection("reviews").addSnapshotListener(
+        db.collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).addSnapshotListener(
                 (value, error) -> {
                     adapter.getReviews().clear();
                     for (DocumentSnapshot doc : value.getDocuments()) {
