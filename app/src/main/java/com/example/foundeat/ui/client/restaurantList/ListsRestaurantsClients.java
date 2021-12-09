@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.foundeat.R;
-import com.example.foundeat.ui.client.restaurantList.RestaurantListModel;
+import com.example.foundeat.model.Restaurant;
 
 public class ListsRestaurantsClients extends AppCompatActivity {
 
-    private RestaurantListModel restaurantListModel;
+    private Restaurant restaurant;
     private TextView infoTest;
 
     @Override
@@ -18,11 +18,11 @@ public class ListsRestaurantsClients extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lists_restaurants_clients);
         infoTest=findViewById(R.id.intoTest);
-        restaurantListModel=(RestaurantListModel)getIntent().getExtras().get("restaurant");
-        infoTest.setText("info restaurante: "+restaurantListModel.getName()+" - "+restaurantListModel.getCategory());
+        restaurant=(Restaurant) getIntent().getExtras().get("restaurant");
+        infoTest.setText("info restaurante: "+restaurant.getName()+" - "+restaurant.getCategory());
     }
 
-    public void setRestaurantListModel(RestaurantListModel restaurantListModel) {
-        this.restaurantListModel = restaurantListModel;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

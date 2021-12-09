@@ -1,5 +1,7 @@
 package com.example.foundeat.ui.client;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,12 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foundeat.R;
+import com.example.foundeat.model.Client;
+import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class FavoritesViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView pic;
     private TextView name, category, reviews;
     private Button favBtn;
+
+    private Restaurant restaurant;
+    private Client client;
 
     public FavoritesViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -24,6 +35,31 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
         category = itemView.findViewById(R.id.category);
         reviews = itemView.findViewById(R.id.reviews);
         favBtn = itemView.findViewById(R.id.favBtn);
+
+        pic.setOnClickListener(this::showRestaurant);
+        favBtn.setOnClickListener(this::unFavorite);
+    }
+
+    private void showRestaurant(View view) {
+        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+        intent.putExtra("restaurant", restaurant);
+        view.getContext().startActivity(intent);
+    }
+
+    private void unFavorite(View view) {
+        Query query = FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").whereEqualTo("resId", restaurant.getId());
+        query.get().addOnCompleteListener(
+                task -> {
+                    if (task.getResult().size() > 0) {
+                        Restaurant restaurant = null;
+                        for (DocumentSnapshot doc : task.getResult()) {
+                            restaurant = doc.toObject(Restaurant.class);
+                            doc.getReference().delete();
+                            break;
+                        }
+                    }
+                }
+        );
     }
 
     public ImageView getPic() {
@@ -44,5 +80,13 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
 
     public Button getFavBtn() {
         return favBtn;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

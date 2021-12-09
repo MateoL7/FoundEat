@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
+import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,7 +20,7 @@ import java.util.UUID;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListView> {
 
-    private ArrayList<RestaurantListModel> restaurants;
+    private ArrayList<Restaurant> restaurants;
 
     public RestaurantListAdapter(){
         restaurants = new ArrayList<>();
@@ -30,8 +31,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
 //        restaurants.add(new RestaurantListModel(UUID.randomUUID().toString(),"nombre 3","tipo comida 3", 3,4.3));
     }
 
-    public void addRestaurant(RestaurantListModel restaurantListModel){
-        restaurants.add(restaurantListModel);
+    public void addRestaurant(Restaurant restaurant){
+        restaurants.add(restaurant);
         notifyItemInserted(restaurants.size()-1);
     }
     @NonNull
@@ -45,7 +46,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantListView skeleton, int position) {
-        RestaurantListModel restaurant = restaurants.get(position);
+        Restaurant restaurant = restaurants.get(position);
         if (!restaurant.getPics().isEmpty()){
         FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
                 url->   {
@@ -63,7 +64,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
                     skeleton.getResenas().setText("Cantidad de reseñas: "+cantidadReviwew);
                 }
         );
-        skeleton.setRestaurantListModel(restaurant);
+        skeleton.setRestaurant(restaurant);
         skeleton.getCalificacion().setText("CALIFICACION NO ESTA EN LA BD");
         skeleton.getNombre().setText(restaurant.getName());
         skeleton.getTipoComida().setText(restaurant.getCategory());

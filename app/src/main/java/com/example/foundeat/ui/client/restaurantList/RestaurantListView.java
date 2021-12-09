@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foundeat.R;
+import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.restaurant.menuList.AddMenuItemActivity;
 
 public class RestaurantListView extends RecyclerView.ViewHolder {
 
-    private RestaurantListModel restaurantListModel;
+    private Restaurant restaurant;
 
     private ImageView image;
     private TextView nombre, tipoComida,resenas,calificacion;
@@ -33,17 +34,17 @@ public class RestaurantListView extends RecyclerView.ViewHolder {
     private void mostrarRestaurante(View view) {
 
         Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
-        intent.putExtra("restaurant",restaurantListModel);
+        intent.putExtra("restaurant",restaurant);
         view.getContext().startActivity(intent);
 
     }
 
-    public RestaurantListModel getRestaurantListModel() {
-        return restaurantListModel;
+    public Restaurant getRestaurantListModel() {
+        return restaurant;
     }
 
-    public void setRestaurantListModel(RestaurantListModel restaurantListModel) {
-        this.restaurantListModel = restaurantListModel;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public ImageView getImage() {

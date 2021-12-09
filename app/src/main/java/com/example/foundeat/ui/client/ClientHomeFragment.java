@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import com.example.foundeat.R;
 import com.example.foundeat.databinding.FragmentClientHomeBinding;
 import com.example.foundeat.model.Client;
+import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
-import com.example.foundeat.ui.client.restaurantList.RestaurantListModel;
-import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -66,7 +65,7 @@ public class ClientHomeFragment extends Fragment {
         FirebaseFirestore.getInstance().collection("restaurants").get().addOnCompleteListener(
                 task -> {
                     for (DocumentSnapshot doc:task.getResult()){
-                        RestaurantListModel newRestaurant = doc.toObject(RestaurantListModel.class);
+                        Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         restaurantListAdapter.addRestaurant(newRestaurant);
                     }
                 }

@@ -33,6 +33,7 @@ public class ClientFavorites extends AppCompatActivity {
         favoritesRecycler = findViewById(R.id.favoritesRecycler);
         backTV = findViewById(R.id.backTV);
         adapter = new FavoritesAdapter();
+        adapter.setClient(client);
 
         backTV.setOnClickListener(v -> {
             finish();
