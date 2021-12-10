@@ -123,6 +123,7 @@ public class ClientHomeFragment extends Fragment {
 
 
     private void buscarRestaurante(View view) {
+        //TODO: Toast cuando no encuentra
         FirebaseFirestore.getInstance().collection("restaurants").whereEqualTo("name",searchRestaurantET.getText().toString()).get().addOnCompleteListener(
                 task -> {
                     for (DocumentSnapshot doc:task.getResult()){
