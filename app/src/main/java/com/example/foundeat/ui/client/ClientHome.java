@@ -57,7 +57,7 @@ public class ClientHome extends AppCompatActivity {
 
 
         showFragment(clientHomeFragment);
-
+        clientHomeFragment.setClient(client);
         navigator.setOnItemSelectedListener(menuItem -> {
             if (menuItem.getItemId() == R.id.homeItem) {
                 showFragment(clientHomeFragment);

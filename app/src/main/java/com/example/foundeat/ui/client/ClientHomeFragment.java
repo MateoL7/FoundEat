@@ -45,6 +45,7 @@ public class ClientHomeFragment extends Fragment {
 
     private ImageView restauranteRecomendadoImage;
     private TextView restauranteRecomendadoTV;
+    private ImageView homeClientProfilePicIV;
 
     private int cantidaMaximaReviews=0;
     private Restaurant restauranteRecomendado;
@@ -88,13 +89,21 @@ public class ClientHomeFragment extends Fragment {
 
         restauranteRecomendadoImage= view.findViewById(R.id.restauranteRecomendadoImage);
         restauranteRecomendadoTV= view.findViewById(R.id.restauranteRecomendadoTV);
+        homeClientProfilePicIV=view.findViewById(R.id.homeClientProfilePicIV);
 
         cargarDatosRstaurantes();
         cargarCategories();
+        cargarFotoUsuario();
         return view;
     }
 
+    public Client getClient() {
+        return client;
+    }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     synchronized  public void calcularReviewsMaximas(Restaurant restaurantLocal){
         FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurantLocal.getId()).get().addOnCompleteListener(
@@ -143,6 +152,14 @@ public class ClientHomeFragment extends Fragment {
                         categoriesListAdapter.addCategory(category);
 //                        Log.e("aquiiii:",category.getCategory()+"- "+ category.getImagen());
                     }
+                }
+        );
+    }
+
+    public void cargarFotoUsuario(){
+        FirebaseStorage.getInstance().getReference().child("clientPhotos").child(client.getProfilePic()).getDownloadUrl().addOnSuccessListener(
+                url->   {
+                    Glide.with(homeClientProfilePicIV).load(url).into(homeClientProfilePicIV);
                 }
         );
     }
