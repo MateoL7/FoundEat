@@ -40,8 +40,8 @@ import com.google.firebase.storage.FirebaseStorage;
  */
 public class ClientProfileFragment extends Fragment {
 
-    private TextView favoritesTV, myReviewsTV, editProfileTV, userTV;
-    private ImageButton settingsBtn;
+    private TextView favoritesTV, myReviewsTV, editProfileTV, userTV, logoutTV;
+
     private ImageView pp;
 
     private ClientHome home;
@@ -69,19 +69,19 @@ public class ClientProfileFragment extends Fragment {
         client = home.getClient();
         loadPhoto();
 
+        logoutTV = view.findViewById(R.id.logoutTV);
         favoritesTV = view.findViewById(R.id.favoritesTV);
         myReviewsTV = view.findViewById(R.id.myReviewsTV);
         editProfileTV = view.findViewById(R.id.editProfileTV);
-        settingsBtn = view.findViewById(R.id.settingsBtn);
         pp = view.findViewById(R.id.pp);
         userTV = view.findViewById(R.id.userTV);
-        settingsBtn = view.findViewById(R.id.settingsBtn);
 
         userTV.setText(client.getName()+"\n"+client.getEmail());
 
         editProfileTV.setOnClickListener(this::editProfile);
         favoritesTV.setOnClickListener(this::showFavorites);
         myReviewsTV.setOnClickListener(this::showReviews);
+        logoutTV.setOnClickListener(this::logout);
 
 
         return view;
@@ -95,6 +95,12 @@ public class ClientProfileFragment extends Fragment {
                     }
             );
         }
+    }
+    private void logout(View view) {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        getActivity().getSharedPreferences("foundEat", getActivity().MODE_PRIVATE).edit().clear().apply();
+        FirebaseAuth.getInstance().signOut();
     }
 
     public void showFavorites(View view){
