@@ -1,5 +1,6 @@
 package com.example.foundeat.ui.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +24,11 @@ import com.example.foundeat.model.Client;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
+import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +49,8 @@ public class ClientHomeFragment extends Fragment {
     private ImageView restauranteRecomendadoImage;
     private TextView restauranteRecomendadoTV;
     private ImageView homeClientProfilePicIV;
+    private ImageButton searchBtn;
+    private EditText searchRestaurantET;
 
     private int cantidaMaximaReviews=0;
     private Restaurant restauranteRecomendado;
@@ -53,6 +58,7 @@ public class ClientHomeFragment extends Fragment {
     private RecyclerView categoriesListRV;
     private LinearLayoutManager categoriesListRVManager;
     private CategoriesListAdapter categoriesListAdapter;
+
 
     public ClientHomeFragment() {
         // Required empty public constructor
@@ -90,11 +96,28 @@ public class ClientHomeFragment extends Fragment {
         restauranteRecomendadoImage= view.findViewById(R.id.restauranteRecomendadoImage);
         restauranteRecomendadoTV= view.findViewById(R.id.restauranteRecomendadoTV);
         homeClientProfilePicIV=view.findViewById(R.id.homeClientProfilePicIV);
+        searchRestaurantET= view.findViewById(R.id.searchRestaurantET);
+        searchBtn=view.findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(this::buscarRestaurante);
 
         cargarDatosRstaurantes();
         cargarCategories();
         cargarFotoUsuario();
         return view;
+    }
+
+
+    private void buscarRestaurante(View view) {
+        FirebaseFirestore.getInstance().collection("restaurants").whereEqualTo("name",searchRestaurantET.getText().toString()).get().addOnCompleteListener(
+                task -> {
+                    for (DocumentSnapshot doc:task.getResult()){
+                        Restaurant newRestaurant = doc.toObject(Restaurant.class);
+                        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+                        intent.putExtra("restaurant",newRestaurant);
+                        view.getContext().startActivity(intent);
+                    }
+                }
+        );
     }
 
     public Client getClient() {
@@ -150,18 +173,20 @@ public class ClientHomeFragment extends Fragment {
                     for (DocumentSnapshot doc:task.getResult()){
                         FoodCategory category = doc.toObject(FoodCategory.class);
                         categoriesListAdapter.addCategory(category);
-//                        Log.e("aquiiii:",category.getCategory()+"- "+ category.getImagen());
                     }
                 }
         );
     }
 
     public void cargarFotoUsuario(){
-        FirebaseStorage.getInstance().getReference().child("clientPhotos").child(client.getProfilePic()).getDownloadUrl().addOnSuccessListener(
-                url->   {
-                    Glide.with(homeClientProfilePicIV).load(url).into(homeClientProfilePicIV);
-                }
-        );
+        if (client!=null&&client.getProfilePic()!=null&&!client.getProfilePic().equals("")){
+            FirebaseStorage.getInstance().getReference().child("clientPhotos").child(client.getProfilePic()).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(homeClientProfilePicIV).load(url).into(homeClientProfilePicIV);
+                    }
+            );
+        }
+
     }
 
 }
