@@ -27,6 +27,7 @@ public class Restaurant implements Serializable {
         this.closingTime = closingTime;
     }
 
+
     public String getId() {
         return id;
     }

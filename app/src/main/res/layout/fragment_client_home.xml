@@ -139,29 +139,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/recommendedRestaurantCL"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:background="#607DD3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView17">
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aquí va el banner de restaurante recomendado"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
@@ -172,7 +149,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recommendedRestaurantCL" />
+                app:layout_constraintTop_toBottomOf="@+id/restauranteRecomendadoImage" />
 
             <ImageView
                 android:id="@+id/imageView14"
@@ -216,6 +193,28 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView22">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/restauranteRecomendadoImage"
+                android:layout_width="370dp"
+                android:layout_height="146dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/restauranteRecomendadoTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Restaurante recomendado"
+                app:layout_constraintBottom_toBottomOf="@+id/restauranteRecomendadoImage"
+                app:layout_constraintStart_toStartOf="@+id/restauranteRecomendadoImage"
+                app:layout_constraintTop_toTopOf="@+id/restauranteRecomendadoImage" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
