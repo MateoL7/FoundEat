@@ -5,13 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.model.Review;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,7 +28,7 @@ public class ClientFavorites extends AppCompatActivity {
         setContentView(R.layout.activity_client_favorites);
 
         client = (Client) getIntent().getExtras().get("client");
-        favoritesRecycler = findViewById(R.id.favoritesRecycler);
+        favoritesRecycler = findViewById(R.id.favoritesListRecycler);
         backTV = findViewById(R.id.backTV);
         adapter = new FavoritesAdapter();
         adapter.setClient(client);

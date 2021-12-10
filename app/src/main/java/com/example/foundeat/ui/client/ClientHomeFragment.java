@@ -1,15 +1,17 @@
 package com.example.foundeat.ui.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +22,15 @@ import com.example.foundeat.model.Client;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
+
+import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
+
+import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
+
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,9 +48,15 @@ public class ClientHomeFragment extends Fragment {
     private LinearLayoutManager restaurantListRVManager;
     private RestaurantListAdapter restaurantListAdapter;
 
+    private RecyclerView favoritesRecycler;
+    private LinearLayoutManager favoritesManager;
+    private FavoritesListAdapter favoritesListAdapter;
+
     private ImageView restauranteRecomendadoImage;
     private TextView restauranteRecomendadoTV;
     private ImageView homeClientProfilePicIV;
+    private ImageButton searchBtn;
+    private EditText searchRestaurantET;
 
     private int cantidaMaximaReviews=0;
     private Restaurant restauranteRecomendado;
@@ -53,6 +64,7 @@ public class ClientHomeFragment extends Fragment {
     private RecyclerView categoriesListRV;
     private LinearLayoutManager categoriesListRVManager;
     private CategoriesListAdapter categoriesListAdapter;
+
 
     public ClientHomeFragment() {
         // Required empty public constructor
@@ -80,6 +92,13 @@ public class ClientHomeFragment extends Fragment {
         restaurantListRV.setAdapter(restaurantListAdapter);
         restaurantListRV.setHasFixedSize(true);
 
+        favoritesRecycler = view.findViewById(R.id.favoritesListRecycler);
+        favoritesManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        favoritesListAdapter = new FavoritesListAdapter();
+        favoritesRecycler.setLayoutManager(favoritesManager);
+        favoritesRecycler.setAdapter(favoritesListAdapter);
+        favoritesRecycler.setHasFixedSize(true);
+
         categoriesListRV = view.findViewById(R.id.categoriesListRV);
         categoriesListRVManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         categoriesListAdapter = new CategoriesListAdapter();
@@ -90,11 +109,37 @@ public class ClientHomeFragment extends Fragment {
         restauranteRecomendadoImage= view.findViewById(R.id.restauranteRecomendadoImage);
         restauranteRecomendadoTV= view.findViewById(R.id.restauranteRecomendadoTV);
         homeClientProfilePicIV=view.findViewById(R.id.homeClientProfilePicIV);
+        searchRestaurantET= view.findViewById(R.id.searchRestaurantET);
+        searchBtn=view.findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(this::buscarRestaurante);
+        restauranteRecomendadoImage.setOnClickListener(this::mostrarRestauranteRecomendado);
 
+        loadFavorites();
         cargarDatosRstaurantes();
         cargarCategories();
         cargarFotoUsuario();
         return view;
+    }
+
+    private void mostrarRestauranteRecomendado(View view) {
+        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+        intent.putExtra("restaurant",restauranteRecomendado);
+        view.getContext().startActivity(intent);
+    }
+
+
+    private void buscarRestaurante(View view) {
+        //TODO: Toast cuando no encuentra
+        FirebaseFirestore.getInstance().collection("restaurants").whereEqualTo("name",searchRestaurantET.getText().toString()).get().addOnCompleteListener(
+                task -> {
+                    for (DocumentSnapshot doc:task.getResult()){
+                        Restaurant newRestaurant = doc.toObject(Restaurant.class);
+                        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+                        intent.putExtra("restaurant",newRestaurant);
+                        view.getContext().startActivity(intent);
+                    }
+                }
+        );
     }
 
     public Client getClient() {
@@ -116,12 +161,12 @@ public class ClientHomeFragment extends Fragment {
                         cantidaMaximaReviews=cantidadReviwew;
                         restauranteRecomendado= restaurantLocal;
                     }
-                    cargarRestauranteFavorito();
+                    cargarRestauranteRecomendado();
                 }
         );
     }
 
-    synchronized public void cargarRestauranteFavorito(){
+    synchronized public void cargarRestauranteRecomendado(){
         if (restauranteRecomendado!=null&&!(restauranteRecomendado.getPics().isEmpty())){
             FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restauranteRecomendado.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
                     url->   {
@@ -144,24 +189,46 @@ public class ClientHomeFragment extends Fragment {
         );
     }
 
+    public void loadFavorites(){
+        FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
+                (value, error) -> {
+                    favoritesListAdapter.getRestaurants().clear();
+                    for (DocumentSnapshot doc : value.getDocuments()) {
+                        String resId = (String) doc.get("resId");
+                        bringRestaurant(resId);
+                    }
+                }
+        );
+    }
+
+    private void bringRestaurant(String resId) {
+        FirebaseFirestore.getInstance().collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
+            Restaurant restaurant = document.toObject(Restaurant.class);
+            favoritesListAdapter.getRestaurants().add(restaurant);
+            favoritesListAdapter.notifyDataSetChanged();
+        });
+    }
+
     public void cargarCategories(){
         FirebaseFirestore.getInstance().collection("food").get().addOnCompleteListener(
                 task -> {
                     for (DocumentSnapshot doc:task.getResult()){
                         FoodCategory category = doc.toObject(FoodCategory.class);
                         categoriesListAdapter.addCategory(category);
-//                        Log.e("aquiiii:",category.getCategory()+"- "+ category.getImagen());
                     }
                 }
         );
     }
 
     public void cargarFotoUsuario(){
-        FirebaseStorage.getInstance().getReference().child("clientPhotos").child(client.getProfilePic()).getDownloadUrl().addOnSuccessListener(
-                url->   {
-                    Glide.with(homeClientProfilePicIV).load(url).into(homeClientProfilePicIV);
-                }
-        );
+        if (client!=null&&client.getProfilePic()!=null&&!client.getProfilePic().equals("")){
+            FirebaseStorage.getInstance().getReference().child("clientPhotos").child(client.getProfilePic()).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(homeClientProfilePicIV).load(url).into(homeClientProfilePicIV);
+                    }
+            );
+        }
+
     }
 
 }

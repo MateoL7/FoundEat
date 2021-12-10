@@ -24,17 +24,13 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
 
     public RestaurantListAdapter(){
         restaurants = new ArrayList<>();
-
-        //public RestaurantListModel(String id, String nombr, String tipoComida, int cantidadResenas, int puntuacion)
-//        restaurants.add(new RestaurantListModel(UUID.randomUUID().toString(),"nombre 1","tipo comida 1", 1,4.1));
-//        restaurants.add(new RestaurantListModel(UUID.randomUUID().toString(),"nombre 2","tipo comida 2", 2,4.2));
-//        restaurants.add(new RestaurantListModel(UUID.randomUUID().toString(),"nombre 3","tipo comida 3", 3,4.3));
     }
 
     public void addRestaurant(Restaurant restaurant){
         restaurants.add(restaurant);
         notifyItemInserted(restaurants.size()-1);
     }
+
     @NonNull
     @Override
     public RestaurantListView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,8 +51,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
         );
         }
 
-        //TODO: cambiar esta peticion por nueva coleccion
-        FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("reviews").get().addOnCompleteListener(
+        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).get().addOnCompleteListener(
                 task -> {
                     int cantidadReviwew=0;
                     for (DocumentSnapshot doc:task.getResult()){
@@ -65,6 +60,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
                     skeleton.getResenas().setText("Cantidad de reseñas: "+cantidadReviwew);
                 }
         );
+
         skeleton.setRestaurant(restaurant);
         skeleton.getCalificacion().setText("CALIFICACION NO ESTA EN LA BD");
         skeleton.getNombre().setText(restaurant.getName());
