@@ -17,7 +17,9 @@ import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.databinding.FragmentClientHomeBinding;
 import com.example.foundeat.model.Client;
+import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,20 +32,26 @@ import java.util.ArrayList;
  * Use the {@link ClientHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class ClientHomeFragment extends Fragment {
 
-
     private Client client;
+
     private FragmentClientHomeBinding binding;
+
     private RecyclerView restaurantListRV;
     private LinearLayoutManager restaurantListRVManager;
     private RestaurantListAdapter restaurantListAdapter;
+
     private ImageView restauranteRecomendadoImage;
     private TextView restauranteRecomendadoTV;
 
     private int cantidaMaximaReviews=0;
     private Restaurant restauranteRecomendado;
 
+    private RecyclerView categoriesListRV;
+    private LinearLayoutManager categoriesListRVManager;
+    private CategoriesListAdapter categoriesListAdapter;
 
     public ClientHomeFragment() {
         // Required empty public constructor
@@ -63,24 +71,33 @@ public class ClientHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentClientHomeBinding.inflate(inflater,container, false);
         View view = binding.getRoot();
+
         restaurantListRV = view.findViewById(R.id.restaurantListRV);
         restaurantListRVManager = new LinearLayoutManager(getActivity());
         restaurantListAdapter = new RestaurantListAdapter();
         restaurantListRV.setLayoutManager(restaurantListRVManager);
         restaurantListRV.setAdapter(restaurantListAdapter);
         restaurantListRV.setHasFixedSize(true);
+
+        categoriesListRV = view.findViewById(R.id.categoriesListRV);
+        categoriesListRVManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        categoriesListAdapter = new CategoriesListAdapter();
+        categoriesListRV.setLayoutManager(categoriesListRVManager);
+        categoriesListRV.setAdapter(categoriesListAdapter);
+        categoriesListRV.setHasFixedSize(true);
+
         restauranteRecomendadoImage= view.findViewById(R.id.restauranteRecomendadoImage);
         restauranteRecomendadoTV= view.findViewById(R.id.restauranteRecomendadoTV);
 
         cargarDatosRstaurantes();
-
+        cargarCategories();
         return view;
     }
 
 
 
-    synchronized  public void cancularReviewsMaximas(Restaurant restaurantLocal){
-        FirebaseFirestore.getInstance().collection("restaurants").document(restaurantLocal.getId()).collection("reviews").get().addOnCompleteListener(
+    synchronized  public void calcularReviewsMaximas(Restaurant restaurantLocal){
+        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurantLocal.getId()).get().addOnCompleteListener(
                 task -> {
                     int cantidadReviwew=0;
                     for (DocumentSnapshot doc:task.getResult()){
@@ -112,8 +129,19 @@ public class ClientHomeFragment extends Fragment {
                     for (DocumentSnapshot doc:task.getResult()){
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         restaurantListAdapter.addRestaurant(newRestaurant);
-                        cancularReviewsMaximas(newRestaurant);
+                        calcularReviewsMaximas(newRestaurant);
+                    }
+                }
+        );
+    }
 
+    public void cargarCategories(){
+        FirebaseFirestore.getInstance().collection("food").get().addOnCompleteListener(
+                task -> {
+                    for (DocumentSnapshot doc:task.getResult()){
+                        FoodCategory category = doc.toObject(FoodCategory.class);
+                        categoriesListAdapter.addCategory(category);
+//                        Log.e("aquiiii:",category.getCategory()+"- "+ category.getImagen());
                     }
                 }
         );

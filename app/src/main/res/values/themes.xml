@@ -31,15 +31,33 @@
         <item name="android:layout_height">44dp</item>
     </style>
 
+    <!-- Button goBack Style -->
     <style name="btnBack" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@drawable/arrow_back_ios_24px</item>
     </style>
 
+    <!-- Button ET Style -->
+    <style name="styleET" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/textfieldborder</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:fontFamily">@font/dmsansregular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
     <!-- titles style -->
-    <style name="titleRestaurant" parent="Widget.AppCompat.TextView">Restaurante
+    <style name="titleRestaurant" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">23sp</item>
         <item name="android:fontFamily">@font/dmsansbold</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- subtitles style -->
+    <style name="subtitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/dmsansbold</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <!-- imagen bg -->
@@ -50,6 +68,8 @@
 
     <!-- logo style-->
     <style name="logoStyle">
-
+        <item name="android:background">@drawable/logofoundeat</item>
     </style>
+
+
 </resources>

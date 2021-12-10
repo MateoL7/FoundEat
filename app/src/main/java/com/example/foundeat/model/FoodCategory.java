@@ -5,6 +5,7 @@ public class FoodCategory {
 
     private String id;
     private String category;
+    private String imagen;
 
     public FoodCategory() {
     }
@@ -12,6 +13,20 @@ public class FoodCategory {
     public FoodCategory(String id, String category) {
         this.id = id;
         this.category = category;
+    }
+
+    public FoodCategory(String id, String category, String imagen) {
+        this.id = id;
+        this.category = category;
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getId() {
