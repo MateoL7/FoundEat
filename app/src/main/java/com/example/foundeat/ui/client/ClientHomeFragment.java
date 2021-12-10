@@ -79,8 +79,8 @@ public class ClientHomeFragment extends Fragment {
 
 
 
-    synchronized  public void cancularReviewsMaximas(Restaurant restaurantLocal){
-        FirebaseFirestore.getInstance().collection("restaurants").document(restaurantLocal.getId()).collection("reviews").get().addOnCompleteListener(
+    synchronized  public void calcularReviewsMaximas(Restaurant restaurantLocal){
+        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurantLocal.getId()).get().addOnCompleteListener(
                 task -> {
                     int cantidadReviwew=0;
                     for (DocumentSnapshot doc:task.getResult()){
@@ -112,7 +112,7 @@ public class ClientHomeFragment extends Fragment {
                     for (DocumentSnapshot doc:task.getResult()){
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         restaurantListAdapter.addRestaurant(newRestaurant);
-                        cancularReviewsMaximas(newRestaurant);
+                        calcularReviewsMaximas(newRestaurant);
 
                     }
                 }
