@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FoundEat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.FoundEat" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -20,4 +20,36 @@
     </style>
     <style name="Theme.FoundEat.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.FoundEat.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Button Style -->
+    <style name="AppButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/gradientbutton</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/dmsansbold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_height">44dp</item>
+    </style>
+
+    <style name="btnBack" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@drawable/arrow_back_ios_24px</item>
+    </style>
+
+    <!-- titles style -->
+    <style name="titleRestaurant" parent="Widget.AppCompat.TextView">Restaurante
+        <item name="android:textSize">23sp</item>
+        <item name="android:fontFamily">@font/dmsansbold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- imagen bg -->
+    <style name="imgCliente">
+        <item name="android:background">@drawable/img_person</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!-- logo style-->
+    <style name="logoStyle">
+
+    </style>
 </resources>

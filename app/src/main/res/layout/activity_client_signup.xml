@@ -36,16 +36,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/clientRegisterBtn"
+        style="@style/AppButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/gradientbutton"
-        android:text="Registrarse"
-        app:layout_constraintBottom_toTopOf="@+id/clientLogin"
+        android:layout_marginBottom="110dp"
+        android:text="@string/registrarseBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -103,7 +103,7 @@
         android:id="@+id/clientLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:padding="5dp"
         android:text="¿Ya tienes una cuenta? Ingresa"
         android:textColor="#FFFFFF"
