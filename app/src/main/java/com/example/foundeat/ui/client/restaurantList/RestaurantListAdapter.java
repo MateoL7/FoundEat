@@ -51,8 +51,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
         );
         }
 
-        //TODO: cambiar esta peticion por nueva coleccion
-        FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("reviews").get().addOnCompleteListener(
+        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).get().addOnCompleteListener(
                 task -> {
                     int cantidadReviwew=0;
                     for (DocumentSnapshot doc:task.getResult()){
