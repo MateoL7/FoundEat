@@ -23,11 +23,11 @@ import com.example.foundeat.model.Client;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
-<<<<<<< HEAD
+
 import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
-=======
+
 import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
->>>>>>> 6a2ff7b7a532e54210ef24c5648cb10d6645116b
+
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -193,6 +193,7 @@ public class ClientHomeFragment extends Fragment {
                 }
         );
     }
+
     private void bringRestaurant(String resId) {
         FirebaseFirestore.getInstance().collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
             Restaurant restaurant = document.toObject(Restaurant.class);

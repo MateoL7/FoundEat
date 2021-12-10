@@ -61,6 +61,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
                     skeleton.getResenas().setText("Cantidad de reseñas: "+cantidadReviwew);
                 }
         );
+
         skeleton.setRestaurant(restaurant);
         skeleton.getCalificacion().setText("CALIFICACION NO ESTA EN LA BD");
         skeleton.getNombre().setText(restaurant.getName());
