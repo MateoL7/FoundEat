@@ -13,4 +13,6 @@
     <color name="principal">#1D2538</color>
     <color name="hint">#617395</color>
     <color name="violeta">#864EFF</color>
+    <color name="gradientOne">#52A0F8</color>
+    <color name="gradientTwo">#6E52FC</color>
 </resources>

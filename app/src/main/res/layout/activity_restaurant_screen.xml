@@ -9,13 +9,11 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/titleRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="69dp"
-        android:fontFamily="@font/dmsansbold"
-        android:text="Restaurante"
-        android:textColor="#FFFFFF"
-        android:textSize="23dp"
+        android:text="@string/restauranteTitle"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,39 +29,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logofoundeat" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/loginBtn"
+        style="@style/AppButton"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="17dp"
-        android:background="@drawable/gradientbutton"
-        android:fontFamily="@font/dmsansbold"
-        android:text="Iniciar Sesión"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:text="@string/iniciarsesionBtn"
         app:layout_constraintBottom_toTopOf="@+id/registerBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/registerBtn"
+        style="@style/AppButton"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="150dp"
-        android:background="@drawable/gradientbutton"
-        android:fontFamily="@font/dmsansbold"
-        android:text="Registrarse"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:text="@string/registrarseBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/backBtnRes"
@@ -74,6 +66,7 @@
         android:background="@drawable/arrow_back_ios_24px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back_ios_24px" />
+        app:srcCompat="@drawable/arrow_back_ios_24px"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

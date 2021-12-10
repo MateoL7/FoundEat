@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class ClientSignup extends AppCompatActivity {
 
     private EditText clientNameET, clientEmailET, clientPassET, clientConfirmPassET;
     private Button clientRegisterBtn;
+    private ImageButton btnBackC;
     private TextView clientLogin;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -43,6 +45,7 @@ public class ClientSignup extends AppCompatActivity {
         clientConfirmPassET = findViewById(R.id.clientConfirmPassET);
         clientRegisterBtn = findViewById(R.id.clientRegisterBtn);
         clientLogin = findViewById(R.id.clientLogin);
+        btnBackC = findViewById(R.id.btnBackC);
 
 
         clientLogin.setOnClickListener(v->{
@@ -52,6 +55,7 @@ public class ClientSignup extends AppCompatActivity {
         });
 
         clientRegisterBtn.setOnClickListener(this::signup);
+        btnBackC.setOnClickListener(this::goBacks);
     }
     private void signup(View view) {
         if (clientPassET.getText().toString().equals(clientConfirmPassET.getText().toString())) {
@@ -83,6 +87,11 @@ public class ClientSignup extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void goBacks (View view) {
+        Intent intent = new Intent(this, ClientScreen.class);
+        startActivity(intent);
     }
 
     private void sendVerificationEmail() {

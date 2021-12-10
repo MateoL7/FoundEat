@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,11 @@ import com.example.foundeat.model.Client;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
+<<<<<<< HEAD
 import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
+=======
+import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
+>>>>>>> 6a2ff7b7a532e54210ef24c5648cb10d6645116b
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,6 +48,10 @@ public class ClientHomeFragment extends Fragment {
     private RecyclerView restaurantListRV;
     private LinearLayoutManager restaurantListRVManager;
     private RestaurantListAdapter restaurantListAdapter;
+
+    private RecyclerView favoritesRecycler;
+    private LinearLayoutManager favoritesManager;
+    private FavoritesListAdapter favoritesListAdapter;
 
     private ImageView restauranteRecomendadoImage;
     private TextView restauranteRecomendadoTV;
@@ -86,6 +93,13 @@ public class ClientHomeFragment extends Fragment {
         restaurantListRV.setAdapter(restaurantListAdapter);
         restaurantListRV.setHasFixedSize(true);
 
+        favoritesRecycler = view.findViewById(R.id.favoritesListRecycler);
+        favoritesManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        favoritesListAdapter = new FavoritesListAdapter();
+        favoritesRecycler.setLayoutManager(favoritesManager);
+        favoritesRecycler.setAdapter(favoritesListAdapter);
+        favoritesRecycler.setHasFixedSize(true);
+
         categoriesListRV = view.findViewById(R.id.categoriesListRV);
         categoriesListRVManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         categoriesListAdapter = new CategoriesListAdapter();
@@ -100,6 +114,7 @@ public class ClientHomeFragment extends Fragment {
         searchBtn=view.findViewById(R.id.searchBtn);
         searchBtn.setOnClickListener(this::buscarRestaurante);
 
+        loadFavorites();
         cargarDatosRstaurantes();
         cargarCategories();
         cargarFotoUsuario();
@@ -165,6 +180,25 @@ public class ClientHomeFragment extends Fragment {
                     }
                 }
         );
+    }
+
+    public void loadFavorites(){
+        FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
+                (value, error) -> {
+                    favoritesListAdapter.getRestaurants().clear();
+                    for (DocumentSnapshot doc : value.getDocuments()) {
+                        String resId = (String) doc.get("resId");
+                        bringRestaurant(resId);
+                    }
+                }
+        );
+    }
+    private void bringRestaurant(String resId) {
+        FirebaseFirestore.getInstance().collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
+            Restaurant restaurant = document.toObject(Restaurant.class);
+            favoritesListAdapter.getRestaurants().add(restaurant);
+            favoritesListAdapter.notifyDataSetChanged();
+        });
     }
 
     public void cargarCategories(){

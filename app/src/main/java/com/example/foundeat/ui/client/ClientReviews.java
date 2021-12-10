@@ -32,7 +32,7 @@ public class ClientReviews extends AppCompatActivity {
 
         adapter = new ReviewAdapter();
 
-        reviewRecycler = findViewById(R.id.favoritesRecycler);
+        reviewRecycler = findViewById(R.id.favoritesListRecycler);
         backTV = findViewById(R.id.backTV);
 
         backTV.setOnClickListener(v -> {

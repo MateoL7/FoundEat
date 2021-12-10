@@ -14,4 +14,17 @@
     <string name="menu_delete">Eliminar cuenta</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="logoDescrition">logo</string>
+
+    <string name="yatienescuenta">¿Ya tienes una cuenta? Ingresa</string>
+
+    <string name="cliente">Cliente</string>
+    <string name="restauranteTitle">Restaurante</string>
+    <string name="iniciarsesionBtn">Iniciar Sesión</string>
+    <string name="registrarseBtn">Registrarse</string>
+    <string name="nombre">Nombre</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="confirmarcon">Confirmar contraseña</string>
 </resources>
