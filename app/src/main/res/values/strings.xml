@@ -27,4 +27,7 @@
     <string name="correo">Correo electrónico</string>
     <string name="contraseña">Contraseña</string>
     <string name="confirmarcon">Confirmar contraseña</string>
+    <string name="continuar">Continuar</string>
+    <string name="omitir">Omitir</string>
+    <string name="agregarfoto">¿deseas agregar una foto de perfíl?</string>
 </resources>
