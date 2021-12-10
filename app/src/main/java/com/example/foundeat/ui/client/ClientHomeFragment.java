@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -113,12 +112,19 @@ public class ClientHomeFragment extends Fragment {
         searchRestaurantET= view.findViewById(R.id.searchRestaurantET);
         searchBtn=view.findViewById(R.id.searchBtn);
         searchBtn.setOnClickListener(this::buscarRestaurante);
+        restauranteRecomendadoImage.setOnClickListener(this::mostrarRestauranteRecomendado);
 
         loadFavorites();
         cargarDatosRstaurantes();
         cargarCategories();
         cargarFotoUsuario();
         return view;
+    }
+
+    private void mostrarRestauranteRecomendado(View view) {
+        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+        intent.putExtra("restaurant",restauranteRecomendado);
+        view.getContext().startActivity(intent);
     }
 
 
@@ -154,12 +160,12 @@ public class ClientHomeFragment extends Fragment {
                         cantidaMaximaReviews=cantidadReviwew;
                         restauranteRecomendado= restaurantLocal;
                     }
-                    cargarRestauranteFavorito();
+                    cargarRestauranteRecomendado();
                 }
         );
     }
 
-    synchronized public void cargarRestauranteFavorito(){
+    synchronized public void cargarRestauranteRecomendado(){
         if (restauranteRecomendado!=null&&!(restauranteRecomendado.getPics().isEmpty())){
             FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restauranteRecomendado.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
                     url->   {
