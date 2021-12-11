@@ -30,4 +30,5 @@
     <string name="continuar">Continuar</string>
     <string name="omitir">Omitir</string>
     <string name="agregarfoto">¿deseas agregar una foto de perfíl?</string>
+    <string name="favFood">Ahora, escoge tus 3 platos favoritos.</string>
 </resources>
