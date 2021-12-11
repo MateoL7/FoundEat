@@ -136,6 +136,7 @@ public class RestaurantHome extends AppCompatActivity {
                                             Restaurant res = null;
                                             for(DocumentSnapshot doc : task2.getResult()){
                                                 res = doc.toObject(Restaurant.class);
+                                                deletePhotos(res);
                                                 doc.getReference().delete();
                                                 break;
                                             }
@@ -144,6 +145,12 @@ public class RestaurantHome extends AppCompatActivity {
                                     logout();
                                 }
                             }));
+        }
+    }
+
+    private void deletePhotos(Restaurant restaurant){
+        for(int i = 0;i<restaurant.getPics().size();i++){
+            FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(i)).delete();
         }
     }
 

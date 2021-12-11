@@ -93,9 +93,9 @@ public class Login extends AppCompatActivity {
                                 if(client.getProfilePic()==null){
                                     intent = new Intent(this, ClientPhoto.class);
                                 }
-//                                else if(client.getFavoriteFood().length<3){
-//                                    intent = new Intent(this, ClientFavoriteFood.class);
-//                                }
+                                else if(client.getFavoriteFood()==null || client.getFavoriteFood().get(0)==null){
+                                    intent = new Intent(this, ClientFavoriteFood.class);
+                                }
                                 else{
                                     intent = new Intent(this, ClientHome.class);
                                 }
