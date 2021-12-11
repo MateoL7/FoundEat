@@ -12,6 +12,8 @@ import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.restaurant.menuList.AddMenuItemActivity;
 
+import java.util.ArrayList;
+
 public class RestaurantListView extends RecyclerView.ViewHolder {
 
     private Restaurant restaurant;
@@ -66,4 +68,6 @@ public class RestaurantListView extends RecyclerView.ViewHolder {
     public TextView getCalificacion() {
         return calificacion;
     }
+
+
 }

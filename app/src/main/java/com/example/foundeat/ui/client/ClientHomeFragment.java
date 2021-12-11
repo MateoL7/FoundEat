@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +24,18 @@ import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
 
+import com.example.foundeat.ui.client.filtro.FiltrosFragment;
 import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
 
 import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
 
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
+import com.example.foundeat.ui.client.restaurantsFiltred.RestaurantWithFiltersActivity;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +43,8 @@ import com.google.firebase.storage.FirebaseStorage;
  * create an instance of this fragment.
  */
 
-public class ClientHomeFragment extends Fragment {
+public class ClientHomeFragment extends Fragment implements FiltrosFragment.OnFiltrosFragment{
+
 
     private Client client;
 
@@ -56,6 +62,7 @@ public class ClientHomeFragment extends Fragment {
     private TextView restauranteRecomendadoTV;
     private ImageView homeClientProfilePicIV;
     private ImageButton searchBtn;
+    private ImageButton filterSearchBttn;
     private EditText searchRestaurantET;
 
     private int cantidaMaximaReviews=0;
@@ -64,6 +71,7 @@ public class ClientHomeFragment extends Fragment {
     private RecyclerView categoriesListRV;
     private LinearLayoutManager categoriesListRVManager;
     private CategoriesListAdapter categoriesListAdapter;
+
 
 
     public ClientHomeFragment() {
@@ -84,6 +92,7 @@ public class ClientHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentClientHomeBinding.inflate(inflater,container, false);
         View view = binding.getRoot();
+
 
         restaurantListRV = view.findViewById(R.id.restaurantListRV);
         restaurantListRVManager = new LinearLayoutManager(getActivity());
@@ -111,14 +120,22 @@ public class ClientHomeFragment extends Fragment {
         homeClientProfilePicIV=view.findViewById(R.id.homeClientProfilePicIV);
         searchRestaurantET= view.findViewById(R.id.searchRestaurantET);
         searchBtn=view.findViewById(R.id.searchBtn);
+        filterSearchBttn = view.findViewById(R.id.filterSearchBttn);
         searchBtn.setOnClickListener(this::buscarRestaurante);
         restauranteRecomendadoImage.setOnClickListener(this::mostrarRestauranteRecomendado);
+        filterSearchBttn.setOnClickListener(this::motrarFiltros);
 
         loadFavorites();
         cargarDatosRstaurantes();
         cargarCategories();
         cargarFotoUsuario();
         return view;
+    }
+
+    private void motrarFiltros(View view) {
+        FiltrosFragment filtrosFragment  = FiltrosFragment.newInstance();
+        filtrosFragment.setListener(this);
+        filtrosFragment.show(getActivity().getSupportFragmentManager(), "Filtros");
     }
 
     private void mostrarRestauranteRecomendado(View view) {
@@ -190,15 +207,17 @@ public class ClientHomeFragment extends Fragment {
     }
 
     public void loadFavorites(){
-        FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
-                (value, error) -> {
-                    favoritesListAdapter.getRestaurants().clear();
-                    for (DocumentSnapshot doc : value.getDocuments()) {
-                        String resId = (String) doc.get("resId");
-                        bringRestaurant(resId);
+        if (client!=null){
+            FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
+                    (value, error) -> {
+                        favoritesListAdapter.getRestaurants().clear();
+                        for (DocumentSnapshot doc : value.getDocuments()) {
+                            String resId = (String) doc.get("resId");
+                            bringRestaurant(resId);
+                        }
                     }
-                }
-        );
+            );
+        }
     }
 
     private void bringRestaurant(String resId) {
@@ -228,7 +247,15 @@ public class ClientHomeFragment extends Fragment {
                     }
             );
         }
-
     }
 
+
+    @Override
+    public void onDataResult(String maxPrice, String minPrice, String horaCierre, ArrayList<String> categories) {
+//        Log.e("Aquiii: ", maxPrice +" - "+ minPrice);
+        Intent intent = new Intent(getContext(),RestaurantWithFiltersActivity.class);
+//        intent.putExtra("client",client);
+        startActivity(intent);
+
+    }
 }
