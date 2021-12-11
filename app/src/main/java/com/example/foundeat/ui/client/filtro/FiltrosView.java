@@ -1,5 +1,6 @@
 package com.example.foundeat.ui.client.filtro;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class FiltrosView extends RecyclerView.ViewHolder {
     }
 
     private void sendData(View view) {
+        categoryFiltros.setTextColor(Color.RED);
         sendCategorySelected();
     }
 

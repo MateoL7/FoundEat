@@ -88,10 +88,14 @@ public class RestaurantEditProfile extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 switch(v.getId()){
                     case R.id.newPasswordET:
-                        openingET.setText( selectedHour + ":" + selectedMinute);
+                        String hora = String.format("%02d", selectedHour);
+                        String minuto = String.format("%02d", selectedMinute);
+                        openingET.setText( hora + ":" + minuto);
                         break;
                     case R.id.confirmNewPassword:
-                        closingET.setText( selectedHour + ":" + selectedMinute);
+                        String hora2 = String.format("%02d", selectedHour);
+                        String minuto2 = String.format("%02d", selectedMinute);
+                        closingET.setText( hora2 + ":" + minuto2);
                         break;
                 }
             }
