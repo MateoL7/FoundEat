@@ -109,7 +109,6 @@ public class ClientMapFragment extends Fragment {
         List<Address> addresses;
         LatLng p1 = null;
         try{
-           // for(int i = 0;i<restaurants.size();i++){
                 addresses = coder.getFromLocationName(r.getAddress(), 5);
                 if(addresses!=null){
                     Address location = addresses.get(0);
@@ -121,7 +120,6 @@ public class ClientMapFragment extends Fragment {
                     marker.setTitle(r.getName());
                     marker.setSnippet(r.getAddress());
                 }
-           // }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -131,6 +129,9 @@ public class ClientMapFragment extends Fragment {
         if (client!=null){
         FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
                     (value, error) -> {
+                        if(value.getDocuments().isEmpty()){
+                            getAllRestaurants();
+                        }
                         for (DocumentSnapshot doc : value.getDocuments()) {
                             String resId = (String) doc.get("resId");
                             Log.e(">>>>>",resId);
@@ -139,6 +140,19 @@ public class ClientMapFragment extends Fragment {
                     }
             );
         }
+    }
+
+    private void getAllRestaurants() {
+        FirebaseFirestore.getInstance().collection("restaurants").get().addOnCompleteListener(
+                task -> {
+                    for (DocumentSnapshot doc:task.getResult()){
+                        Restaurant restaurant = doc.toObject(Restaurant.class);
+                        Log.e(">>>>",restaurant.getName());
+                        restaurants.add(restaurant);
+                        loadMap(restaurant);
+                    }
+                }
+        );
     }
 
     private void bringRestaurant(String resId) {
