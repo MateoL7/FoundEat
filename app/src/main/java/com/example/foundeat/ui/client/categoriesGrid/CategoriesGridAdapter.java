@@ -56,10 +56,12 @@ public class CategoriesGridAdapter extends RecyclerView.Adapter<CategoriesGridVi
             if(skeleton.getCategoryImage().getAlpha()==1){
                 if(favCategories.size()>=3){
                     Toast.makeText(v.getContext(), "Ya tienes 3 categorias seleccionadas",Toast.LENGTH_LONG).show();
-                    listener.allCategoriesDone(favCategories);
                 }else{
                     favCategories.add(category.getCategory());
                     skeleton.getCategoryImage().setAlpha((float) 0.2);
+                    if(favCategories.size()>=3){
+                        listener.allCategoriesDone(favCategories);
+                    }
                 }
             }else if(skeleton.getCategoryImage().getAlpha()<1){
                 removeCategory(category.getCategory());

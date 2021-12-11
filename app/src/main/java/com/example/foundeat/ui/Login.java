@@ -93,7 +93,7 @@ public class Login extends AppCompatActivity {
                                 if(client.getProfilePic()==null){
                                     intent = new Intent(this, ClientPhoto.class);
                                 }
-                                else if(client.getFavoriteFood()==null || client.getFavoriteFood().get(0)==null){
+                                else if(client.getFavoriteFood()==null || client.getFavoriteFood().size()==0){
                                     intent = new Intent(this, ClientFavoriteFood.class);
                                 }
                                 else{
