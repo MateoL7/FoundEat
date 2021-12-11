@@ -27,6 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ClientHome extends AppCompatActivity {
 
     private Client client;
@@ -53,6 +56,8 @@ public class ClientHome extends AppCompatActivity {
         clientHomeFragment = ClientHomeFragment.newInstance();
 
         clientMapFragment = ClientMapFragment.newInstance();
+
+
         clientProfileFragment = ClientProfileFragment.newInstance();
 
 
@@ -64,6 +69,7 @@ public class ClientHome extends AppCompatActivity {
             } else if (menuItem.getItemId() == R.id.profileItem) {
                 showFragment(clientProfileFragment);
             } else if (menuItem.getItemId() == R.id.mapItem) {
+                clientMapFragment.setClient(client);
                 showFragment(clientMapFragment);
             }
             return true;
@@ -115,5 +121,7 @@ public class ClientHome extends AppCompatActivity {
     public void setClient(Client client) {
         this.client = client;
     }
+
+
 
 }
