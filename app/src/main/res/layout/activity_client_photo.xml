@@ -9,60 +9,69 @@
 
     <TextView
         android:id="@+id/greetingTV"
-        android:layout_width="wrap_content"
+        style="@style/titleRestaurant"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <ImageView
         android:id="@+id/profilePic"
-        android:layout_width="108dp"
-        android:layout_height="108dp"
-        android:background="@drawable/camera"
+        style="@style/camara"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greetingTV" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/saveBtn"
+        style="@style/AppButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:text="Continuar"
-        android:background="@drawable/gradientbutton"
-        app:layout_constraintBottom_toTopOf="@+id/logoutTV"
+        android:layout_marginBottom="108dp"
+        android:text="@string/continuar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/logoutTV"
+        style="@style/subregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:padding="5dp"
-        android:text="Omitir"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/omitir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
+        style="@style/logoStyle"
         android:layout_width="124dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/titleRegular"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/agregarfoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greetingTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

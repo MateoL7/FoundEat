@@ -1,16 +1,17 @@
 package com.example.foundeat.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Client implements Serializable {
 
     private String id, name, email,profilePic;
-    private String[] favoriteFood;
+    private ArrayList<String> favoriteFood;
 
     public Client() {
     }
 
-    public Client(String id, String name, String email, String profilePic, String[] favoriteFood) {
+    public Client(String id, String name, String email, String profilePic, ArrayList<String> favoriteFood) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -50,11 +51,11 @@ public class Client implements Serializable {
         this.profilePic = profilePic;
     }
 
-    public String[] getFavoriteFood() {
+    public ArrayList<String> getFavoriteFood() {
         return favoriteFood;
     }
 
-    public void setFavoriteFood(String[] favoriteFood) {
+    public void setFavoriteFood(ArrayList<String> favoriteFood) {
         this.favoriteFood = favoriteFood;
     }
 }

@@ -36,6 +36,11 @@
         <item name="android:background">@drawable/arrow_back_ios_24px</item>
     </style>
 
+    <!-- Button Camara Style -->
+    <style name="camara">
+        <item name="android:background">@drawable/icon_camara</item>
+    </style>
+
     <!-- Button ET Style -->
     <style name="styleET" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/textfieldborder</item>
@@ -46,6 +51,8 @@
         <item name="android:paddingLeft">10dp</item>
     </style>
 
+    <!--__________________ TEXTS __________________________-->
+
     <!-- titles style -->
     <style name="titleRestaurant" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">23sp</item>
@@ -53,10 +60,24 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!-- titles regular style -->
+    <style name="titleRegular" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">23sp</item>
+        <item name="android:fontFamily">@font/dmsansregular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <!-- subtitles style -->
     <style name="subtitle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/dmsansbold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- omitir style -->
+    <style name="subregular" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/dmsansregular</item>
         <item name="android:textSize">18sp</item>
     </style>
 

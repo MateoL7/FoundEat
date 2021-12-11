@@ -51,7 +51,7 @@ public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnCho
 
         greetingTV = findViewById(R.id.greetingTV);
 
-        greetingTV.setText("Hola "+ client.getName()+",\n¿Deseas agregar una foto de perfil?");
+        greetingTV.setText("Hola "+ client.getName()+",");
 
         profilePic = findViewById(R.id.profilePic);
         continueBtn = findViewById(R.id.saveBtn);
