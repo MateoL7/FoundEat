@@ -57,12 +57,12 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
                     for (DocumentSnapshot doc:task.getResult()){
                         cantidadReviwew++;
                     }
-                    skeleton.getResenas().setText("Cantidad de reseñas: "+cantidadReviwew);
+                    skeleton.getResenas().setText("("+cantidadReviwew+" reseñas)");
                 }
         );
 
         skeleton.setRestaurant(restaurant);
-        skeleton.getCalificacion().setText("CALIFICACION NO ESTA EN LA BD");
+        skeleton.getCalificacion().setText("5");
         skeleton.getNombre().setText(restaurant.getName());
         skeleton.getTipoComida().setText(restaurant.getCategory());
     }

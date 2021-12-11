@@ -92,5 +92,16 @@
         <item name="android:background">@drawable/logofoundeat</item>
     </style>
 
+    <!--____________________SHAPES__________________________-->
+    <!-- Violet Gradient-->
+    <style name="gradientViolet">
+        <item name="android:background">@drawable/violet_gradient</item>
+    </style>
+
+    <!-- Gradient cards -->
+    <style name="gradientCard">
+        <item name="android:background">@drawable/gradient_card</item>
+    </style>
+
 
 </resources>

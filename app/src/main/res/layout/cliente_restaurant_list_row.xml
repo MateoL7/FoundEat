@@ -2,61 +2,88 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/gradientCard"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="17dp">
 
-    <ImageView
-        android:id="@+id/restaurantListImage"
-        android:layout_width="94dp"
-        android:layout_height="118dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/restaurantListImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcher" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/restaurantListNombre"
+        style="@style/subtitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="5dp"
         android:text="Nombre"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toEndOf="@+id/restaurantListImage"
-        app:layout_constraintTop_toTopOf="@+id/restaurantListImage" />
+        app:layout_constraintBottom_toTopOf="@+id/restaurantListCalificacion"
+        app:layout_constraintStart_toEndOf="@+id/cardView4" />
 
     <TextView
         android:id="@+id/restaurantListCalificacion"
-        android:layout_width="wrap_content"
+        style="@style/subregular"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"
         android:text="Calificacion"
-        app:layout_constraintStart_toEndOf="@+id/restaurantListImage"
-        app:layout_constraintTop_toBottomOf="@+id/restaurantListNombre" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/restaurantListTipo"
+        style="@style/subregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="5dp"
         android:text="Tipo de comida"
-        app:layout_constraintStart_toEndOf="@+id/restaurantListImage"
+        app:layout_constraintStart_toEndOf="@+id/cardView4"
         app:layout_constraintTop_toBottomOf="@+id/restaurantListCalificacion" />
 
     <TextView
         android:id="@+id/restaurantListResenas"
+        style="@style/subregular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="Reseñas"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurantListCalificacion"
+        app:layout_constraintStart_toEndOf="@+id/restaurantListCalificacion"
+        app:layout_constraintTop_toTopOf="@+id/restaurantListCalificacion" />
+
+    <ImageView
+        android:id="@+id/imageView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:text="Reseñas"
-        app:layout_constraintStart_toEndOf="@+id/restaurantListImage"
-        app:layout_constraintTop_toBottomOf="@+id/restaurantListTipo" />
+        android:layout_marginStart="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurantListCalificacion"
+        app:layout_constraintStart_toEndOf="@+id/cardView4"
+        app:layout_constraintTop_toTopOf="@+id/restaurantListCalificacion"
+        app:srcCompat="@drawable/star_small" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,6 @@
     <color name="violeta">#864EFF</color>
     <color name="gradientOne">#52A0F8</color>
     <color name="gradientTwo">#6E52FC</color>
+    <color name="violeteAlpha">#864EFF</color>
+
 </resources>
