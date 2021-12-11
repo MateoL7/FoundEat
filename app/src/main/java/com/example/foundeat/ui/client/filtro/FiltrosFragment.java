@@ -93,8 +93,8 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
         loadMaxPrice();
         loadMinPrice();
         //TODO: se puede cargar las hora minima y maxima desde los restaurantes de la base de datos
-        horaCierreET.setText( "22:00");
-        horaInicioET.setText( "12:00");
+        //horaCierreET.setText();
+        //horaInicioET.setText();
         return view;
     }
 
