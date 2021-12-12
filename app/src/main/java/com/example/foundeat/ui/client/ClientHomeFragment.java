@@ -31,12 +31,12 @@ import com.example.foundeat.ui.client.favoritesHomeList.FavoritesListAdapter;
 
 import com.example.foundeat.ui.client.restaurantInfo.ClientRestaurantInfo;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
-<<<<<<< Updated upstream
+
 import com.example.foundeat.ui.restaurant.RestaurantLocation;
-=======
+
 import com.example.foundeat.util.NotificationUtil;
 import com.google.firebase.firestore.DocumentChange;
->>>>>>> Stashed changes
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
