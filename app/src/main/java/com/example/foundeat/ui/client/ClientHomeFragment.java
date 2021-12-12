@@ -211,7 +211,7 @@ public class ClientHomeFragment extends Fragment {
                     (value, error) -> {
                         favoritesListAdapter.getRestaurants().clear();
                         for (DocumentSnapshot doc : value.getDocuments()) {
-                            String resId = (String) doc.get("id");
+                            String resId = (String) doc.get("resId");
                             bringRestaurant(resId);
                         }
                     }

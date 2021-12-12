@@ -25,6 +25,8 @@ import com.google.gson.Gson;
 
 import org.w3c.dom.Document;
 
+import java.util.HashMap;
+
 public class ClientRestaurantInfo extends AppCompatActivity {
 
     private Restaurant restaurant;
@@ -140,9 +142,11 @@ public class ClientRestaurantInfo extends AppCompatActivity {
     }
 
     public void addToFavorites(View v){
+        HashMap<String, String> object = new HashMap<>();
+        object.put("resId", restaurant.getId());
         if(!added){
             //If restaurant is not in favorites, add it.
-            db.collection("users").document(currentClient.getId()).collection("favorites").document(restaurant.getId()).set(restaurant);
+            db.collection("users").document(currentClient.getId()).collection("favorites").document(restaurant.getId()).set(object);
             added = true;
             runOnUiThread(() -> Toast.makeText(getApplicationContext(), "¡Agregado a favoritos!", Toast.LENGTH_SHORT).show());
         }else{
