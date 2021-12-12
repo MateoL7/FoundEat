@@ -115,7 +115,7 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
 //            return true;
 //        }
 //    }
-
+    //TODO: CAMBIAR LOGICA PARA ENVIAR FILTROS
     private void enviarFiltrosHome(View view) {
         if (valuesPriceIsOk()){
             Intent intent = new Intent(getContext(), RestaurantWithFiltersActivity.class);

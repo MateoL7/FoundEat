@@ -70,6 +70,7 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
                                  if (newRestaurant.getClosingTime()==null&&newRestaurant.getOpeningTime()==null){
                                      restaurantFilterAdapter.addRestaurant(newRestaurant);
                                  }else{
+                                     //TODO: Revisar lógica del tiempo
                                      if (!LocalTime.parse(horaInicio).isAfter(LocalTime.parse(newRestaurant.getClosingTime()))
                                              &&!LocalTime.parse(horaCierre).isBefore(LocalTime.parse(newRestaurant.getOpeningTime()))){
                                          restaurantFilterAdapter.addRestaurant(newRestaurant);
