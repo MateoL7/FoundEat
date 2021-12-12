@@ -67,8 +67,7 @@ public class AddMenuItemActivity extends AppCompatActivity {
     }
 
     public void goToMenu (View view) {
-        Intent intent = new Intent(this, MenuListActivity.class);
-        startActivity(intent);
+        finish();
     }
 
 

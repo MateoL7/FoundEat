@@ -13,6 +13,7 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.favoritesProfileList.FavoritesAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class ClientFavorites extends AppCompatActivity {
 
@@ -58,10 +59,23 @@ public class ClientFavorites extends AppCompatActivity {
     }
 
     private void bringRestaurant(String resId) {
-        db.collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
+        FirebaseFirestore.getInstance().collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
             Restaurant restaurant = document.toObject(Restaurant.class);
-            adapter.getRestaurants().add(restaurant);
-            adapter.notifyDataSetChanged();
+            if(restaurant!=null){
+                adapter.getRestaurants().add(restaurant);
+                adapter.notifyDataSetChanged();
+            }else{
+                Query query = FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").whereEqualTo("resId",resId);
+                query.get().addOnCompleteListener(task2->{
+                    if(task2.getResult().size() > 0){
+                        Restaurant res = null;
+                        for(DocumentSnapshot doc : task2.getResult()){
+                            doc.getReference().delete();
+                            break;
+                        }
+                    }
+                });
+            }
         });
     }
 }
