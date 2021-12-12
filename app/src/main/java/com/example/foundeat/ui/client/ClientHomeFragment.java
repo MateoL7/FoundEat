@@ -25,7 +25,6 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
 
 import com.example.foundeat.ui.client.filtro.FiltrosFragment;
-import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
 
 import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
 
@@ -33,8 +32,6 @@ import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,6 +90,7 @@ public class ClientHomeFragment extends Fragment {
         View view = binding.getRoot();
 
 
+
         restaurantListRV = view.findViewById(R.id.restaurantListRV);
         restaurantListRVManager = new LinearLayoutManager(getActivity());
         restaurantListAdapter = new RestaurantListAdapter();
@@ -137,7 +135,7 @@ public class ClientHomeFragment extends Fragment {
     }
 
     private void mostrarRestauranteRecomendado(View view) {
-        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+        Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
         intent.putExtra("restaurant",restauranteRecomendado);
         view.getContext().startActivity(intent);
     }
@@ -148,7 +146,7 @@ public class ClientHomeFragment extends Fragment {
                 task -> {
                     for (DocumentSnapshot doc:task.getResult()){
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
-                        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+                        Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
                         intent.putExtra("restaurant",newRestaurant);
                         view.getContext().startActivity(intent);
                     }
@@ -203,6 +201,7 @@ public class ClientHomeFragment extends Fragment {
                     }
                 }
         );
+        restaurantListAdapter.addClient(client);
     }
 
     public void loadFavorites(){

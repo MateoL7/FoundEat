@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
+import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListView> {
 
     private ArrayList<Restaurant> restaurants;
+    private Client currentClient;
 
     public RestaurantListAdapter(){
         restaurants = new ArrayList<>();
@@ -62,9 +64,14 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
         );
 
         skeleton.setRestaurant(restaurant);
+        skeleton.setCurrentClient(currentClient);
         skeleton.getCalificacion().setText("5");
         skeleton.getNombre().setText(restaurant.getName());
         skeleton.getTipoComida().setText(restaurant.getCategory());
+    }
+
+    public void addClient(Client c){
+        currentClient = c;
     }
 
     @Override

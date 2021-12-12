@@ -1,7 +1,6 @@
 package com.example.foundeat.ui.client;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -41,7 +39,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void showRestaurant(View view) {
-        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+        Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
         intent.putExtra("restaurant", restaurant);
         view.getContext().startActivity(intent);
     }

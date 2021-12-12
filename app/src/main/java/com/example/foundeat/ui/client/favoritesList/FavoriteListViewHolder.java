@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.ui.client.restaurantList.ListsRestaurantsClients;
+import com.example.foundeat.ui.client.ClientRestaurantInfo;
 
 public class FavoriteListViewHolder extends RecyclerView.ViewHolder {
 
@@ -31,7 +31,7 @@ public class FavoriteListViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void showRestaurant(View view) {
-        Intent intent = new Intent(view.getContext(), ListsRestaurantsClients.class);
+        Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
         intent.putExtra("restaurant", restaurant);
         view.getContext().startActivity(intent);
     }

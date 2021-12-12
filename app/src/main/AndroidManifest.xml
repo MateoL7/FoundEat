@@ -23,7 +23,7 @@
             android:name=".ui.client.filtro.RestaurantWithFiltersActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.client.restaurantList.ListsRestaurantsClients"
+            android:name=".ui.client.ClientRestaurantInfo"
             android:exported="false" />
         <activity
             android:name=".ui.client.ClientReviews"
