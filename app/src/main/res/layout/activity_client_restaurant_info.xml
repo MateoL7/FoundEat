@@ -94,11 +94,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="11dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin descripción"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="11dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
@@ -155,6 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Carta"
@@ -185,6 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin precios"
@@ -216,6 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin horario"
@@ -247,6 +253,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin dirección"
@@ -310,13 +317,24 @@
 
     <ImageButton
         android:id="@+id/favBttn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="22dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/icon_ubi"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/fav_out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/arrow_back_ios_24px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back_ios_24px" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

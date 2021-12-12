@@ -31,6 +31,11 @@
         <item name="android:layout_height">44dp</item>
     </style>
 
+    <style name="AppImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
+        <item name="android:background">@drawable/gradientbutton</item>
+        <item name="android:layout_height">44dp</item>
+    </style>
+
     <!-- Button goBack Style -->
     <style name="btnBack" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@drawable/arrow_back_ios_24px</item>
@@ -49,6 +54,11 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="navigationBar" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/principal</item>
+        <item name="itemIconTint">@color/principal</item>
     </style>
 
     <!--__________________ TEXTS __________________________-->

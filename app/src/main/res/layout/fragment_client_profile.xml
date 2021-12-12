@@ -31,28 +31,23 @@
 
     <TextView
         android:id="@+id/nameTV"
+        style="@style/titleRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/dmsansbold"
         android:text="Perfil"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/userTV"
+        style="@style/subregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/dmsansregular"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/pp"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -130,7 +125,7 @@
                 android:id="@+id/editProfileTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="17dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
@@ -160,7 +155,7 @@
                 android:id="@+id/myReviewsTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="17dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
@@ -189,58 +184,71 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Tus favoritos"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 tools:layout_editor_absoluteY="68dp" />
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/myReviewsTV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/myReviewsTV"
-                app:srcCompat="@drawable/icon_clock" />
+                app:srcCompat="@drawable/icon_coment" />
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="26dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/favoritesTV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/favoritesTV"
-                app:srcCompat="@drawable/icon_ubi" />
+                app:srcCompat="@drawable/fav_out" />
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/editProfileTV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/editProfileTV"
-                app:srcCompat="@drawable/icon_price" />
+                app:srcCompat="@drawable/edit_violet" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <TextView
         android:id="@+id/logoutTV"
+        style="@style/subregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="50dp"
         android:text="Cerrar sesión"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/logoutTV"
+        app:layout_constraintEnd_toStartOf="@+id/logoutTV"
+        app:layout_constraintTop_toTopOf="@+id/logoutTV"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/turnoff" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
