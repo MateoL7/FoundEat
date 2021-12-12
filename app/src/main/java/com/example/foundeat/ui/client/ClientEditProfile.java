@@ -79,6 +79,15 @@ public class ClientEditProfile extends AppCompatActivity implements ChoiceDialog
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onCameraResult);
         galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGalleryResult);
 
+        if(client.getAccountInfo().equalsIgnoreCase("Facebook")){
+            newEmailET.setEnabled(false);
+            newPasswordET.setEnabled(false);
+            confirmNewPassword.setEnabled(false);
+            newEmailET.setAlpha(0);
+            newPasswordET.setAlpha(0);
+            confirmNewPassword.setAlpha(0);
+        }
+
     }
 
     private void saveChanges(View view) {

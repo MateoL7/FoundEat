@@ -72,6 +72,7 @@ public class ClientSignup extends AppCompatActivity {
                 client.setId(firebaseUser.getUid());
                 client.setName(clientNameET.getText().toString());
                 client.setEmail(clientEmailET.getText().toString().toLowerCase(Locale.ROOT));
+                client.setAccountInfo("Email");
 
                 db.collection("users").document(client.getId()).set(client).addOnSuccessListener(fireTask->{
                     sendVerificationEmail();

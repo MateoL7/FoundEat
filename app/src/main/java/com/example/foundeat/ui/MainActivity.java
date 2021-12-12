@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import com.example.foundeat.R;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private Client loadClient(){
         String json = getSharedPreferences("foundEat", MODE_PRIVATE).getString("client", "NO_USER");
         if(json.equals("NO_USER")){
+//            Log.e(">>>",client.getName());
             return null;
         }else{
             return new Gson().fromJson(json, Client.class);

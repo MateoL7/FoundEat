@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -109,7 +110,9 @@ public class ClientHome extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
     }
 
+    //TODO:Revisar con FB
     private void saveClient(Client client) {
+        Log.e(">>>",client.getName());
         String json = new Gson().toJson(client);
         getSharedPreferences("foundEat", MODE_PRIVATE).edit().putString("client", json).apply();
     }

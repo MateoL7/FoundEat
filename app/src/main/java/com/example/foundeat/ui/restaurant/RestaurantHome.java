@@ -20,6 +20,8 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
 import com.example.foundeat.model.MenuItem;
 import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -110,6 +112,7 @@ public class RestaurantHome extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+        LoginManager.getInstance().logOut();
         getSharedPreferences("foundEat", MODE_PRIVATE).edit().clear().apply();
         FirebaseAuth.getInstance().signOut();
     }

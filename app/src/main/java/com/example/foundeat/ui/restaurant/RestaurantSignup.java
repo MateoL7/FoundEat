@@ -76,6 +76,7 @@ public class RestaurantSignup extends AppCompatActivity {
                 restaurant.setId(firebaseUser.getUid());
                 restaurant.setName(resNameET.getText().toString());
                 restaurant.setEmail(resEmailET.getText().toString().toLowerCase(Locale.ROOT));
+                restaurant.setAccountInfo("Email");
 
                 db.collection("restaurants").document(restaurant.getId()).set(restaurant).addOnSuccessListener(fireTask->{
                     sendVerificationEmail();
