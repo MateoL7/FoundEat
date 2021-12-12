@@ -136,6 +136,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
                         String resId = (String) doc.get("resId");
                         if(resId.equals(restaurant.getId())){
                             added = true;
+                            favBttn.setBackgroundResource(R.drawable.fav_fill);
                             break;
                         }
                     }
