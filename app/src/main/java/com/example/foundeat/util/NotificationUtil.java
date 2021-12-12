@@ -11,6 +11,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 import com.example.foundeat.R;
+import com.example.foundeat.ui.MainActivity;
 import com.example.foundeat.ui.client.ClientHome;
 
 public class NotificationUtil {
@@ -30,7 +31,7 @@ public class NotificationUtil {
             manager.createNotificationChannel(channel);
         }
 
-        Intent intent = new Intent(context, ClientHome.class);
+        Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingintent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
