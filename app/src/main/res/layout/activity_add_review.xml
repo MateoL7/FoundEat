@@ -10,9 +10,11 @@
     <EditText
         android:id="@+id/contentReview"
         android:layout_width="0dp"
-        android:layout_height="137dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/textfieldborder"
         android:ems="10"
         android:fontFamily="@font/dmsansregular"
@@ -21,10 +23,11 @@
         android:paddingLeft="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint"
+        app:layout_constraintBottom_toTopOf="@+id/addClientReviewBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="287dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <android.widget.Button
         android:id="@+id/addClientReviewBtn"
@@ -32,7 +35,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/gradientbutton"
         android:text="Agregar comentario"
         android:textAllCaps="false"
@@ -46,15 +49,15 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/dmsansbold"
-        android:text="!Cuentanos tu experiencia¡"
+        android:text="¡Cuentanos tu experiencia!"
         android:textColor="@color/white"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/goBackTV" />
 
     <ImageButton
         android:id="@+id/goBackTV"
