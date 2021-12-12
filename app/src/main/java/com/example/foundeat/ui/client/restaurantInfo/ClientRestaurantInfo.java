@@ -126,19 +126,17 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         });
 
         //Check if restaurant is already in favorites
-        query = db.collection("users").document(currentClient.getId()).collection("favoriteRestaurants");
-        query.get().addOnCompleteListener(task ->{
-            if(task.getResult().size() > 0){
-                Restaurant temp;
-                for(DocumentSnapshot doc : task.getResult()){
-                    temp = doc.toObject(Restaurant.class);
-                    if(temp.getId().equals(restaurant.getId())){
-                        added = true;
-                        break;
+        FirebaseFirestore.getInstance().collection("users").document(currentClient.getId()).collection("favorites").addSnapshotListener(
+                (value, error) -> {
+                    for (DocumentSnapshot doc : value.getDocuments()) {
+                        String resId = (String) doc.get("resId");
+                        if(resId.equals(restaurant.getId())){
+                            added = true;
+                            break;
+                        }
                     }
                 }
-            }
-        });
+        );
     }
 
     public void addToFavorites(View v){

@@ -24,6 +24,8 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<FavoriteListViewH
         restaurants = new ArrayList<>();
     }
 
+    public void setClient(Client c){client = c;}
+
     @NonNull
     @Override
     public FavoriteListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +39,7 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<FavoriteListViewH
     public void onBindViewHolder(@NonNull FavoriteListViewHolder holder, int position) {
         Restaurant restaurant = restaurants.get(position);
         holder.setRestaurant(restaurant);
+        holder.setClient(client);
         if(restaurant.getPics()!=null && restaurant.getPics().size()>0){
             FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
                     url->   {

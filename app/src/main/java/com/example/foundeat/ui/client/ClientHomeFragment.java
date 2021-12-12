@@ -102,6 +102,7 @@ public class ClientHomeFragment extends Fragment {
         favoritesRecycler = view.findViewById(R.id.favoritesListRecycler);
         favoritesManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         favoritesListAdapter = new FavoritesListAdapter();
+        favoritesListAdapter.setClient(client);
         favoritesRecycler.setLayoutManager(favoritesManager);
         favoritesRecycler.setAdapter(favoritesListAdapter);
         favoritesRecycler.setHasFixedSize(true);
