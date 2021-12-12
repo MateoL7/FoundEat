@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/contentReview"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -18,9 +18,11 @@
         android:background="@drawable/textfieldborder"
         android:ems="10"
         android:fontFamily="@font/dmsansregular"
+        android:gravity="top"
         android:hint="Escribe tu comentario"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint"
         app:layout_constraintBottom_toTopOf="@+id/addClientReviewBtn"
@@ -31,33 +33,30 @@
 
     <android.widget.Button
         android:id="@+id/addClientReviewBtn"
+        style="@style/AppButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
+
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/gradientbutton"
-        android:text="Agregar comentario"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:layout_marginBottom="50dp"
+        android:text="@string/agregarReseña"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        style="@style/titleRestaurant"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/dmsansbold"
-        android:text="¡Cuentanos tu experiencia!"
-        android:textColor="@color/white"
-        android:textSize="23sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/writereview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goBackTV" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <ImageButton
         android:id="@+id/goBackTV"
@@ -66,11 +65,19 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/arrow_back_ios_24px"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back_ios_24px"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/arrow_back_ios_24px" />
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/titleRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/reseñas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

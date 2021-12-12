@@ -80,8 +80,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/addReviewBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pp">
+        app:layout_constraintTop_toBottomOf="@+id/pp"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -125,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="11dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
@@ -133,7 +135,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView16"
                 app:layout_constraintStart_toEndOf="@+id/imageView10"
                 app:layout_constraintTop_toBottomOf="@+id/menuTV" />
 
@@ -158,13 +160,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Carta"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView15"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
                 app:layout_constraintTop_toBottomOf="@+id/editProfileTV" />
 
@@ -253,13 +255,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/dmsansregular"
                 android:padding="5dp"
                 android:text="Sin dirección"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView14"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
 
@@ -312,6 +314,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/reviewsTV"
                 app:srcCompat="@drawable/icon_coment" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/favoritesTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/favoritesTV"
+                app:srcCompat="@drawable/icon_arrow_small" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/menuTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/menuTV"
+                app:srcCompat="@drawable/icon_arrow_small" />
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/reviewsTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/reviewsTV"
+                app:srcCompat="@drawable/icon_arrow_small" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

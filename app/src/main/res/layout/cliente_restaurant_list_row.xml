@@ -43,20 +43,9 @@
         android:layout_marginBottom="5dp"
         android:text="Nombre"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/restaurantListCalificacion"
+        app:layout_constraintBottom_toTopOf="@+id/restaurantListResenas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView4" />
-
-    <TextView
-        android:id="@+id/restaurantListCalificacion"
-        style="@style/subregular"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:text="Calificacion"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/restaurantListTipo"
@@ -67,26 +56,17 @@
         android:layout_marginTop="5dp"
         android:text="Tipo de comida"
         app:layout_constraintStart_toEndOf="@+id/cardView4"
-        app:layout_constraintTop_toBottomOf="@+id/restaurantListCalificacion" />
+        app:layout_constraintTop_toBottomOf="@+id/restaurantListResenas" />
 
     <TextView
         android:id="@+id/restaurantListResenas"
         style="@style/subregular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Reseñas"
-        app:layout_constraintBottom_toBottomOf="@+id/restaurantListCalificacion"
-        app:layout_constraintStart_toEndOf="@+id/restaurantListCalificacion"
-        app:layout_constraintTop_toTopOf="@+id/restaurantListCalificacion" />
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        app:layout_constraintBottom_toBottomOf="@+id/restaurantListCalificacion"
+        android:text="Reseñas"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView4"
-        app:layout_constraintTop_toTopOf="@+id/restaurantListCalificacion"
-        app:srcCompat="@drawable/star_small" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
