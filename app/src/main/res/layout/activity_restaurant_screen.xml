@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logofoundeat" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/loginBtn"
         style="@style/AppButton"
         android:layout_width="0dp"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/registerBtn"
         style="@style/AppButton"
         android:layout_width="0dp"

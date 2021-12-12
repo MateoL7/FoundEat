@@ -84,15 +84,6 @@ public class RestaurantSignup extends AppCompatActivity {
                 db.collection("restaurants").document(restaurant.getId()).set(restaurant).addOnSuccessListener(fireTask->{
                     sendVerificationEmail();
 
-                    //Enviar notificacion
-//                    new Thread(
-//                            ()->{
-//                                FCMMessage<Restaurant> fcmMessage = new FCMMessage<>("/topics/news",restaurant);
-//                                String json = new Gson().toJson(fcmMessage);
-//                                new HTTPSWebUtilDomi().POSTtoFCM(json);
-//                            }
-//                    ).start();
-
                     Intent intent = new Intent(this, Login.class);
                     intent.putExtra("type", "restaurant");
                     startActivity(intent);

@@ -18,11 +18,6 @@ public class FCMService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        //String msg = remoteMessage.getData().toString();
-//        JSONObject object = new JSONObject(remoteMessage.getData());
-//        String json = object.toString();
-//        Log.e(">>>>>>>",json);
-//        Restaurant r = new Gson().fromJson(json, Restaurant.class);
 
         NotificationUtil.showNotification(
                 getApplicationContext(),
