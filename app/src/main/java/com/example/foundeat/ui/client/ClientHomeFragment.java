@@ -235,8 +235,21 @@ public class ClientHomeFragment extends Fragment {
     private void bringRestaurant(String resId) {
         FirebaseFirestore.getInstance().collection("restaurants").document(resId).get().addOnSuccessListener(document -> {
             Restaurant restaurant = document.toObject(Restaurant.class);
-            favoritesListAdapter.getRestaurants().add(restaurant);
-            favoritesListAdapter.notifyDataSetChanged();
+            if(restaurant!=null){
+                favoritesListAdapter.getRestaurants().add(restaurant);
+                favoritesListAdapter.notifyDataSetChanged();
+            }else{
+                Query query = FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").whereEqualTo("resId",resId);
+                query.get().addOnCompleteListener(task2->{
+                    if(task2.getResult().size() > 0){
+                        Restaurant res = null;
+                        for(DocumentSnapshot doc : task2.getResult()){
+                            doc.getReference().delete();
+                            break;
+                        }
+                    }
+                });
+            }
         });
     }
 
