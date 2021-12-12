@@ -1,4 +1,4 @@
-package com.example.foundeat.ui.client;
+package com.example.foundeat.ui.client.favoritesProfileList;
 
 import android.content.Intent;
 import android.view.View;
@@ -42,6 +42,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
     private void showRestaurant(View view) {
         Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
         intent.putExtra("restaurant", restaurant);
+        intent.putExtra("client", client);
         view.getContext().startActivity(intent);
     }
 

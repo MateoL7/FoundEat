@@ -1,4 +1,4 @@
-package com.example.foundeat.ui.client.favoritesList;
+package com.example.foundeat.ui.client.favoritesHomeList;
 
 import android.view.LayoutInflater;
 import android.view.View;

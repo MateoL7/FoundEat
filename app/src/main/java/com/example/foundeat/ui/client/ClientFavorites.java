@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.favoritesProfileList.FavoritesAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 

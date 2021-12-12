@@ -1,4 +1,4 @@
-package com.example.foundeat.ui.client.favoritesList;
+package com.example.foundeat.ui.client.favoritesHomeList;
 
 import android.content.Intent;
 import android.view.View;

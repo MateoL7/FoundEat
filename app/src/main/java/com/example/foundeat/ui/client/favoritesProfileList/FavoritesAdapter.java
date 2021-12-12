@@ -1,6 +1,5 @@
-package com.example.foundeat.ui.client;
+package com.example.foundeat.ui.client.favoritesProfileList;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.model.Review;
+import com.example.foundeat.ui.client.favoritesProfileList.FavoritesViewHolder;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;

@@ -26,7 +26,7 @@ import com.example.foundeat.ui.client.categoriesList.CategoriesListAdapter;
 
 import com.example.foundeat.ui.client.filtro.FiltrosFragment;
 
-import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
+import com.example.foundeat.ui.client.favoritesHomeList.FavoritesListAdapter;
 
 import com.example.foundeat.ui.client.restaurantInfo.ClientRestaurantInfo;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
@@ -139,6 +139,7 @@ public class ClientHomeFragment extends Fragment {
     private void mostrarRestauranteRecomendado(View view) {
         Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
         intent.putExtra("restaurant",restauranteRecomendado);
+        intent.putExtra("client",client);
         view.getContext().startActivity(intent);
     }
 
@@ -150,6 +151,7 @@ public class ClientHomeFragment extends Fragment {
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
                         intent.putExtra("restaurant",newRestaurant);
+                        intent.putExtra("client",client);
                         view.getContext().startActivity(intent);
                     }
                     if (task.getResult().isEmpty())
