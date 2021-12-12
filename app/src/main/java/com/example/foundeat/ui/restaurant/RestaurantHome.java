@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
-import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
+import com.example.foundeat.model.MenuItem;
 import com.example.foundeat.ui.restaurant.menuList.MenuListActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthCredential;
@@ -228,11 +228,11 @@ public class RestaurantHome extends AppCompatActivity {
                 task -> {
                     int mayor=0;
                     int menor=Integer.MAX_VALUE;
-                    MenuItemModel s = null;
+                    MenuItem s = null;
 
                     for(DocumentSnapshot ds :task.getResult() ) {
 
-                        s=ds.toObject(MenuItemModel.class);
+                        s=ds.toObject(MenuItem.class);
 
                         int temp = Integer.parseInt(s.getPrice());
                         if(temp>mayor && temp>menor){

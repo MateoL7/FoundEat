@@ -20,10 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoundEat">
         <activity
+            android:name=".ui.client.restaurantInfo.menuRV.ClientMenuList"
+            android:exported="false" />
+        <activity
             android:name=".ui.client.filtro.RestaurantWithFiltersActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.client.ClientRestaurantInfo"
+            android:name=".ui.client.restaurantInfo.ClientRestaurantInfo"
             android:exported="false" />
         <activity
             android:name=".ui.client.ClientReviews"

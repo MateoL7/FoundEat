@@ -15,10 +15,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.foundeat.R;
+import com.example.foundeat.model.MenuItem;
 import com.example.foundeat.model.Restaurant;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.UUID;
 
@@ -50,9 +50,6 @@ public class MenuListActivity extends AppCompatActivity {
 
         //Get model object from intent
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
-
-        Log.e(">>>>>>Restaurant name", restaurant.getName());
-        Log.e(">>>>>>Restaurant id", restaurant.getId());
 
         //Configure items that need configuration
         addMenuItemBtn.setOnClickListener(this::addMenuItem);
@@ -93,21 +90,17 @@ public class MenuListActivity extends AppCompatActivity {
             newItemDescription = result.getData().getExtras().getString("descripcion");
             menuItemImage=result.getData().getExtras().getString("MenuItemsPhoto");
             //(String id, String image, String name, String price, String description)
-            MenuItemModel item = new MenuItemModel(UUID.randomUUID().toString(), menuItemImage, newItemName, newItemPrice, newItemDescription);
+            MenuItem item = new MenuItem(UUID.randomUUID().toString(), menuItemImage, newItemName, newItemPrice, newItemDescription);
             adapter.addMenuItem(item);
             FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").document(item.getId()).set(item);
-            //cargarMenu();
         }
     }
 
-//    public void vaciarListaRecyclerView(){
-//        adapter.vaciarLista();
-//    }
     public void cargarMenu(){
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").get().addOnCompleteListener(
                 task -> {
                     for (DocumentSnapshot doc:task.getResult()){
-                        MenuItemModel item = doc.toObject(MenuItemModel.class);
+                        MenuItem item = doc.toObject(MenuItem.class);
                         adapter.addMenuItem(item);
                     }
                 }

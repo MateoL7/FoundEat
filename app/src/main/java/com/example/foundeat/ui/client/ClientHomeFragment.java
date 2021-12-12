@@ -28,6 +28,7 @@ import com.example.foundeat.ui.client.filtro.FiltrosFragment;
 
 import com.example.foundeat.ui.client.favoritesList.FavoritesListAdapter;
 
+import com.example.foundeat.ui.client.restaurantInfo.ClientRestaurantInfo;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -210,7 +211,7 @@ public class ClientHomeFragment extends Fragment {
                     (value, error) -> {
                         favoritesListAdapter.getRestaurants().clear();
                         for (DocumentSnapshot doc : value.getDocuments()) {
-                            String resId = (String) doc.get("resId");
+                            String resId = (String) doc.get("id");
                             bringRestaurant(resId);
                         }
                     }

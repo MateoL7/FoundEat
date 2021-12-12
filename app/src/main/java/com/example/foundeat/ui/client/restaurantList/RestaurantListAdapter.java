@@ -11,13 +11,11 @@ import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.ui.restaurant.menuList.MenuItemModel;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListView> {
 

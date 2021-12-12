@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foundeat.R;
 import com.example.foundeat.model.Restaurant;
-import com.example.foundeat.ui.client.ClientRestaurantInfo;
+import com.example.foundeat.ui.client.restaurantInfo.ClientRestaurantInfo;
 
 public class FavoriteListViewHolder extends RecyclerView.ViewHolder {
 

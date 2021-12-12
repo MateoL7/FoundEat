@@ -1,6 +1,6 @@
-package com.example.foundeat.ui.restaurant.menuList;
+package com.example.foundeat.model;
 
-public class MenuItemModel {
+public class MenuItem {
 
     private String id;
     private String image=null,name,price,description;
@@ -9,10 +9,10 @@ public class MenuItemModel {
         return id;
     }
 
-    public MenuItemModel() {
+    public MenuItem() {
     }
 
-    public MenuItemModel(String id, String image, String name, String price, String description) {
+    public MenuItem(String id, String image, String name, String price, String description) {
         this.id = id;
         this.image = image;
         this.name = name;

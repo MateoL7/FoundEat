@@ -1,5 +1,4 @@
-package com.example.foundeat.ui.restaurant.menuList;
-
+package com.example.foundeat.ui.client.restaurantInfo.menuRV;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
 
         //Creates row view from given layout XML
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View row = inflater.inflate(R.layout.menu_item_row, parent, false);
+        View row = inflater.inflate(R.layout.client_menu_item_row, parent, false);
         MenuItemView skeleton = new MenuItemView(row);
 
         return skeleton;
@@ -41,8 +40,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
         //Get current item from model list
         MenuItem item = menuItems.get(position);
         //Bind model and view
-
-        //TODO implement image display
         FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(item.getImage()).getDownloadUrl().addOnSuccessListener(
                 url->   {
                     Glide.with(skeleton.getMenuItemRowIV()).load(url).into(skeleton.getMenuItemRowIV());

@@ -1,4 +1,4 @@
-package com.example.foundeat.ui.client;
+package com.example.foundeat.ui.client.restaurantInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.restaurantInfo.menuRV.ClientMenuList;
 import com.example.foundeat.ui.restaurant.RestaurantLocation;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,6 +66,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
 
         //Add listeners to buttons
         favBttn.setOnClickListener(this::addToFavorites);
+        menuTV.setOnClickListener(this::loadMenu);
 
         //Get objects from intents
         restaurant=(Restaurant) getIntent().getExtras().get("restaurant");
@@ -140,15 +142,19 @@ public class ClientRestaurantInfo extends AppCompatActivity {
     public void addToFavorites(View v){
         if(!added){
             //If restaurant is not in favorites, add it.
-            db.collection("users").document(currentClient.getId()).collection("favoriteRestaurants").document(restaurant.getId()).set(restaurant);
+            db.collection("users").document(currentClient.getId()).collection("favorites").document(restaurant.getId()).set(restaurant);
             added = true;
             runOnUiThread(() -> Toast.makeText(getApplicationContext(), "¡Agregado a favoritos!", Toast.LENGTH_SHORT).show());
         }else{
             //If already is, delete from collection.
-            db.collection("users").document(currentClient.getId()).collection("favoriteRestaurants").document(restaurant.getId()).delete();
+            db.collection("users").document(currentClient.getId()).collection("favorites").document(restaurant.getId()).delete();
             added = false;
         }
     }
 
-
+    public void loadMenu(View v){
+        Intent i = new Intent(this, ClientMenuList.class);
+        i.putExtra("restaurant", restaurant);
+        startActivity(i);
+    }
 }
