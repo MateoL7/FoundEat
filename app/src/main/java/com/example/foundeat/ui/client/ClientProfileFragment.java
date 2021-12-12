@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 
 /**
@@ -98,6 +99,7 @@ public class ClientProfileFragment extends Fragment {
         }
     }
     private void logout(View view) {
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("news");
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
         LoginManager.getInstance().logOut();
