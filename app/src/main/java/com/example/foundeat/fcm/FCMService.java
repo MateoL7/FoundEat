@@ -1,7 +1,10 @@
 package com.example.foundeat.fcm;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
+import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.util.NotificationUtil;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -15,8 +18,16 @@ public class FCMService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        String msg = remoteMessage.getData().toString();
-        NotificationUtil.showNotification(getApplicationContext(),"Nuevo mensaje",msg);
+        //String msg = remoteMessage.getData().toString();
+//        JSONObject object = new JSONObject(remoteMessage.getData());
+//        String json = object.toString();
+//        Log.e(">>>>>>>",json);
+//        Restaurant r = new Gson().fromJson(json, Restaurant.class);
+
+        NotificationUtil.showNotification(
+                getApplicationContext(),
+                "Nuevo Restaurante",
+                "¡Conoce ya lo que este nuevo restaurante tiene para ofrecerte!");
 
     }
 }
