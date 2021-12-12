@@ -83,6 +83,7 @@
         <entry key="..\:/Users/jhone/Documents/Universidad/8vo Semestre/Apps Moviles/ProyectoFinal/FoundEat/app/src/main/res/layout/reviewrow.xml" value="0.2609375" />
         <entry key="app/src/main/res/font/dmsans.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/activity_add_menu_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_add_review.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_client_favorite_food.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_client_favorites.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/activity_client_home.xml" value="0.19067028985507245" />
@@ -110,7 +111,7 @@
         <entry key="app/src/main/res/layout/favorite_row.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/filtro_row.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/fragment_choice_dialog.xml" value="0.20516304347826086" />
-        <entry key="app/src/main/res/layout/fragment_client_home.xml" value="0.16032608695652173" />
+        <entry key="app/src/main/res/layout/fragment_client_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_client_profile.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/menu_item_row.xml" value="0.16576086956521738" />
