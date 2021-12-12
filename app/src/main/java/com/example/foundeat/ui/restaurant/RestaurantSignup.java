@@ -12,13 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foundeat.R;
+import com.example.foundeat.fcm.FCMMessage;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.Login;
 import com.example.foundeat.ui.MainActivity;
+import com.example.foundeat.util.HTTPSWebUtilDomi;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.gson.Gson;
 
 import java.util.Locale;
 import java.util.UUID;
@@ -80,6 +83,16 @@ public class RestaurantSignup extends AppCompatActivity {
 
                 db.collection("restaurants").document(restaurant.getId()).set(restaurant).addOnSuccessListener(fireTask->{
                     sendVerificationEmail();
+
+                    //Enviar notificacion
+                    new Thread(
+                            ()->{
+                                FCMMessage<Restaurant> fcmMessage = new FCMMessage<>("/topics/news",restaurant);
+                                String json = new Gson().toJson(fcmMessage);
+                                new HTTPSWebUtilDomi().POSTtoFCM(json);
+                            }
+                    ).start();
+
                     Intent intent = new Intent(this, Login.class);
                     intent.putExtra("type", "restaurant");
                     startActivity(intent);

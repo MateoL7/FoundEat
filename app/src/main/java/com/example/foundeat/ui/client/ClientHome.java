@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Array;
@@ -76,7 +77,7 @@ public class ClientHome extends AppCompatActivity {
             return true;
         });
 
-
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
 
     }
 
