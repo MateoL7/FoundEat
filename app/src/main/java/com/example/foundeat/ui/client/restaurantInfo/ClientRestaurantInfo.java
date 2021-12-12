@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import org.w3c.dom.Document;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class ClientRestaurantInfo extends AppCompatActivity {
 
@@ -141,15 +142,29 @@ public class ClientRestaurantInfo extends AppCompatActivity {
 
     public void addToFavorites(View v){
         HashMap<String, String> object = new HashMap<>();
+        String id = UUID.randomUUID().toString();
+        object.put("id", id);
         object.put("resId", restaurant.getId());
         if(!added){
             //If restaurant is not in favorites, add it.
-            db.collection("users").document(currentClient.getId()).collection("favorites").document(restaurant.getId()).set(object);
+            db.collection("users").document(currentClient.getId()).collection("favorites").document(id).set(object);
             added = true;
-            runOnUiThread(() -> Toast.makeText(getApplicationContext(), "¡Agregado a favoritos!", Toast.LENGTH_SHORT).show());
+            Toast.makeText(getApplicationContext(), "¡Agregado a favoritos!", Toast.LENGTH_SHORT).show();
         }else{
             //If already is, delete from collection.
-            db.collection("users").document(currentClient.getId()).collection("favorites").document(restaurant.getId()).delete();
+            Query query = FirebaseFirestore.getInstance().collection("users").document(currentClient.getId()).collection("favorites").whereEqualTo("resId", restaurant.getId());
+            query.get().addOnCompleteListener(
+                    task -> {
+                        if (task.getResult().size() > 0) {
+                            Restaurant restaurant = null;
+                            for (DocumentSnapshot doc : task.getResult()) {
+                                restaurant = doc.toObject(Restaurant.class);
+                                doc.getReference().delete();
+                                break;
+                            }
+                        }
+                    }
+            );
             added = false;
         }
     }

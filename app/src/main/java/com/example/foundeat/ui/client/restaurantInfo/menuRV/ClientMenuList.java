@@ -62,7 +62,7 @@ public class ClientMenuList extends AppCompatActivity {
     }
 
     public void returnToInfo(View v){
-
+        finish();
     }
 
 }
