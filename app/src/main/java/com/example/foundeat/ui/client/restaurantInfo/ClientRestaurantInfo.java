@@ -18,6 +18,7 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.ClientAddReview;
 import com.example.foundeat.ui.client.restaurantInfo.menuRV.ClientMenuList;
 import com.example.foundeat.ui.restaurant.RestaurantLocation;
+import com.example.foundeat.ui.restaurant.RestaurantReviews;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -71,6 +72,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         menuTV.setOnClickListener(this::loadMenu);
         goBack.setOnClickListener(this::goBackTo);
         addReviewBtn.setOnClickListener(this::addReview);
+        reviewsTV.setOnClickListener(this::showReviews);
 
         //Get objects from intents
         restaurant=(Restaurant) getIntent().getExtras().get("restaurant");
@@ -78,6 +80,12 @@ public class ClientRestaurantInfo extends AppCompatActivity {
 
         //Load info into view
         loadRestaurantInfo();
+    }
+
+    private void showReviews(View view) {
+        Intent intent = new Intent(this, RestaurantReviews.class);
+        intent.putExtra("restaurant",restaurant);
+        startActivity(intent);
     }
 
     private void addReview(View view) {
@@ -115,8 +123,6 @@ public class ClientRestaurantInfo extends AppCompatActivity {
                     addressTV.setText(restaurant.getAddress());
                     addressTV.setOnClickListener(
                             v -> {
-                                //TODO Aleja, aquí va lo de cargar la ubicación
-
                                 Intent i = new Intent(this, RestaurantLocation.class);
                                 i.putExtra("location",restaurant.getAddress());
                                 startActivity(i);
