@@ -25,6 +25,7 @@ import com.example.foundeat.ui.restaurant.RestaurantMoreInfo;
 import com.example.foundeat.ui.restaurant.RestaurantPhoto;
 import com.example.foundeat.ui.restaurant.RestaurantScreen;
 import com.example.foundeat.ui.restaurant.RestaurantSignup;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,6 +40,7 @@ public class Login extends AppCompatActivity {
     private Button goBtn;
     private TextView goToSignUp;
     private ImageButton backBtnL;
+    private Button fbLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class Login extends AppCompatActivity {
         goBtn = findViewById(R.id.clientRegisterBtn);
         goToSignUp = findViewById(R.id.goToSignUp);
         backBtnL = findViewById(R.id.backBtnL);
+        fbLoginBtn = findViewById(R.id.fbLoginBtn);
 
         goToSignUp.setOnClickListener(v -> {
             if (type.equalsIgnoreCase("client")) {
@@ -65,7 +68,21 @@ public class Login extends AppCompatActivity {
 
         goBtn.setOnClickListener(this::login);
         backBtnL.setOnClickListener(this::goBackL);
+        if(fbLoginBtn.getText().toString().equalsIgnoreCase("Log out")){
+            fbLoginBtn.setOnClickListener(v -> {
+                LoginManager.getInstance().logOut();
+            });
+        }else{
+            fbLoginBtn.setOnClickListener(this::loginFB);
+        }
 
+    }
+
+    private void loginFB(View view) {
+       Intent intent = new Intent(this, FacebookAuthActivity.class);
+       intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+       intent.putExtra("type",type);
+       startActivity(intent);
     }
 
     private void login(View view){
@@ -131,7 +148,6 @@ public class Login extends AppCompatActivity {
     }
 
     public void goBackL (View view) {
-        Intent intent = new Intent(this, RestaurantScreen.class);
-        startActivity(intent);
+        finish();
     }
 }

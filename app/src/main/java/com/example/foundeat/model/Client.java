@@ -6,16 +6,18 @@ import java.util.ArrayList;
 public class Client implements Serializable {
 
     private String id, name, email,profilePic;
+    private String accountInfo;
     private ArrayList<String> favoriteFood;
 
     public Client() {
     }
 
-    public Client(String id, String name, String email, String profilePic, ArrayList<String> favoriteFood) {
+    public Client(String id, String name, String email, String profilePic, String accountInfo, ArrayList<String> favoriteFood) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.profilePic = profilePic;
+        this.accountInfo = accountInfo;
         this.favoriteFood = favoriteFood;
     }
 
@@ -49,6 +51,14 @@ public class Client implements Serializable {
 
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
+    }
+
+    public String getAccountInfo() {
+        return accountInfo;
+    }
+
+    public void setAccountInfo(String accountInfo) {
+        this.accountInfo = accountInfo;
     }
 
     public ArrayList<String> getFavoriteFood() {

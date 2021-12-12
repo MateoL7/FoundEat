@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 public class Restaurant implements Serializable {
 
-    private String id,name,email,description, category, address,minPrice, maxPrice;
+    private String id,name,email,description, category, address,minPrice, maxPrice, accountInfo;
     private ArrayList<String> pics = new ArrayList<>();
     private String openingTime, closingTime;
 
     public Restaurant() {
     }
 
-    public Restaurant(String id, String name, String email, String description, String category, String address, String minPrice, String maxPrice, ArrayList<String> pics, String openingTime, String closingTime) {
+    public Restaurant(String id, String name, String email, String description, String category, String address, String minPrice, String maxPrice, String accountInfo, ArrayList<String> pics, String openingTime, String closingTime) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -22,11 +22,11 @@ public class Restaurant implements Serializable {
         this.address = address;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
+        this.accountInfo = accountInfo;
         this.pics = pics;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
     }
-
 
     public String getId() {
         return id;
@@ -58,6 +58,14 @@ public class Restaurant implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAccountInfo() {
+        return accountInfo;
+    }
+
+    public void setAccountInfo(String accountInfo) {
+        this.accountInfo = accountInfo;
     }
 
     public String getCategory() {

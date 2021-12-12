@@ -23,6 +23,7 @@ import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.MainActivity;
 import com.example.foundeat.ui.restaurant.RestaurantHome;
+import com.facebook.login.LoginManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -99,6 +100,7 @@ public class ClientProfileFragment extends Fragment {
     private void logout(View view) {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
+        LoginManager.getInstance().logOut();
         getActivity().getSharedPreferences("foundEat", getActivity().MODE_PRIVATE).edit().clear().apply();
         FirebaseAuth.getInstance().signOut();
     }

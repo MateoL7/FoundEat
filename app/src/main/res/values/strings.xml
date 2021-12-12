@@ -31,4 +31,6 @@
     <string name="omitir">Omitir</string>
     <string name="agregarfoto">¿deseas agregar una foto de perfíl?</string>
     <string name="favFood">Ahora, escoge tus 3 platos favoritos.</string>
+    <string name="facebook_app_id">615511796312266</string>
+    <string name="fb_login_protocol_scheme">fb615511796312266</string>
 </resources>

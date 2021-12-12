@@ -76,7 +76,12 @@ public class ClientPhoto extends AppCompatActivity implements ChoiceDialog.OnCho
 
     private void nextActivity(View view){
         FirebaseFirestore.getInstance().collection("users").document(client.getId()).set(client);
-        Intent intent = new Intent(this,ClientHome.class);
+        Intent intent;
+        if(client.getFavoriteFood()==null || client.getFavoriteFood().size()<1){
+            intent = new Intent(this,ClientFavoriteFood.class);
+        }else{
+            intent = new Intent(this,ClientHome.class);
+        }
         intent.putExtra("client", client);
         startActivity(intent);
     }

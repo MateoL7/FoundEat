@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Array;
@@ -75,7 +77,7 @@ public class ClientHome extends AppCompatActivity {
             return true;
         });
 
-
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
 
     }
 
@@ -109,7 +111,9 @@ public class ClientHome extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
     }
 
+    //TODO:Revisar con FB
     private void saveClient(Client client) {
+        Log.e(">>>",client.getName());
         String json = new Gson().toJson(client);
         getSharedPreferences("foundEat", MODE_PRIVATE).edit().putString("client", json).apply();
     }
