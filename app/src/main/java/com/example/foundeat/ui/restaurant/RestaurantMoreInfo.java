@@ -18,10 +18,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.foundeat.R;
+import com.example.foundeat.fcm.FCMMessage;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.util.HTTPSWebUtilDomi;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -154,6 +157,15 @@ public class RestaurantMoreInfo extends AppCompatActivity implements AdapterView
         restaurant.setOpeningTime(openingET.getText().toString());
         restaurant.setClosingTime(closingET.getText().toString());
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
+
+        new Thread(
+                () -> {
+                    FCMMessage<Restaurant> fcmMessage = new FCMMessage<>("/topics/news", restaurant);
+                    String json = new Gson().toJson(fcmMessage);
+                    new HTTPSWebUtilDomi().POSTtoFCM(json);
+                }
+        ).start();
+
         Intent intent = new Intent(this, RestaurantHome.class);
         intent.putExtra("restaurant", restaurant);
         startActivity(intent);
