@@ -50,7 +50,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
                     }
             );
         }
-        FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("reviews").addSnapshotListener(
+        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).addSnapshotListener(
                 (value, error) -> {
                     int reviews = 0;
                     for (DocumentSnapshot doc : value.getDocuments()) {

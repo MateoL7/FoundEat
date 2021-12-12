@@ -1,5 +1,6 @@
 package com.example.foundeat.ui.restaurant;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Review;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
         holder.getContentTV().setText(review.getContent());
         holder.getCustomerNameTV().setText(review.getCustomerName());
         if(review.getCustomerPic()!=null){
-            Glide.with(holder.getCustomerPic().getContext()).load(review.getCustomerPic()).centerCrop().into(holder.getCustomerPic());
+            FirebaseStorage.getInstance().getReference().child("clientPhotos").child(review.getCustomerPic()).getDownloadUrl().addOnSuccessListener(
+                    url->   {
+                        Glide.with(holder.getCustomerPic()).load(url).into(holder.getCustomerPic());
+                    }
+            );
         }
     }
 
