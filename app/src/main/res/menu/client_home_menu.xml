@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/homeItem"
-        android:icon="@drawable/icon_menu"
+        android:icon="@drawable/icon_home"
         android:title="Principal" />
     <item
         android:id="@+id/mapItem"

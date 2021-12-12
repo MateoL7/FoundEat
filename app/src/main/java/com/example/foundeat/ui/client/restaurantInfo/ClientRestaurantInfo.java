@@ -1,6 +1,7 @@
 package com.example.foundeat.ui.client.restaurantInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
     private TextView menuTV;
     private TextView reviewsTV;
     private Button addReviewBtn;
-    private ImageButton favBttn;
+    private ImageButton favBttn, goBack;
 
     private boolean added;
 
@@ -66,10 +67,12 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         reviewsTV = findViewById(R.id.reviewsTV);
         addReviewBtn = findViewById(R.id.addReviewBtn);
         favBttn = findViewById(R.id.favBttn);
+        goBack = findViewById(R.id.goBack);
 
         //Add listeners to buttons
         favBttn.setOnClickListener(this::addToFavorites);
         menuTV.setOnClickListener(this::loadMenu);
+        goBack.setOnClickListener(this::goBackTo);
 
         //Get objects from intents
         restaurant=(Restaurant) getIntent().getExtras().get("restaurant");
@@ -150,7 +153,9 @@ public class ClientRestaurantInfo extends AppCompatActivity {
             db.collection("users").document(currentClient.getId()).collection("favorites").document(id).set(object);
             added = true;
             Toast.makeText(getApplicationContext(), "¡Agregado a favoritos!", Toast.LENGTH_SHORT).show();
+            favBttn.setBackgroundResource(R.drawable.fav_fill);
         }else{
+            favBttn.setBackgroundResource(R.drawable.fav_out);
             //If already is, delete from collection.
             Query query = FirebaseFirestore.getInstance().collection("users").document(currentClient.getId()).collection("favorites").whereEqualTo("resId", restaurant.getId());
             query.get().addOnCompleteListener(
@@ -173,5 +178,9 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         Intent i = new Intent(this, ClientMenuList.class);
         i.putExtra("restaurant", restaurant);
         startActivity(i);
+    }
+
+    public void goBackTo (View view) {
+        finish();
     }
 }

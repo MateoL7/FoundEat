@@ -23,7 +23,7 @@ public class FiltrosView extends RecyclerView.ViewHolder {
     }
 
     private void sendData(View view) {
-        categoryFiltros.setTextColor(Color.RED);
+        categoryFiltros.setTextColor(Color.rgb(134,78,255));
         sendCategorySelected();
     }
 

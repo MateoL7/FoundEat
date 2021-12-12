@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,10 @@ import com.example.foundeat.ui.client.favoritesHomeList.FavoritesListAdapter;
 
 import com.example.foundeat.ui.client.restaurantInfo.ClientRestaurantInfo;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
+import com.example.foundeat.ui.restaurant.RestaurantLocation;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 
 /**
@@ -56,7 +59,7 @@ public class ClientHomeFragment extends Fragment {
     private FavoritesListAdapter favoritesListAdapter;
 
     private ImageView restauranteRecomendadoImage;
-    private TextView restauranteRecomendadoTV;
+    private TextView restauranteRecomendadoTV, clientGreetTV;
     private ImageView homeClientProfilePicIV;
     private ImageButton searchBtn;
     private ImageButton filterSearchBttn;
@@ -120,6 +123,7 @@ public class ClientHomeFragment extends Fragment {
         searchRestaurantET= view.findViewById(R.id.searchRestaurantET);
         searchBtn=view.findViewById(R.id.searchBtn);
         filterSearchBttn = view.findViewById(R.id.filterSearchBttn);
+        clientGreetTV = view.findViewById(R.id.clientGreetTV);
         searchBtn.setOnClickListener(this::buscarRestaurante);
         restauranteRecomendadoImage.setOnClickListener(this::mostrarRestauranteRecomendado);
         filterSearchBttn.setOnClickListener(this::motrarFiltros);
@@ -128,6 +132,7 @@ public class ClientHomeFragment extends Fragment {
         cargarDatosRstaurantes();
         cargarCategories();
         cargarFotoUsuario();
+        cargarNombre();
         return view;
     }
 
@@ -247,8 +252,24 @@ public class ClientHomeFragment extends Fragment {
                     url->   {
                         Glide.with(homeClientProfilePicIV).load(url).into(homeClientProfilePicIV);
                     }
+
             );
+
         }
+    }
+
+    public void cargarNombre() {
+        Query query =  FirebaseFirestore.getInstance().collection("users").whereEqualTo("id",client.getId());
+        query.get().addOnCompleteListener(task->{
+            if (task.getResult().size() > 0) {
+                for (DocumentSnapshot doc : task.getResult()) {
+                    client = doc.toObject(Client.class);
+                    break;
+                }
+                Log.e(">>>>>id", client.getName());
+                clientGreetTV.setText("Hola " +client.getName()+",");
+            }
+        });
     }
 
 }

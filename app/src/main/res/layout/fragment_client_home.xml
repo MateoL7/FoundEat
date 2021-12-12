@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        app:layout_constraintBottom_toBottomOf="@+id/homeClientProfilePicIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -100,9 +99,9 @@
 
             <ImageButton
                 android:id="@+id/filterSearchBttn"
-                style="@style/AppButton"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                style="@style/AppImageButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/searchRestaurantET"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +165,9 @@
                 android:id="@+id/restaurantListRV"
                 android:layout_width="0dp"
                 android:layout_height="500dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22">
@@ -188,8 +189,8 @@
 
                 <ImageView
                     android:id="@+id/restauranteRecomendadoImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
@@ -200,7 +201,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     style="@style/gradientViolet"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="100dp">
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -213,7 +215,7 @@
                     android:layout_marginTop="74dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="0dp"
-                    android:text="TextView" />
+                    android:text="Restaurante" />
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -227,9 +229,9 @@
 
             <ImageButton
                 android:id="@+id/searchBtn"
-                style="@style/AppButton"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                style="@style/AppImageButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_marginEnd="22dp"
                 app:layout_constraintBottom_toBottomOf="@+id/filterSearchBttn"
                 app:layout_constraintEnd_toStartOf="@+id/filterSearchBttn"
