@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
@@ -134,8 +135,6 @@ public class ClientRestaurantInfo extends AppCompatActivity {
                 }
             }
         });
-        String json = new Gson().toJson(restaurant);
-        getSharedPreferences("foundEat",MODE_PRIVATE).edit().putString("restaurant",json).apply();
     }
 
     public void addToFavorites(View v){
@@ -143,10 +142,13 @@ public class ClientRestaurantInfo extends AppCompatActivity {
             //If restaurant is not in favorites, add it.
             db.collection("users").document(currentClient.getId()).collection("favoriteRestaurants").document(restaurant.getId()).set(restaurant);
             added = true;
+            runOnUiThread(() -> Toast.makeText(getApplicationContext(), "¡Agregado a favoritos!", Toast.LENGTH_SHORT).show());
         }else{
             //If already is, delete from collection.
             db.collection("users").document(currentClient.getId()).collection("favoriteRestaurants").document(restaurant.getId()).delete();
             added = false;
         }
     }
+
+
 }
