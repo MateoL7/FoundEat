@@ -84,6 +84,7 @@
         <entry key="app/src/main/res/font/dmsans.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/activity_add_menu_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_add_review.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_client_add_review.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_client_favorite_food.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_client_favorites.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/activity_client_home.xml" value="0.19067028985507245" />

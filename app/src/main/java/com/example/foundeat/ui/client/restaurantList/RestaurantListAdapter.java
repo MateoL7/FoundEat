@@ -63,7 +63,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
 
         skeleton.setRestaurant(restaurant);
         skeleton.setCurrentClient(currentClient);
-        skeleton.getCalificacion().setText("5");
+        //skeleton.getCalificacion().setText("5");
         skeleton.getNombre().setText(restaurant.getName());
         skeleton.getTipoComida().setText(restaurant.getCategory());
     }

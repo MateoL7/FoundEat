@@ -10,9 +10,11 @@
     <EditText
         android:id="@+id/contentReview"
         android:layout_width="0dp"
-        android:layout_height="137dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/textfieldborder"
         android:ems="10"
         android:fontFamily="@font/dmsansregular"
@@ -34,28 +36,27 @@
         style="@style/AppButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
+
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/gradientbutton"
-        android:text="Agregar comentario"
+        android:text="@string/agregarReseña"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        style="@style/titleRestaurant"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
-        android:fontFamily="@font/dmsansbold"
-        android:text="!Cuentanos tu experiencia¡"
-        android:textColor="@color/white"
-        android:textSize="23sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/writereview"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <ImageButton
         android:id="@+id/goBackTV"

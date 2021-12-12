@@ -1,7 +1,6 @@
 package com.example.foundeat.ui.client.restaurantInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,15 +15,13 @@ import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
+import com.example.foundeat.ui.client.ClientAddReview;
 import com.example.foundeat.ui.client.restaurantInfo.menuRV.ClientMenuList;
 import com.example.foundeat.ui.restaurant.RestaurantLocation;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.gson.Gson;
-
-import org.w3c.dom.Document;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -73,6 +70,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         favBttn.setOnClickListener(this::addToFavorites);
         menuTV.setOnClickListener(this::loadMenu);
         goBack.setOnClickListener(this::goBackTo);
+        addReviewBtn.setOnClickListener(this::addReview);
 
         //Get objects from intents
         restaurant=(Restaurant) getIntent().getExtras().get("restaurant");
@@ -80,6 +78,13 @@ public class ClientRestaurantInfo extends AppCompatActivity {
 
         //Load info into view
         loadRestaurantInfo();
+    }
+
+    private void addReview(View view) {
+        Intent intent = new Intent(this, ClientAddReview.class);
+        intent.putExtra("client",currentClient);
+        intent.putExtra("restaurant",restaurant);
+        startActivity(intent);
     }
 
     public void loadRestaurantInfo(){

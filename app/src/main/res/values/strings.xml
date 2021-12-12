@@ -35,4 +35,6 @@
     <string name="fb_login_protocol_scheme">fb615511796312266</string>
     <string name="reseñas">Reseñas y comentarios</string>
     <string name="iniciaFB">O inicia con</string>
+    <string name="agregarReseña">Agregar reseña</string>
+    <string name="writereview">¡Cuentanos tu experiencia!</string>
 </resources>
