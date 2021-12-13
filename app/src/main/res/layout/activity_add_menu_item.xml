@@ -48,7 +48,7 @@
         android:ems="10"
         android:fontFamily="@font/dmsansregular"
         android:hint="Precio"
-        android:inputType="textPersonName"
+        android:inputType="number|textPersonName"
         android:paddingLeft="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint"

@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.foundeat.R;
+import com.example.foundeat.model.Client;
 import com.example.foundeat.model.FoodCategory;
 import com.example.foundeat.model.Restaurant;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -43,7 +44,9 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
     private Button aplicarFiltrosBtn;
     
     private int maxPrice=0;
-    private int minPrice=2147483645;
+    private int minPrice=Integer.MAX_VALUE;
+
+    private Client currentClient;
 
     private ArrayList<String> categoriesSelected;
 
@@ -56,6 +59,10 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
     public void onStart() {
         super.onStart();
         getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    public void setCurrentClient(Client c){
+        currentClient = c;
     }
 
     // TODO: Rename and change types and number of parameters
@@ -92,30 +99,21 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
         horaInicioET.setOnClickListener(this::pickTime);
         loadMaxPrice();
         loadMinPrice();
-        //TODO: se puede cargar las hora minima y maxima desde los restaurantes de la base de datos
-        //horaCierreET.setText();
-        //horaInicioET.setText();
         return view;
     }
 
     public boolean valuesPriceIsOk(){
-        if (Integer.parseInt(minPriceET.getText().toString())>Integer.parseInt(maxPriceET.getText().toString())){
-            return false;
+        if(!minPriceET.getText().toString().equals("") && !maxPriceET.getText().toString().equals("")){
+            if (Integer.parseInt(minPriceET.getText().toString())>Integer.parseInt(maxPriceET.getText().toString())){
+                return false;
+            }else{
+                return true;
+            }
         }else{
             return true;
         }
     }
 
-//  TODO: para esta verificacion debemos considerar los dias
-
-//    public boolean valuesTimeIsOk(){
-//        if (LocalTime.parse(horaInicioET.getText().toString()).isAfter(LocalTime.parse(horaCierreET.getText().toString()))){
-//            return false;
-//        }else{
-//            return true;
-//        }
-//    }
-    //TODO: CAMBIAR LOGICA PARA ENVIAR FILTROS
     private void enviarFiltrosHome(View view) {
         if (valuesPriceIsOk()){
             Intent intent = new Intent(getContext(), RestaurantWithFiltersActivity.class);
@@ -124,6 +122,7 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
             intent.putExtra("horaCierre",horaCierreET.getText().toString());
             intent.putExtra("horaInicio",horaInicioET.getText().toString());
             intent.putExtra("categorias", categoriesSelected);
+            intent.putExtra("client", currentClient);
             startActivity(intent);
         }else{
             Toast.makeText(getContext(),"El precio minimo es mayor al precio maximo o la hora de inicio es despues a la de cierre",Toast.LENGTH_LONG).show();

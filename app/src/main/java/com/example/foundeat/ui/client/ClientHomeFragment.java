@@ -139,6 +139,7 @@ public class ClientHomeFragment extends Fragment {
         cargarCategories();
         cargarFotoUsuario();
         cargarNombre();
+        calcularReviewsMaximas();
         return view;
     }
 
@@ -150,6 +151,7 @@ public class ClientHomeFragment extends Fragment {
 
     private void motrarFiltros(View view) {
         FiltrosFragment filtrosFragment  = FiltrosFragment.newInstance();
+        filtrosFragment.setCurrentClient(client);
         filtrosFragment.show(getActivity().getSupportFragmentManager(), "Filtros");
     }
 
@@ -185,16 +187,16 @@ public class ClientHomeFragment extends Fragment {
         this.client = client;
     }
 
-    synchronized  public void calcularReviewsMaximas(Restaurant restaurantLocal){
-        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurantLocal.getId()).get().addOnCompleteListener(
+    synchronized  public void calcularReviewsMaximas(){
+        FirebaseFirestore.getInstance().collection("restaurants").whereIn("category",client.getFavoriteFood()).get().addOnCompleteListener(
                 task -> {
-                    int cantidadReviwew=0;
+                    double bestReview = 0.0;
                     for (DocumentSnapshot doc:task.getResult()){
-                        cantidadReviwew++;
-                    }
-                    if (cantidadReviwew>=cantidaMaximaReviews){
-                        cantidaMaximaReviews=cantidadReviwew;
-                        restauranteRecomendado= restaurantLocal;
+                        Restaurant rest = doc.toObject(Restaurant.class);
+                        if (rest.getRating() > bestReview){
+                            bestReview = rest.getRating();
+                            restauranteRecomendado = rest;
+                        }
                     }
                     cargarRestauranteRecomendado();
                 }
@@ -207,6 +209,7 @@ public class ClientHomeFragment extends Fragment {
                     url->   {
                         Glide.with(restauranteRecomendadoImage).load(url).into(restauranteRecomendadoImage);
                         restauranteRecomendadoTV.setText(restauranteRecomendado.getName());
+                        ratingRecomendado.setText(restauranteRecomendado.getRating()+"");
                     }
             );
         }
@@ -221,7 +224,6 @@ public class ClientHomeFragment extends Fragment {
                     for (DocumentSnapshot doc:task.getResult()){
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         restaurantListAdapter.addRestaurant(newRestaurant);
-                        calcularReviewsMaximas(newRestaurant);
                     }
                 }
         );
@@ -294,7 +296,6 @@ public class ClientHomeFragment extends Fragment {
                     client = doc.toObject(Client.class);
                     break;
                 }
-                Log.e(">>>>>id", client.getName());
                 clientGreetTV.setText("Hola " +client.getName()+",");
             }
         });

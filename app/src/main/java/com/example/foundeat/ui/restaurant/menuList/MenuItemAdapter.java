@@ -1,9 +1,11 @@
 package com.example.foundeat.ui.restaurant.menuList;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,8 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
 
     //List of model items.
     private ArrayList<MenuItem> menuItems;
+
+    private ActivityResultLauncher<Intent> launcher;
 
     public MenuItemAdapter(){
         menuItems = new ArrayList<>();
@@ -41,6 +45,9 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
     public void onBindViewHolder(@NonNull MenuItemView skeleton, int position) {
         //Get current item from model list
         MenuItem item = menuItems.get(position);
+        skeleton.setItem(item);
+        skeleton.setLauncher(launcher);
+
         //Bind model and view
 
         //TODO implement image display
@@ -64,7 +71,16 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
         notifyItemInserted(menuItems.size()-1);
     }
 
+    public void clear(){
+        menuItems.clear();
+        notifyDataSetChanged();
+    }
+
     public ArrayList<MenuItem> getMenuItems() {
         return menuItems;
+    }
+
+    public void setLauncher(ActivityResultLauncher<Intent> launcher) {
+        this.launcher = launcher;
     }
 }

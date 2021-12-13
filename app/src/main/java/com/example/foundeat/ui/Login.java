@@ -34,7 +34,7 @@ import com.google.gson.Gson;
 public class Login extends AppCompatActivity {
 
     private String type;
-    private String path="";
+    private String path = "";
 
     private EditText emailET, passwordET;
     private Button goBtn;
@@ -68,24 +68,24 @@ public class Login extends AppCompatActivity {
 
         goBtn.setOnClickListener(this::login);
         backBtnL.setOnClickListener(this::goBackL);
-        if(fbLoginBtn.getText().toString().equalsIgnoreCase("Log out")){
+        if (fbLoginBtn.getText().toString().equalsIgnoreCase("Log out")) {
             fbLoginBtn.setOnClickListener(v -> {
                 LoginManager.getInstance().logOut();
             });
-        }else{
+        } else {
             fbLoginBtn.setOnClickListener(this::loginFB);
         }
 
     }
 
     private void loginFB(View view) {
-       Intent intent = new Intent(this, FacebookAuthActivity.class);
-       intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-       intent.putExtra("type",type);
-       startActivity(intent);
+        Intent intent = new Intent(this, FacebookAuthActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.putExtra("type", type);
+        startActivity(intent);
     }
 
-    private void login(View view){
+    private void login(View view) {
         if (type.equalsIgnoreCase("client")) {
             path = "users";
         } else if (type.equalsIgnoreCase("restaurant")) {
@@ -95,59 +95,64 @@ public class Login extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password).addOnSuccessListener(
-                task->{
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnSuccessListener(
+                task -> {
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                    if(firebaseUser.isEmailVerified()){
+                    if (firebaseUser.isEmailVerified()) {
                         //Acceso
 
                         //Pedir usuario en firestore
-                        FirebaseFirestore.getInstance().collection(path).document(firebaseUser.getUid()).get().addOnSuccessListener(document->{
+                        FirebaseFirestore.getInstance().collection(path).document(firebaseUser.getUid()).get().addOnSuccessListener(document -> {
                             if (type.equalsIgnoreCase("client")) {
                                 Client client = document.toObject(Client.class);
-                                Intent intent;
+                                if (client != null) {
+                                    Intent intent;
 //                                 Para que termine el perfil si no lo ha terminado
-                                if(client.getProfilePic()==null){
-                                    intent = new Intent(this, ClientPhoto.class);
+                                    if (client.getProfilePic() == null) {
+                                        intent = new Intent(this, ClientPhoto.class);
+                                    } else if (client.getFavoriteFood() == null || client.getFavoriteFood().size() == 0) {
+                                        intent = new Intent(this, ClientFavoriteFood.class);
+                                    } else {
+                                        intent = new Intent(this, ClientHome.class);
+                                    }
+                                    intent.putExtra("client", client);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(this, "No hay un cliente registrado con ese email", Toast.LENGTH_LONG).show();
                                 }
-                                else if(client.getFavoriteFood()==null || client.getFavoriteFood().size()==0){
-                                    intent = new Intent(this, ClientFavoriteFood.class);
-                                }
-                                else{
-                                    intent = new Intent(this, ClientHome.class);
-                                }
-                                intent.putExtra("client", client);
-                                startActivity(intent);
                             } else if (type.equalsIgnoreCase("restaurant")) {
                                 Restaurant restaurant = document.toObject(Restaurant.class);
-                                Intent intent;
+                                if (restaurant != null) {
+                                    Intent intent;
 
-                                // Para que termine el perfil si no lo ha terminado
-                                if(restaurant.getDescription() == null || restaurant.getDescription().isEmpty()){
-                                    intent = new Intent(this, RestaurantDescription.class);
-                                }
-                                else if(restaurant.getPics() == null || restaurant.getPics().size() < 1){
-                                    intent = new Intent(this, RestaurantPhoto.class);
-                                }else if(restaurant.getAddress() == null ||restaurant.getOpeningTime() == null || restaurant.getClosingTime()== null){
-                                    intent = new Intent(this, RestaurantMoreInfo.class);
+                                    // Para que termine el perfil si no lo ha terminado
+                                    if (restaurant.getDescription() == null || restaurant.getDescription().isEmpty()) {
+                                        intent = new Intent(this, RestaurantDescription.class);
+                                    } else if (restaurant.getPics() == null || restaurant.getPics().size() < 1) {
+                                        intent = new Intent(this, RestaurantPhoto.class);
+                                    } else if (restaurant.getAddress() == null || restaurant.getOpeningTime() == null || restaurant.getClosingTime() == null) {
+                                        intent = new Intent(this, RestaurantMoreInfo.class);
+                                    } else {
+                                        intent = new Intent(this, RestaurantHome.class);
+                                    }
+                                    intent.putExtra("restaurant", restaurant);
+                                    startActivity(intent);
                                 }else{
-                                    intent = new Intent(this, RestaurantHome.class);
+                                    Toast.makeText(this, "No hay un restaurante registrado con ese email", Toast.LENGTH_LONG).show();
                                 }
-                                intent.putExtra("restaurant", restaurant);
-                                startActivity(intent);
                             }
                         });
-                    }else{
+                    } else {
                         Toast.makeText(this, "Su email no ha sido verificado", Toast.LENGTH_LONG).show();
                     }
                 }
-        ).addOnFailureListener(error->{
+        ).addOnFailureListener(error -> {
             Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
         });
 
     }
 
-    public void goBackL (View view) {
+    public void goBackL(View view) {
         finish();
     }
 }
