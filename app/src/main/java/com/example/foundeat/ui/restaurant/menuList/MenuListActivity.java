@@ -99,6 +99,8 @@ public class MenuListActivity extends AppCompatActivity {
     public void cargarMenu(){
         FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").get().addOnCompleteListener(
                 task -> {
+                    adapter.getMenuItems().clear();
+                    adapter.notifyDataSetChanged();
                     for (DocumentSnapshot doc:task.getResult()){
                         MenuItem item = doc.toObject(MenuItem.class);
                         adapter.addMenuItem(item);

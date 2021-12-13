@@ -91,6 +91,13 @@ public class RestaurantHome extends AppCompatActivity {
         settingsBtn.setOnClickListener(this::openSettings);
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        loadProfileInfo();
+        mayorMenor(restaurant.getId());
+    }
+
     private void loadRestaurantPhoto(){
         if(restaurant.getPics().size()>0){
             FirebaseStorage.getInstance().getReference().child("restaurantPhotos").child(restaurant.getPics().get(0)).getDownloadUrl().addOnSuccessListener(
