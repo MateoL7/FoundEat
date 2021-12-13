@@ -56,4 +56,14 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<FavoriteListViewH
     public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
     }
+
+    public void addRestaurant(Restaurant restaurant) {
+        restaurants.add(restaurant);
+        if(restaurants.size()<=0){
+            notifyItemInserted(restaurants.size());
+        }else{
+            notifyItemInserted(restaurants.size()-1);
+        }
+
+    }
 }
