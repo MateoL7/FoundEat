@@ -149,8 +149,9 @@ public class ClientAddReview extends AppCompatActivity {
                 Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content,  date);
                 FirebaseFirestore.getInstance().collection("reviews").document(review.getId()).set(review).addOnSuccessListener(task->{
                     Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, ClientRestaurantInfo.class);
-                    startActivity(intent);
+                    Intent intent = new Intent();
+                    setResult(RESULT_OK, intent);
+                    finish();
                 });
                 new Thread(
                         () -> {
