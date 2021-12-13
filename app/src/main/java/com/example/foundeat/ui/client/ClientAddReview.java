@@ -11,14 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foundeat.R;
+import com.example.foundeat.fcm.FCMMessage;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.model.Review;
 import com.example.foundeat.ui.restaurant.ReviewAdapter;
+import com.example.foundeat.util.HTTPSWebUtilDomi;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import java.util.Date;
 import java.util.UUID;
@@ -141,7 +144,13 @@ public class ClientAddReview extends AppCompatActivity {
                     Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
 
                 });
-
+                new Thread(
+                        () -> {
+                            FCMMessage<Review> fcmMessage = new FCMMessage<>("/topics/"+restaurant.getId(), review);
+                            String json = new Gson().toJson(fcmMessage);
+                            new HTTPSWebUtilDomi().POSTtoFCM(json);
+                        }
+                ).start();
             }
         }
     }
