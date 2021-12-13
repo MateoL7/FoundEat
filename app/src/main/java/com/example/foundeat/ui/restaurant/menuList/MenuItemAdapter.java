@@ -68,7 +68,12 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
 
     public void addMenuItem(MenuItem item){
         menuItems.add(item);
-        notifyItemInserted(menuItems.size()-1);
+        if(menuItems.size()<=0){
+            notifyItemInserted(menuItems.size());
+        }else{
+            notifyItemInserted(menuItems.size()-1);
+        }
+
     }
 
     public void clear(){

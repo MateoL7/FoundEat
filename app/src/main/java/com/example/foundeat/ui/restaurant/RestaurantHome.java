@@ -262,6 +262,7 @@ public class RestaurantHome extends AppCompatActivity {
                     }else{
                         restaurant.setMaxPrice(""+mayor);
                         restaurant.setMinPrice(""+menor);
+                        FirebaseFirestore.getInstance().collection("restaurants").document(name).set(restaurant);
                         priceTV.setText("Máx $"+mayor+"- Min $"+menor+"");
                     }
 
