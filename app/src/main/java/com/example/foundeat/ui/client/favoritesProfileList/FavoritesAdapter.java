@@ -59,6 +59,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
                     holder.getReviews().setText("("+reviews+" reseñas)");
                 }
         );
+        holder.getRating().setText(restaurant.getRating()+"");
     }
 
     @Override

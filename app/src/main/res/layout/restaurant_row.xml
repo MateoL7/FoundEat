@@ -58,7 +58,7 @@
         android:layout_marginStart="15dp"
         android:text="Reseña"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintStart_toEndOf="@+id/rating"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
@@ -77,13 +77,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+        app:layout_constraintBottom_toBottomOf="@+id/rating"
         app:layout_constraintStart_toEndOf="@+id/cardView6"
-        app:layout_constraintTop_toTopOf="@+id/textView18"
+        app:layout_constraintTop_toTopOf="@+id/rating"
         app:srcCompat="@drawable/star_small" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/rating"
         style="@style/subregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
