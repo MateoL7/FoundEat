@@ -26,6 +26,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -142,7 +145,9 @@ public class ClientAddReview extends AppCompatActivity {
                                 numReviews++;
                                 ratingSum = ratingSum + actualRating;
                             }
-                            restaurant.setRating(ratingSum/numReviews);
+                            DecimalFormat df = new DecimalFormat("#.#");
+                            df.setRoundingMode(RoundingMode.CEILING);
+                            restaurant.setRating(Double.parseDouble(df.format(ratingSum/numReviews)));
                             FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
                         }
                 );
