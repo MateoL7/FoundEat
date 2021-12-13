@@ -38,9 +38,8 @@ public class ClientAddReview extends AppCompatActivity {
     private Button addClientReviewBtn;
     private EditText contentReview;
     private Button star1,star2,star3,star4,star5;
-    private double rating;
+    private int rating;
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,16 +136,17 @@ public class ClientAddReview extends AppCompatActivity {
                 FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).get().addOnCompleteListener(
                         task -> {
                             int numReviews=0;
+                            int ratingSum = 0;
                             for (DocumentSnapshot doc:task.getResult()){
+                                int actualRating = (Integer) doc.get("rating");
                                 numReviews++;
+                                ratingSum = ratingSum + actualRating;
                             }
-                            double actual = restaurant.getRating();
-                            rating = (rating + actual)/numReviews;
-                            restaurant.setRating(rating);
+                            restaurant.setRating(ratingSum/numReviews);
                             FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
                         }
                 );
-                Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content,  date);
+                Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content, rating,  date);
                 FirebaseFirestore.getInstance().collection("reviews").document(review.getId()).set(review).addOnSuccessListener(task->{
                     Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();

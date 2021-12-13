@@ -28,7 +28,7 @@ public class RestaurantListView extends RecyclerView.ViewHolder {
         nombre = itemView.findViewById(R.id.restaurantListNombre);
         tipoComida = itemView.findViewById(R.id.restaurantListTipo);
         resenas = itemView.findViewById(R.id.restaurantListResenas);
-        //calificacion = itemView.findViewById(R.id.restaurantListCalificacion);
+        calificacion = itemView.findViewById(R.id.restaurantListCalificacion);
 
         image.setOnClickListener(this::mostrarRestaurante);
     }
@@ -70,9 +70,9 @@ public class RestaurantListView extends RecyclerView.ViewHolder {
         return resenas;
     }
 
-   /* public TextView getCalificacion() {
+    public TextView getCalificacion() {
         return calificacion;
-    }*/
+    }
 
 
 }
