@@ -19,10 +19,21 @@ public class FCMService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        NotificationUtil.showNotification(
-                getApplicationContext(),
-                "Nuevo Restaurante",
-                "¡Conoce ya lo que este nuevo restaurante tiene para ofrecerte!");
+        Log.e(">>>>>From",remoteMessage.getFrom());
+
+        if(remoteMessage.getFrom().equals("/topics/news")){
+            NotificationUtil.showNotification(
+                    getApplicationContext(),
+                    "Nuevo Restaurante",
+                    "¡Conoce ya lo que este nuevo restaurante tiene para ofrecerte!");
+        }else{
+            NotificationUtil.showNotification(
+                    getApplicationContext(),
+                    "Nueva Reseña",
+                    "¡Un cliente te ha dejado una reseña!");
+        }
+
+
 
     }
 }
