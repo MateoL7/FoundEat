@@ -98,7 +98,6 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         intent.putExtra("client",currentClient);
         intent.putExtra("restaurant",restaurant);
         startActivity(intent);
-        finish();
     }
 
     public void loadRestaurantInfo(){
