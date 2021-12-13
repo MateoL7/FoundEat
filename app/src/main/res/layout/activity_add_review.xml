@@ -12,9 +12,8 @@
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="90dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/textfieldborder"
         android:ems="10"
         android:fontFamily="@font/dmsansregular"
@@ -25,7 +24,6 @@
         android:paddingTop="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint"
-        app:layout_constraintBottom_toTopOf="@+id/addClientReviewBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,39 +80,43 @@
 
     <android.widget.Button
         android:id="@+id/star1"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/addClientReviewBtn"
+        android:background="@drawable/star_null"
         app:layout_constraintEnd_toStartOf="@+id/star2"
-        app:layout_constraintTop_toBottomOf="@+id/contentReview" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <android.widget.Button
         android:id="@+id/star5"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        android:text="Button"
+        android:layout_marginEnd="86dp"
+        android:background="@drawable/star_null"
         app:layout_constraintBottom_toBottomOf="@+id/star4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/star4"
         app:layout_constraintTop_toTopOf="@+id/star4" />
 
     <android.widget.Button
         android:id="@+id/star2"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="16dp"
-        android:text="Button"
+        android:background="@drawable/star_null"
         app:layout_constraintBottom_toBottomOf="@+id/star1"
         app:layout_constraintEnd_toStartOf="@+id/star3"
         app:layout_constraintTop_toTopOf="@+id/star1" />
 
     <android.widget.Button
         android:id="@+id/star3"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:text="Button"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
+        android:background="@drawable/star_null"
         app:layout_constraintBottom_toBottomOf="@+id/star2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,12 +124,23 @@
 
     <android.widget.Button
         android:id="@+id/star4"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        android:text="Button"
+        android:background="@drawable/star_null"
         app:layout_constraintBottom_toBottomOf="@+id/star3"
         app:layout_constraintStart_toEndOf="@+id/star3"
         app:layout_constraintTop_toTopOf="@+id/star3" />
+
+    <TextView
+        android:id="@+id/textView19"
+        style="@style/titleRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/califica"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentReview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

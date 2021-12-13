@@ -68,52 +68,52 @@ public class ClientAddReview extends AppCompatActivity {
         star1.setOnClickListener(v->{
             rating = 1;
             //Prendidas
-            star1.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star2.setBackground(null);
-            star3.setBackground(null);
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star2.setBackgroundResource(R.drawable.star_null);
+            star3.setBackgroundResource(R.drawable.star_null);
+            star4.setBackgroundResource(R.drawable.star_null);
+            star5.setBackgroundResource(R.drawable.star_null);
 
         });
         star2.setOnClickListener(v->{
             rating = 2;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star3.setBackground(null);
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star3.setBackgroundResource(R.drawable.star_null);
+            star4.setBackgroundResource(R.drawable.star_null);
+            star5.setBackgroundResource(R.drawable.star_null);
         });
         star3.setOnClickListener(v->{
             rating = 3;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
-            star3.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
+            star3.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star4.setBackgroundResource(R.drawable.star_null);
+            star5.setBackgroundResource(R.drawable.star_null);
         });
         star4.setOnClickListener(v->{
             rating = 4;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
-            star3.setBackground(null);
-            star4.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
+            star3.setBackgroundResource(R.drawable.star_filled);
+            star4.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star5.setBackground(null);
+            star5.setBackgroundResource(R.drawable.star_null);;
         });
         star5.setOnClickListener(v->{
             rating = 5;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
-            star3.setBackground(null);
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
+            star3.setBackgroundResource(R.drawable.star_filled);
+            star4.setBackgroundResource(R.drawable.star_filled);
+            star5.setBackgroundResource(R.drawable.star_filled);
         });
 
     }
