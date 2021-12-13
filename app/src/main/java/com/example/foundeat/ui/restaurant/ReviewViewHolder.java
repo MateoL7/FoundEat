@@ -12,7 +12,7 @@ import com.example.foundeat.R;
 public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView customerPic;
-    private TextView customerNameTV, contentTV;
+    private TextView customerNameTV, contentTV, ratingC;
 
 
     public ReviewViewHolder(@NonNull View itemView) {
@@ -21,6 +21,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         customerNameTV = itemView.findViewById(R.id.customerNameTV);
         contentTV = itemView.findViewById(R.id.contentTV);
         customerPic = itemView.findViewById(R.id.customerPic);
+        ratingC = itemView.findViewById(R.id.ratingC);
 
     }
 
@@ -34,5 +35,9 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getContentTV() {
         return contentTV;
+    }
+
+    public TextView getRatingC() {
+        return ratingC;
     }
 }

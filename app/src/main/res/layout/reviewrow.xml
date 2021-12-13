@@ -46,6 +46,26 @@
             app:layout_constraintStart_toEndOf="@+id/cardView5"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/ratingC"
+                style="@style/subregular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="11dp"
+                android:text="Rating"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="20dp"
+                android:layout_height="17dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingC"
+                app:layout_constraintEnd_toStartOf="@+id/ratingC"
+                app:layout_constraintTop_toTopOf="@+id/ratingC"
+                app:srcCompat="@drawable/star_filled" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView

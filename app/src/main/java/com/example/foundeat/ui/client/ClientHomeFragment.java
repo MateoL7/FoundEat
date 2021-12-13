@@ -213,7 +213,7 @@ public class ClientHomeFragment extends Fragment {
                     }
             );
         }
-        
+
     }
 
     synchronized public void cargarDatosRstaurantes(){

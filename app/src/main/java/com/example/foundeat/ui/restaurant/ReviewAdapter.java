@@ -37,6 +37,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
         Review review = reviews.get(position);
         holder.getContentTV().setText(review.getContent());
         holder.getCustomerNameTV().setText(review.getCustomerName());
+        holder.getRatingC().setText(review.getRating()+"");
         if(review.getCustomerPic()!=null){
             FirebaseStorage.getInstance().getReference().child("clientPhotos").child(review.getCustomerPic()).getDownloadUrl().addOnSuccessListener(
                     url->   {
