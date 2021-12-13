@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:text="Categoria"
         app:layout_constraintStart_toEndOf="@+id/cardView6"
         app:layout_constraintTop_toBottomOf="@+id/reviews" />
 
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginBottom="5dp"
-        android:text="TextView"
+        android:text="Nombre"
         app:layout_constraintBottom_toTopOf="@+id/reviews"
         app:layout_constraintStart_toEndOf="@+id/cardView6" />
 
@@ -55,10 +55,10 @@
         style="@style/subregular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:text="TextView"
+        android:layout_marginStart="15dp"
+        android:text="Reseña"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView6"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
@@ -71,4 +71,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+        app:layout_constraintStart_toEndOf="@+id/cardView6"
+        app:layout_constraintTop_toTopOf="@+id/textView18"
+        app:srcCompat="@drawable/star_small" />
+
+    <TextView
+        android:id="@+id/textView18"
+        style="@style/subregular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Puntaje"
+        app:layout_constraintBottom_toBottomOf="@+id/reviews"
+        app:layout_constraintStart_toEndOf="@+id/imageView17"
+        app:layout_constraintTop_toTopOf="@+id/reviews" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
