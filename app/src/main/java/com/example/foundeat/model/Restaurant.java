@@ -9,11 +9,12 @@ public class Restaurant implements Serializable {
     private String id,name,email,description, category, address,minPrice, maxPrice, accountInfo;
     private ArrayList<String> pics = new ArrayList<>();
     private String openingTime, closingTime;
+    private double rating;
 
     public Restaurant() {
     }
 
-    public Restaurant(String id, String name, String email, String description, String category, String address, String minPrice, String maxPrice, String accountInfo, ArrayList<String> pics, String openingTime, String closingTime) {
+    public Restaurant(String id, String name, String email, String description, String category, String address, String minPrice, String maxPrice, String accountInfo, ArrayList<String> pics, String openingTime, String closingTime, double rating) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -26,6 +27,7 @@ public class Restaurant implements Serializable {
         this.pics = pics;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
+        this.rating = rating;
     }
 
     public String getId() {
@@ -50,6 +52,14 @@ public class Restaurant implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getDescription() {

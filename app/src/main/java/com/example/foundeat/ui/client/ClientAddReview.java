@@ -17,6 +17,7 @@ import com.example.foundeat.model.Review;
 import com.example.foundeat.ui.restaurant.ReviewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -30,6 +31,8 @@ public class ClientAddReview extends AppCompatActivity {
     private Restaurant restaurant;
     private Button addClientReviewBtn;
     private EditText contentReview;
+    private Button star1,star2,star3,star4,star5;
+    private double rating;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -37,7 +40,7 @@ public class ClientAddReview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
-
+        rating = 0;
         client = (Client) getIntent().getExtras().get("client");
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
         contentReview = findViewById(R.id.contentReview);
@@ -50,7 +53,59 @@ public class ClientAddReview extends AppCompatActivity {
             finish();
         });
 
+
         addClientReviewBtn.setOnClickListener(this::addReview);
+
+        star1.setOnClickListener(v->{
+            rating = 1;
+            //Prendidas
+            star1.setBackground(null);
+            //Apagadas
+            star2.setBackground(null);
+            star3.setBackground(null);
+            star4.setBackground(null);
+            star5.setBackground(null);
+
+        });
+        star2.setOnClickListener(v->{
+            rating = 2;
+            //Prendidas
+            star1.setBackground(null);
+            star2.setBackground(null);
+            //Apagadas
+            star3.setBackground(null);
+            star4.setBackground(null);
+            star5.setBackground(null);
+        });
+        star3.setOnClickListener(v->{
+            rating = 3;
+            //Prendidas
+            star1.setBackground(null);
+            star2.setBackground(null);
+            star3.setBackground(null);
+            //Apagadas
+            star4.setBackground(null);
+            star5.setBackground(null);
+        });
+        star4.setOnClickListener(v->{
+            rating = 4;
+            //Prendidas
+            star1.setBackground(null);
+            star2.setBackground(null);
+            star3.setBackground(null);
+            star4.setBackground(null);
+            //Apagadas
+            star5.setBackground(null);
+        });
+        star5.setOnClickListener(v->{
+            rating = 5;
+            //Prendidas
+            star1.setBackground(null);
+            star2.setBackground(null);
+            star3.setBackground(null);
+            star4.setBackground(null);
+            star5.setBackground(null);
+        });
 
     }
 
@@ -66,11 +121,28 @@ public class ClientAddReview extends AppCompatActivity {
             String restaurantName = restaurant.getName();
             String content = contentReview.getText().toString();
             Date date = new Date();
-            Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content,  date);
-            FirebaseFirestore.getInstance().collection("reviews").document(review.getId()).set(review).addOnSuccessListener(task->{
-                Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
-                finish();
-            });
+            if(rating==0){
+                Toast.makeText(this, "Califica al restaurante por favor", Toast.LENGTH_SHORT).show();
+            }else{
+                FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).get().addOnCompleteListener(
+                        task -> {
+                            int numReviews=0;
+                            for (DocumentSnapshot doc:task.getResult()){
+                                numReviews++;
+                            }
+                            double actual = restaurant.getRating();
+                            rating = (rating + actual)/numReviews;
+                            restaurant.setRating(rating);
+                            FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
+                        }
+                );
+                Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content,  date);
+                FirebaseFirestore.getInstance().collection("reviews").document(review.getId()).set(review).addOnSuccessListener(task->{
+                    Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
+
+                });
+
+            }
         }
     }
 }
