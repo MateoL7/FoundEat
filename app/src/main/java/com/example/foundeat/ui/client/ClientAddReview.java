@@ -136,9 +136,9 @@ public class ClientAddReview extends AppCompatActivity {
                 FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).get().addOnCompleteListener(
                         task -> {
                             int numReviews=0;
-                            int ratingSum = 0;
+                            double ratingSum = 0;
                             for (DocumentSnapshot doc:task.getResult()){
-                                int actualRating = (Integer) doc.get("rating");
+                                long actualRating = (Long) doc.get("rating");
                                 numReviews++;
                                 ratingSum = ratingSum + actualRating;
                             }
@@ -153,6 +153,7 @@ public class ClientAddReview extends AppCompatActivity {
                     intent.putExtra("client",client);
                     intent.putExtra("restaurant",restaurant);
                     startActivity(intent);
+                    finish();
                 });
                 new Thread(
                         () -> {

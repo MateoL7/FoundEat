@@ -81,6 +81,7 @@ public class ClientHome extends AppCompatActivity {
 
     }
 
+
     public void showFragment(Fragment f) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
