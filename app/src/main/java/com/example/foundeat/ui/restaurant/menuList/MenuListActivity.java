@@ -34,6 +34,8 @@ public class MenuListActivity extends AppCompatActivity {
 
     //Model
     private Restaurant restaurant;
+    private MenuItem item;
+    private boolean editing;
 
     //Needed for RecyclerView configuration
     private LinearLayoutManager manager;
@@ -47,6 +49,8 @@ public class MenuListActivity extends AppCompatActivity {
         addMenuItemBtn = findViewById(R.id.addMenuItemBtn);
         menuListRV = findViewById(R.id.menuListRV);
         goBackMTH = findViewById(R.id.goBackMTH);
+
+        //Get editing from intent
 
         //Get model object from intent
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
@@ -67,6 +71,8 @@ public class MenuListActivity extends AppCompatActivity {
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), this::onResult
         );
+
+        adapter.setLauncher(launcher);
     }
 
     //Method that handles add item button
@@ -84,15 +90,26 @@ public class MenuListActivity extends AppCompatActivity {
         //vaciarListaRecyclerView();
         if(result.getResultCode() == RESULT_OK){
             //If results are ok (menu item has info to add)
-
-            newItemName = result.getData().getExtras().getString("nombre");
-            newItemPrice = result.getData().getExtras().getString("precio");
-            newItemDescription = result.getData().getExtras().getString("descripcion");
-            menuItemImage=result.getData().getExtras().getString("MenuItemsPhoto");
-            //(String id, String image, String name, String price, String description)
-            MenuItem item = new MenuItem(UUID.randomUUID().toString(), menuItemImage, newItemName, newItemPrice, newItemDescription);
-            adapter.addMenuItem(item);
-            FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").document(item.getId()).set(item);
+            editing = result.getData().getBooleanExtra("editing", false);
+            if(!editing){
+                newItemName = result.getData().getExtras().getString("nombre");
+                newItemPrice = result.getData().getExtras().getString("precio");
+                newItemDescription = result.getData().getExtras().getString("descripcion");
+                menuItemImage=result.getData().getExtras().getString("MenuItemsPhoto");
+                //(String id, String image, String name, String price, String description)
+                MenuItem item = new MenuItem(UUID.randomUUID().toString(), menuItemImage, newItemName, newItemPrice, newItemDescription);
+                adapter.addMenuItem(item);
+                FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").document(item.getId()).set(item);
+            } else {
+                item = (MenuItem) result.getData().getExtras().get("menuItem");
+                item.setName(result.getData().getExtras().getString("nombre"));
+                item.setPrice(result.getData().getExtras().getString("precio"));
+                item.setDescription(result.getData().getExtras().getString("descripcion"));
+                item.setImage(item.getImage());
+                FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).collection("menu").document(item.getId()).set(item);
+            }
+            adapter.clear();
+            cargarMenu();
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.foundeat.ui.client.restaurantList;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,7 +35,6 @@ public class RestaurantListView extends RecyclerView.ViewHolder {
     }
 
     private void mostrarRestaurante(View view) {
-
         Intent intent = new Intent(view.getContext(), ClientRestaurantInfo.class);
         intent.putExtra("restaurant",restaurant);
         intent.putExtra("client", currentClient);

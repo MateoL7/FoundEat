@@ -150,6 +150,7 @@ public class ClientHomeFragment extends Fragment {
 
     private void motrarFiltros(View view) {
         FiltrosFragment filtrosFragment  = FiltrosFragment.newInstance();
+        filtrosFragment.setCurrentClient(client);
         filtrosFragment.show(getActivity().getSupportFragmentManager(), "Filtros");
     }
 
@@ -294,7 +295,6 @@ public class ClientHomeFragment extends Fragment {
                     client = doc.toObject(Client.class);
                     break;
                 }
-                Log.e(">>>>>id", client.getName());
                 clientGreetTV.setText("Hola " +client.getName()+",");
             }
         });

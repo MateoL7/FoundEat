@@ -1,6 +1,8 @@
 package com.example.foundeat.model;
 
-public class MenuItem {
+import java.io.Serializable;
+
+public class MenuItem implements Serializable {
 
     private String id;
     private String image=null,name,price,description;

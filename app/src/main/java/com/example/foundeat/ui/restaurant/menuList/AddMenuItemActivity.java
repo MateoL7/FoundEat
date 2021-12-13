@@ -17,7 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.foundeat.R;
+import com.example.foundeat.model.MenuItem;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -30,7 +32,16 @@ public class AddMenuItemActivity extends AppCompatActivity {
     private EditText menuItemProductNameET, priceMenuItemET, productDescriptionET;
     private Uri uri;
 
+    private MenuItem item;
+    private boolean editing;
+
     private ActivityResultLauncher<Intent> launcher;
+
+
+//            intent.putExtra("editing", editing);
+//        if(editing){
+//        intent.putExtra("item", item);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +55,29 @@ public class AddMenuItemActivity extends AppCompatActivity {
         productDescriptionET = findViewById(R.id.productDescriptionET);
         backAPBtn = findViewById(R.id.backAPBtn);
 
+        //Get intents
+        editing = getIntent().getBooleanExtra("editing", false);
+        if(editing){
+            item = (MenuItem) getIntent().getExtras().get("menuItem");
+            loadData();
+        }
+
         launcher  =registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onGaleryResult);
 
         saveMenuItemBtn.setOnClickListener(this::saveItem);
         addPhotoBtn.setOnClickListener(this::addPhoto);
         backAPBtn.setOnClickListener(this::goToMenu);
+    }
+
+    public void loadData(){
+        menuItemProductNameET.setText(item.getName());
+        priceMenuItemET.setText(item.getPrice());
+        productDescriptionET.setText(item.getDescription());
+        FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(item.getImage()).getDownloadUrl().addOnSuccessListener(
+                url->   {
+                    Glide.with(addPhotoBtn).load(url).into(addPhotoBtn);
+                }
+        );
     }
 
     public void onGaleryResult(ActivityResult result){
@@ -70,7 +99,6 @@ public class AddMenuItemActivity extends AppCompatActivity {
         finish();
     }
 
-
     private void saveItem(View view){
         Intent intent = new Intent();
 
@@ -80,7 +108,6 @@ public class AddMenuItemActivity extends AppCompatActivity {
         String descripcion = productDescriptionET.getText().toString();
 
         boolean finished = true;
-
 
         if(!nombre.equals("")){
             intent.putExtra("nombre", nombre);
@@ -101,9 +128,20 @@ public class AddMenuItemActivity extends AppCompatActivity {
             finished = false;
         }
         if(uri != null){
-            String fileName = UUID.randomUUID().toString();
-            FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(fileName).putFile(uri);
-            intent.putExtra("MenuItemsPhoto", fileName);
+            if(editing){
+                FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(item.getImage()).putFile(uri);
+                intent.putExtra("MenuItemsPhoto", item.getImage());
+                intent.putExtra("menuItem", item);
+                intent.putExtra("editing",editing);
+            }else{
+                String fileName = UUID.randomUUID().toString();
+                FirebaseStorage.getInstance().getReference().child("MenuItemsPhoto").child(fileName).putFile(uri);
+                intent.putExtra("MenuItemsPhoto", fileName);
+            }
+        }else if(editing){
+            intent.putExtra("menuItem", item);
+            intent.putExtra("editing",editing);
+            finished = true;
         }else{
             Toast.makeText(getApplicationContext(),"Por favor seleccione una foto",Toast.LENGTH_SHORT).show();
             finished = false;

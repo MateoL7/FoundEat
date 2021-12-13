@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.foundeat.R;
+import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,14 +34,19 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
     private TextView restaurantesfiltrosTV;
     private ArrayList<String> categoriesSelected;
 
+    private Client client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_with_filters);
 
+        client = (Client) getIntent().getExtras().get("client");
+
         restaurantesfiltrosTV=findViewById(R.id.restaurantesfiltrosTV);
         restaurantFiltersRV = findViewById(R.id.restaurantFiltersRV);
         restaurantFilterAdapter = new RestaurantListAdapter();
+        restaurantFilterAdapter.addClient(client);
         restaurantFiltersRV.setLayoutManager(new LinearLayoutManager(this));
         restaurantFiltersRV.setAdapter(restaurantFilterAdapter);
         restaurantFiltersRV.setHasFixedSize(true);
@@ -55,97 +61,44 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
 
 
      public void cargarDatosRstaurantes(){
-         /*for (String category:categoriesSelected) {
-             Log.e("Aquiii: ", maxPrice +" - "+ minPrice+ " - "+ horaCierre+ " - "+category);
-             FirebaseFirestore.getInstance().collection("restaurants").whereEqualTo("category",category).get().addOnCompleteListener(
-                     task -> {
-                         if (task.getResult().isEmpty()){
-                             restaurantesfiltrosTV.setText("Sin resultados");
-                         }else{
-                             restaurantesfiltrosTV.setText("Restaurantes obtenidos");
-                         }
-                         for (DocumentSnapshot doc:task.getResult()){
-                             Restaurant newRestaurant = doc.toObject(Restaurant.class);
-                             if (!(Integer.parseInt(maxPrice)<Integer.parseInt(newRestaurant.getMinPrice()))
-                             &&!(Integer.parseInt(minPrice)>Integer.parseInt(newRestaurant.getMaxPrice()))){
-                                 if (newRestaurant.getClosingTime()==null&&newRestaurant.getOpeningTime()==null){
-                                     restaurantFilterAdapter.addRestaurant(newRestaurant);
-                                 }else{
-                                     if(horaInicio.equals("") || horaCierre.equals("")){
-                                         horaInicio = "00:00";
-                                         horaCierre = "24:00";
-                                     }
-                                     //TODO: Revisar lógica del tiempo
-                                     if (!LocalTime.parse(horaInicio).isAfter(LocalTime.parse(newRestaurant.getClosingTime()))
-                                             &&!LocalTime.parse(horaCierre).isBefore(LocalTime.parse(newRestaurant.getOpeningTime()))){
-                                         restaurantFilterAdapter.addRestaurant(newRestaurant);
-                                     }
-                                 }
-                             }
-                         }
-
-                     }
-             );
-         }
-         if (categoriesSelected.isEmpty()){
-             FirebaseFirestore.getInstance().collection("restaurants").whereGreaterThan("minPrice","201").get().addOnCompleteListener(
-                     task -> {
-                         if (task.getResult().isEmpty()){
-                             restaurantesfiltrosTV.setText("Sin resultados");
-                         }else{
-                             restaurantesfiltrosTV.setText("Restaurantes obtenidos");
-                         }
-                         for (DocumentSnapshot doc:task.getResult()){
-                             Restaurant newRestaurant = doc.toObject(Restaurant.class);
-                             if (!(Integer.parseInt(maxPrice)<Integer.parseInt(newRestaurant.getMinPrice()))
-                                     &&!(Integer.parseInt(minPrice)>Integer.parseInt(newRestaurant.getMaxPrice()))){
-
-                                 if (newRestaurant.getClosingTime()==null&&newRestaurant.getOpeningTime()==null){
-                                     restaurantFilterAdapter.addRestaurant(newRestaurant);
-                                 }else{
-                                     if(horaInicio.equals("") || horaCierre.equals("")){
-                                         horaInicio = "00:00";
-                                         horaCierre = "23:59";
-                                     }
-                                     if (!LocalTime.parse(horaInicio).isAfter(LocalTime.parse(newRestaurant.getClosingTime()))
-                                             &&!LocalTime.parse(horaCierre).isBefore(LocalTime.parse(newRestaurant.getOpeningTime()))){
-                                         restaurantFilterAdapter.addRestaurant(newRestaurant);
-                                     }
-                                 }
-                             }
-                         }
-
-                     }
-             );
-         }*/
-
          Query q = FirebaseFirestore.getInstance().collection("restaurants");
          if(!categoriesSelected.isEmpty()){
              q = q.whereIn("category",categoriesSelected);
-         }
-         if(!maxPrice.equals("")){
-             q = q.whereLessThan("minPrice", maxPrice);
          }
          q.get().addOnCompleteListener(task -> {
                 for(DocumentSnapshot doc: task.getResult()){
                     Restaurant rest = doc.toObject(Restaurant.class);
                     boolean aux = true;
-//                    if(rest.getMinPrice() != null){
-//
-//                        Log.e("Price", "Found: "+rest.getMaxPrice()+" Given: "+minPrice + " Result: "+rest.getMaxPrice().compareTo(minPrice));
-//                        if(rest.getMinPrice().compareTo(maxPrice) < 0){
-//                            aux = false;
-//                        }
-//                    }
-//                    if(rest.getOpeningTime() != null){
-//                        if(rest.getOpeningTime().compareTo(horaInicio) < 0){
-//                            aux = false;
-//                        }}
-//                    if(rest.getClosingTime() != null){
-//                        if(rest.getClosingTime().compareTo(horaCierre) > 0){
-//                            aux = false;
-//                        }
-//                    }
+                    if(rest.getMaxPrice() != null){
+                        int minRest = Integer.parseInt(rest.getMinPrice());
+                        if(maxPrice.equals("")){
+                            maxPrice = "0";
+                        }
+                        int givenMax = Integer.parseInt(maxPrice);
+                        if(minRest>givenMax){
+                            aux = false;
+                        }
+                    }
+                    if(rest.getMinPrice() != null){
+                        int maxRest = Integer.parseInt(rest.getMaxPrice());
+                        if(minPrice.equals("")){
+                            minPrice = "0";
+                        }
+                        int givenMin = Integer.parseInt(minPrice);
+                        if(givenMin>maxRest){
+                            aux = false;
+                        }
+                    }
+                    if(rest.getOpeningTime() != null && !horaInicio.equals("")){
+                        if(rest.getOpeningTime().compareTo(horaInicio) > 0){
+                            aux = false;
+                        }
+                    }
+                    if(rest.getClosingTime() != null && !horaCierre.equals("")){
+                        if(rest.getClosingTime().compareTo(horaCierre) < 0){
+                            aux = false;
+                        }
+                    }
                     if(aux){
                         restaurantFilterAdapter.addRestaurant(rest);
                     }
