@@ -61,9 +61,21 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListVi
                 }
         );
 
+
         skeleton.setRestaurant(restaurant);
         skeleton.setCurrentClient(currentClient);
-        //skeleton.getCalificacion().setText("5");
+
+        /*FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).get().addOnCompleteListener(
+                task -> {
+                    int cantidadReviwew=0;
+                    for (DocumentSnapshot doc:task.getResult()){
+                        cantidadReviwew++;
+                    }
+                    skeleton.getResenas().setText("("+cantidadReviwew+" reseñas)");
+                }
+        );*/
+
+        skeleton.getCalificacion().setText(restaurant.getRating()+"");
         skeleton.getNombre().setText(restaurant.getName());
         skeleton.getTipoComida().setText(restaurant.getCategory());
     }
