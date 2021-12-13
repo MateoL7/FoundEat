@@ -11,12 +11,13 @@ public class Review {
     private String customerName;
     private String restaurantName;
     private String content;
+    private int rating;
     private Date date;
 
     public Review() {
     }
 
-    public Review(String id, String customerID, String restaurantID, String customerPic, String customerName, String restaurantName, String content, Date date) {
+    public Review(String id, String customerID, String restaurantID, String customerPic, String customerName, String restaurantName, String content, int rating, Date date) {
         this.id = id;
         this.customerID = customerID;
         this.restaurantID = restaurantID;
@@ -24,6 +25,7 @@ public class Review {
         this.customerName = customerName;
         this.restaurantName = restaurantName;
         this.content = content;
+        this.rating = rating;
         this.date = date;
     }
 
@@ -61,6 +63,14 @@ public class Review {
 
     public String getRestaurantName() {
         return restaurantName;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public void setRestaurantName(String restaurantName) {
