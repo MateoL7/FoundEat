@@ -50,7 +50,6 @@ public class ClientRestaurantInfo extends AppCompatActivity {
 
     private boolean added;
 
-    private ActivityResultLauncher<Intent> launcher;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -73,11 +72,6 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         favBttn = findViewById(R.id.favBttn);
         goBack = findViewById(R.id.goBack);
 
-        //AddReview Launcher
-        launcher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(), this::onReviewResult
-        );
-
         //Add listeners to buttons
         favBttn.setOnClickListener(this::addToFavorites);
         menuTV.setOnClickListener(this::loadMenu);
@@ -93,12 +87,6 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         loadRestaurantInfo();
     }
 
-    private void onReviewResult(ActivityResult result){
-        if(result.getResultCode()==RESULT_OK){
-            loadRestaurantInfo();
-        }
-    }
-
     private void showReviews(View view) {
         Intent intent = new Intent(this, RestaurantReviews.class);
         intent.putExtra("restaurant",restaurant);
@@ -109,7 +97,8 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         Intent intent = new Intent(this, ClientAddReview.class);
         intent.putExtra("client",currentClient);
         intent.putExtra("restaurant",restaurant);
-        launcher.launch(intent);
+        startActivity(intent);
+        finish();
     }
 
     public void loadRestaurantInfo(){
