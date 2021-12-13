@@ -20,7 +20,7 @@ import com.google.firebase.firestore.Query;
 public class FavoritesViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView pic;
-    private TextView name, category, reviews;
+    private TextView name, category, reviews, rating;
     private Button favBtn;
 
     private Restaurant restaurant;
@@ -34,6 +34,7 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
         category = itemView.findViewById(R.id.category);
         reviews = itemView.findViewById(R.id.reviews);
         favBtn = itemView.findViewById(R.id.favBtn);
+        rating = itemView.findViewById(R.id.rating);
 
         pic.setOnClickListener(this::showRestaurant);
         favBtn.setOnClickListener(this::unFavorite);
@@ -76,6 +77,10 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getReviews() {
         return reviews;
+    }
+
+    public TextView getRating() {
+        return rating;
     }
 
     public Button getFavBtn() {
