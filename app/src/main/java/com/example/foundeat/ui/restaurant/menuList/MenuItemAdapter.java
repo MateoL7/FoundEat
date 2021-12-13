@@ -13,6 +13,7 @@ import com.example.foundeat.model.MenuItem;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 //RecyclerView adapter (pieces together skeleton and model)
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
@@ -61,5 +62,9 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemView> {
     public void addMenuItem(MenuItem item){
         menuItems.add(item);
         notifyItemInserted(menuItems.size()-1);
+    }
+
+    public ArrayList<MenuItem> getMenuItems() {
+        return menuItems;
     }
 }
