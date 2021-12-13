@@ -139,6 +139,7 @@ public class ClientHomeFragment extends Fragment {
         cargarCategories();
         cargarFotoUsuario();
         cargarNombre();
+        calcularReviewsMaximas();
         return view;
     }
 
@@ -186,16 +187,16 @@ public class ClientHomeFragment extends Fragment {
         this.client = client;
     }
 
-    synchronized  public void calcularReviewsMaximas(Restaurant restaurantLocal){
-        FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurantLocal.getId()).get().addOnCompleteListener(
+    synchronized  public void calcularReviewsMaximas(){
+        FirebaseFirestore.getInstance().collection("restaurants").whereIn("category",client.getFavoriteFood()).get().addOnCompleteListener(
                 task -> {
-                    int cantidadReviwew=0;
+                    double bestReview = 0.0;
                     for (DocumentSnapshot doc:task.getResult()){
-                        cantidadReviwew++;
-                    }
-                    if (cantidadReviwew>=cantidaMaximaReviews){
-                        cantidaMaximaReviews=cantidadReviwew;
-                        restauranteRecomendado= restaurantLocal;
+                        Restaurant rest = doc.toObject(Restaurant.class);
+                        if (rest.getRating() > bestReview){
+                            bestReview = rest.getRating();
+                            restauranteRecomendado = rest;
+                        }
                     }
                     cargarRestauranteRecomendado();
                 }
@@ -222,7 +223,6 @@ public class ClientHomeFragment extends Fragment {
                     for (DocumentSnapshot doc:task.getResult()){
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         restaurantListAdapter.addRestaurant(newRestaurant);
-                        calcularReviewsMaximas(newRestaurant);
                     }
                 }
         );
