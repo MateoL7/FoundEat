@@ -1,9 +1,13 @@
 package com.example.foundeat.ui.client.restaurantInfo;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -45,6 +49,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
     private ImageButton favBttn, goBack;
 
     private boolean added;
+
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
