@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.gson.Gson;
 
@@ -80,6 +81,8 @@ public class RestaurantHome extends AppCompatActivity {
         loadProfileInfo();
 
         mayorMenor(restaurant.getId());
+
+        FirebaseMessaging.getInstance().subscribeToTopic(restaurant.getId());
 
         editProfileBtn = findViewById(R.id.editProfileBtn);
         editProfileBtn.setOnClickListener(this::editProfile);
