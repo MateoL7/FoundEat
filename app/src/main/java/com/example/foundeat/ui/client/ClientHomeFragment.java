@@ -64,7 +64,7 @@ public class ClientHomeFragment extends Fragment {
     private FavoritesListAdapter favoritesListAdapter;
 
     private ImageView restauranteRecomendadoImage;
-    private TextView restauranteRecomendadoTV, clientGreetTV;
+    private TextView restauranteRecomendadoTV, clientGreetTV, ratingRecomendado;
     private ImageView homeClientProfilePicIV;
     private ImageButton searchBtn;
     private ImageButton filterSearchBttn;
@@ -129,6 +129,7 @@ public class ClientHomeFragment extends Fragment {
         searchBtn=view.findViewById(R.id.searchBtn);
         filterSearchBttn = view.findViewById(R.id.filterSearchBttn);
         clientGreetTV = view.findViewById(R.id.clientGreetTV);
+        ratingRecomendado = view.findViewById(R.id.ratingRecomendado);
         searchBtn.setOnClickListener(this::buscarRestaurante);
         restauranteRecomendadoImage.setOnClickListener(this::mostrarRestauranteRecomendado);
         filterSearchBttn.setOnClickListener(this::motrarFiltros);
@@ -209,6 +210,7 @@ public class ClientHomeFragment extends Fragment {
                     }
             );
         }
+        
     }
 
     synchronized public void cargarDatosRstaurantes(){

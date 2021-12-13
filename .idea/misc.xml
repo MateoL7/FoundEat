@@ -87,16 +87,13 @@
         <entry key="app/src/main/res/layout/activity_client_favorite_food.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/activity_client_favorites.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/activity_client_home.xml" value="0.19067028985507245" />
-<<<<<<< HEAD
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
-=======
         <entry key="app/src/main/res/layout/activity_client_photo.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/activity_client_restaurant_info.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_client_reviews.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/activity_client_screen.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/activity_client_signup.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
->>>>>>> df2b8c639436e05ddfc88c749081e40d22bba40f
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_menu_list.xml" value="0.15670289855072464" />
         <entry key="app/src/main/res/layout/activity_nav_restaurant_home.xml" value="0.25" />
@@ -117,7 +114,7 @@
         <entry key="app/src/main/res/layout/favorite_row.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/filtro_row.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/fragment_choice_dialog.xml" value="0.20516304347826086" />
-        <entry key="app/src/main/res/layout/fragment_client_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_client_home.xml" value="0.5697151424287856" />
         <entry key="app/src/main/res/layout/fragment_client_profile.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/menu_item_row.xml" value="0.25" />
