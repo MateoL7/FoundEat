@@ -1,5 +1,6 @@
 package com.example.foundeat.ui.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import com.example.foundeat.fcm.FCMMessage;
 import com.example.foundeat.model.Client;
 import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.model.Review;
+import com.example.foundeat.ui.client.restaurantInfo.ClientRestaurantInfo;
+import com.example.foundeat.ui.restaurant.RestaurantMoreInfo;
 import com.example.foundeat.ui.restaurant.ReviewAdapter;
 import com.example.foundeat.util.HTTPSWebUtilDomi;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +51,11 @@ public class ClientAddReview extends AppCompatActivity {
         restaurant = (Restaurant) getIntent().getExtras().get("restaurant");
         contentReview = findViewById(R.id.contentReview);
         addClientReviewBtn = findViewById(R.id.addClientReviewBtn);
-
+        star1 = findViewById(R.id.star1);
+        star2 = findViewById(R.id.star2);
+        star3 = findViewById(R.id.star3);
+        star4 = findViewById(R.id.star4);
+        star5 = findViewById(R.id.star5);
         goBackTV = findViewById(R.id.goBackTV);
 
 
@@ -142,7 +149,8 @@ public class ClientAddReview extends AppCompatActivity {
                 Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content,  date);
                 FirebaseFirestore.getInstance().collection("reviews").document(review.getId()).set(review).addOnSuccessListener(task->{
                     Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(this, ClientRestaurantInfo.class);
+                    startActivity(intent);
                 });
                 new Thread(
                         () -> {
