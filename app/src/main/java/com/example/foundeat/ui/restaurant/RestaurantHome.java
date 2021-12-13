@@ -248,10 +248,10 @@ public class RestaurantHome extends AppCompatActivity {
                         s=ds.toObject(MenuItem.class);
 
                         int temp = Integer.parseInt(s.getPrice());
-                        if(temp>mayor && temp>menor){
+                        if(temp>mayor){
                             mayor = temp;
                         }
-                        else if(temp<menor ){
+                        if(temp<menor ){
                             menor = temp;
                         }
 
