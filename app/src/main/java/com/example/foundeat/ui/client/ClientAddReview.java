@@ -26,6 +26,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -68,52 +71,52 @@ public class ClientAddReview extends AppCompatActivity {
         star1.setOnClickListener(v->{
             rating = 1;
             //Prendidas
-            star1.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star2.setBackground(null);
-            star3.setBackground(null);
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star2.setBackgroundResource(R.drawable.star_null);
+            star3.setBackgroundResource(R.drawable.star_null);
+            star4.setBackgroundResource(R.drawable.star_null);
+            star5.setBackgroundResource(R.drawable.star_null);
 
         });
         star2.setOnClickListener(v->{
             rating = 2;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star3.setBackground(null);
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star3.setBackgroundResource(R.drawable.star_null);
+            star4.setBackgroundResource(R.drawable.star_null);
+            star5.setBackgroundResource(R.drawable.star_null);
         });
         star3.setOnClickListener(v->{
             rating = 3;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
-            star3.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
+            star3.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star4.setBackgroundResource(R.drawable.star_null);
+            star5.setBackgroundResource(R.drawable.star_null);
         });
         star4.setOnClickListener(v->{
             rating = 4;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
-            star3.setBackground(null);
-            star4.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
+            star3.setBackgroundResource(R.drawable.star_filled);
+            star4.setBackgroundResource(R.drawable.star_filled);
             //Apagadas
-            star5.setBackground(null);
+            star5.setBackgroundResource(R.drawable.star_null);;
         });
         star5.setOnClickListener(v->{
             rating = 5;
             //Prendidas
-            star1.setBackground(null);
-            star2.setBackground(null);
-            star3.setBackground(null);
-            star4.setBackground(null);
-            star5.setBackground(null);
+            star1.setBackgroundResource(R.drawable.star_filled);
+            star2.setBackgroundResource(R.drawable.star_filled);
+            star3.setBackgroundResource(R.drawable.star_filled);
+            star4.setBackgroundResource(R.drawable.star_filled);
+            star5.setBackgroundResource(R.drawable.star_filled);
         });
 
     }
@@ -136,21 +139,21 @@ public class ClientAddReview extends AppCompatActivity {
                 FirebaseFirestore.getInstance().collection("reviews").whereEqualTo("restaurantID",restaurant.getId()).get().addOnCompleteListener(
                         task -> {
                             int numReviews=0;
-                            int ratingSum = 0;
+                            double ratingSum = 0;
                             for (DocumentSnapshot doc:task.getResult()){
-                                int actualRating = (Integer) doc.get("rating");
+                                long actualRating = (Long) doc.get("rating");
                                 numReviews++;
                                 ratingSum = ratingSum + actualRating;
                             }
-                            restaurant.setRating(ratingSum/numReviews);
+                            DecimalFormat df = new DecimalFormat("#.#");
+                            df.setRoundingMode(RoundingMode.CEILING);
+                            restaurant.setRating(Double.parseDouble(df.format(ratingSum/numReviews)));
                             FirebaseFirestore.getInstance().collection("restaurants").document(restaurant.getId()).set(restaurant);
                         }
                 );
                 Review review = new Review( id,  customerID,  restaurantID,  customerPic,  customerName,  restaurantName,  content, rating,  date);
                 FirebaseFirestore.getInstance().collection("reviews").document(review.getId()).set(review).addOnSuccessListener(task->{
                     Toast.makeText(this, "¡Gracias por tu opinión!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent();
-                    setResult(RESULT_OK, intent);
                     finish();
                 });
                 new Thread(

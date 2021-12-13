@@ -141,6 +141,12 @@ public class ClientHomeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        cargarDatosRstaurantes();
+    }
+
     private void motrarFiltros(View view) {
         FiltrosFragment filtrosFragment  = FiltrosFragment.newInstance();
         filtrosFragment.show(getActivity().getSupportFragmentManager(), "Filtros");
@@ -208,6 +214,8 @@ public class ClientHomeFragment extends Fragment {
     synchronized public void cargarDatosRstaurantes(){
         FirebaseFirestore.getInstance().collection("restaurants").get().addOnCompleteListener(
                 task -> {
+                    restaurantListAdapter.getRestaurants().clear();
+                    restaurantListAdapter.notifyDataSetChanged();
                     for (DocumentSnapshot doc:task.getResult()){
                         Restaurant newRestaurant = doc.toObject(Restaurant.class);
                         restaurantListAdapter.addRestaurant(newRestaurant);

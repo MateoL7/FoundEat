@@ -49,6 +49,7 @@
         android:background="@drawable/textfieldborder"
         android:ems="10"
         android:fontFamily="@font/dmsansregular"
+        android:gravity="top"
         android:hint="Agrega una descripción de tu restaurante"
         android:inputType="textPersonName"
         android:padding="15dp"
