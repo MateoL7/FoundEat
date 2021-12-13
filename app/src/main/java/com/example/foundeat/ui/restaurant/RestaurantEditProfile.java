@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 
@@ -35,6 +36,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
     private ImageView profilePics;
     private EditText descriptionET, closingET, openingET, addressET;
     private Button saveBtn;
+    private ImageButton goBackTo;
 
     private Restaurant restaurant;
 
@@ -52,6 +54,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         addressET = findViewById(R.id.newEmailET);
         categoryChoice = findViewById(R.id.categoryChoice);
         saveBtn = findViewById(R.id.saveBtn);
+        goBackTo = findViewById(R.id.goBackTo);
 
         ActivityResultLauncher<Intent> launcherMap = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), this::pickLocation
@@ -67,6 +70,7 @@ public class RestaurantEditProfile extends AppCompatActivity {
         openingET.setOnClickListener(this::pickTime);
 
         saveBtn.setOnClickListener(this::saveInfo);
+        goBackTo.setOnClickListener(this::goBack);
         addressET.setOnClickListener(
                 v -> {
 
@@ -171,5 +175,9 @@ public class RestaurantEditProfile extends AppCompatActivity {
                     }
             );
         }
+    }
+
+    public void goBack (View view) {
+        finish();
     }
 }

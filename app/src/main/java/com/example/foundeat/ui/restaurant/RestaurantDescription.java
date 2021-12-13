@@ -35,7 +35,7 @@ public class RestaurantDescription extends AppCompatActivity {
         descriptionET = findViewById(R.id.newNameET);
         continueBtn = findViewById(R.id.saveBtn);
 
-        resGreetingTV.setText("Hola " + restaurant.getName() + ",\n editemos tu perfil para que los clientes te encuentren");
+        resGreetingTV.setText("Hola " + restaurant.getName() + ",\neditemos tu perfil para que los clientes te encuentren");
         continueBtn.setEnabled(false);
 
         descriptionET.addTextChangedListener(new TextWatcher() {
