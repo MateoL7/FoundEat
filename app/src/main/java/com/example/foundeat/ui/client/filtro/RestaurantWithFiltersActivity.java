@@ -15,6 +15,7 @@ import com.example.foundeat.model.Restaurant;
 import com.example.foundeat.ui.client.restaurantList.RestaurantListAdapter;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
 
 
      public void cargarDatosRstaurantes(){
-         for (String category:categoriesSelected) {
+         /*for (String category:categoriesSelected) {
              Log.e("Aquiii: ", maxPrice +" - "+ minPrice+ " - "+ horaCierre+ " - "+category);
              FirebaseFirestore.getInstance().collection("restaurants").whereEqualTo("category",category).get().addOnCompleteListener(
                      task -> {
@@ -70,6 +71,10 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
                                  if (newRestaurant.getClosingTime()==null&&newRestaurant.getOpeningTime()==null){
                                      restaurantFilterAdapter.addRestaurant(newRestaurant);
                                  }else{
+                                     if(horaInicio.equals("") || horaCierre.equals("")){
+                                         horaInicio = "00:00";
+                                         horaCierre = "24:00";
+                                     }
                                      //TODO: Revisar lógica del tiempo
                                      if (!LocalTime.parse(horaInicio).isAfter(LocalTime.parse(newRestaurant.getClosingTime()))
                                              &&!LocalTime.parse(horaCierre).isBefore(LocalTime.parse(newRestaurant.getOpeningTime()))){
@@ -83,7 +88,7 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
              );
          }
          if (categoriesSelected.isEmpty()){
-             FirebaseFirestore.getInstance().collection("restaurants").get().addOnCompleteListener(
+             FirebaseFirestore.getInstance().collection("restaurants").whereGreaterThan("minPrice","201").get().addOnCompleteListener(
                      task -> {
                          if (task.getResult().isEmpty()){
                              restaurantesfiltrosTV.setText("Sin resultados");
@@ -98,6 +103,10 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
                                  if (newRestaurant.getClosingTime()==null&&newRestaurant.getOpeningTime()==null){
                                      restaurantFilterAdapter.addRestaurant(newRestaurant);
                                  }else{
+                                     if(horaInicio.equals("") || horaCierre.equals("")){
+                                         horaInicio = "00:00";
+                                         horaCierre = "23:59";
+                                     }
                                      if (!LocalTime.parse(horaInicio).isAfter(LocalTime.parse(newRestaurant.getClosingTime()))
                                              &&!LocalTime.parse(horaCierre).isBefore(LocalTime.parse(newRestaurant.getOpeningTime()))){
                                          restaurantFilterAdapter.addRestaurant(newRestaurant);
@@ -108,7 +117,41 @@ public class RestaurantWithFiltersActivity extends AppCompatActivity {
 
                      }
              );
+         }*/
+
+         Query q = FirebaseFirestore.getInstance().collection("restaurants");
+         if(!categoriesSelected.isEmpty()){
+             q = q.whereIn("category",categoriesSelected);
          }
+         if(!maxPrice.equals("")){
+             q = q.whereLessThan("minPrice", maxPrice);
+         }
+         q.get().addOnCompleteListener(task -> {
+                for(DocumentSnapshot doc: task.getResult()){
+                    Restaurant rest = doc.toObject(Restaurant.class);
+                    boolean aux = true;
+//                    if(rest.getMinPrice() != null){
+//
+//                        Log.e("Price", "Found: "+rest.getMaxPrice()+" Given: "+minPrice + " Result: "+rest.getMaxPrice().compareTo(minPrice));
+//                        if(rest.getMinPrice().compareTo(maxPrice) < 0){
+//                            aux = false;
+//                        }
+//                    }
+//                    if(rest.getOpeningTime() != null){
+//                        if(rest.getOpeningTime().compareTo(horaInicio) < 0){
+//                            aux = false;
+//                        }}
+//                    if(rest.getClosingTime() != null){
+//                        if(rest.getClosingTime().compareTo(horaCierre) > 0){
+//                            aux = false;
+//                        }
+//                    }
+                    if(aux){
+                        restaurantFilterAdapter.addRestaurant(rest);
+                    }
+                }
+            }
+         );
     }
 
 }

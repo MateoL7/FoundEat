@@ -99,8 +99,12 @@ public class FiltrosFragment extends DialogFragment implements FiltrosView.OnCat
     }
 
     public boolean valuesPriceIsOk(){
-        if (Integer.parseInt(minPriceET.getText().toString())>Integer.parseInt(maxPriceET.getText().toString())){
-            return false;
+        if(!minPriceET.getText().toString().equals("") && !maxPriceET.getText().toString().equals("")){
+            if (Integer.parseInt(minPriceET.getText().toString())>Integer.parseInt(maxPriceET.getText().toString())){
+                return false;
+            }else{
+                return true;
+            }
         }else{
             return true;
         }
