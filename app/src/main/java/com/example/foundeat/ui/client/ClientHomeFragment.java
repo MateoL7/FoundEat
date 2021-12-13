@@ -209,6 +209,7 @@ public class ClientHomeFragment extends Fragment {
                     url->   {
                         Glide.with(restauranteRecomendadoImage).load(url).into(restauranteRecomendadoImage);
                         restauranteRecomendadoTV.setText(restauranteRecomendado.getName());
+                        ratingRecomendado.setText(restauranteRecomendado.getRating()+"");
                     }
             );
         }
