@@ -1,9 +1,13 @@
 package com.example.foundeat.ui.client.restaurantInfo;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -46,6 +50,8 @@ public class ClientRestaurantInfo extends AppCompatActivity {
 
     private boolean added;
 
+    private ActivityResultLauncher<Intent> launcher;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -67,6 +73,11 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         favBttn = findViewById(R.id.favBttn);
         goBack = findViewById(R.id.goBack);
 
+        //AddReview Launcher
+        launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(), this::onReviewResult
+        );
+
         //Add listeners to buttons
         favBttn.setOnClickListener(this::addToFavorites);
         menuTV.setOnClickListener(this::loadMenu);
@@ -82,6 +93,12 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         loadRestaurantInfo();
     }
 
+    private void onReviewResult(ActivityResult result){
+        if(result.getResultCode()==RESULT_OK){
+            loadRestaurantInfo();
+        }
+    }
+
     private void showReviews(View view) {
         Intent intent = new Intent(this, RestaurantReviews.class);
         intent.putExtra("restaurant",restaurant);
@@ -92,7 +109,7 @@ public class ClientRestaurantInfo extends AppCompatActivity {
         Intent intent = new Intent(this, ClientAddReview.class);
         intent.putExtra("client",currentClient);
         intent.putExtra("restaurant",restaurant);
-        startActivity(intent);
+        launcher.launch(intent);
     }
 
     public void loadRestaurantInfo(){
