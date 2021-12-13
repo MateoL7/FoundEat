@@ -50,6 +50,7 @@ public class ClientFavorites extends AppCompatActivity {
         db.collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
                 (value, error) -> {
                     adapter.getRestaurants().clear();
+                    adapter.notifyDataSetChanged();
                     for (DocumentSnapshot doc : value.getDocuments()) {
                         String resId = (String) doc.get("resId");
                         bringRestaurant(resId);

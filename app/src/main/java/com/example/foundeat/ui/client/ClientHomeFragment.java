@@ -235,6 +235,7 @@ public class ClientHomeFragment extends Fragment {
             FirebaseFirestore.getInstance().collection("users").document(client.getId()).collection("favorites").addSnapshotListener(
                     (value, error) -> {
                         favoritesListAdapter.getRestaurants().clear();
+                        favoritesListAdapter.notifyDataSetChanged();
                         for (DocumentSnapshot doc : value.getDocuments()) {
                             String resId = (String) doc.get("resId");
                             bringRestaurant(resId);
